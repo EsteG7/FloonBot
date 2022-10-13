@@ -88,6 +88,7 @@ module.exports = async (bot, interaction) => {
             if (!interaction.member.permissions.has(Discord.PermissionFlagsBits.ManageChannels)) return interaction.reply({ embeds: [EmbedPermissionTranscript], ephemeral: true })
 
             await interaction.deferReply({ ephemeral: true })
+            //Id du salon pour les logs
             await bot.channels.cache.get("973908897024843806").send({ embeds: [EmbedTranscript], files: [await transcript.createTranscript(interaction.channel)] })
             await interaction.editReply({ embeds: [EmbedSendTranscript], ephemeral: true })
         }
@@ -135,6 +136,7 @@ module.exports = async (bot, interaction) => {
 
                 if (interaction.values == 'help') {
                     let channel = await interaction.guild.channels.create({
+                        //Id de la category pour le ticket
                         parent: "972211988564439110",
                         name: `help-${interaction.user.username}`,
                         type: ChannelType.GuildText,
@@ -217,6 +219,7 @@ module.exports = async (bot, interaction) => {
             );
     } if (interaction.values == 'rôle') {
         let channel = await interaction.guild.channels.create({
+            //Id de la category pour le ticket
             parent: "972211988564439110",
             name: `Recrutement modo-${interaction.user.username}`,
             type: ChannelType.GuildText,

@@ -9,6 +9,6 @@ module.exports = (client, member) => {
         .setDescription(`Le membre : <@${member.user.id}>.\n \u200B \nViens de partire de la Team.`)
         .setThumbnail(member.user.displayAvatarURL())
         .setTimestamp()
-
+    //Id du salon pour le Goodbye
     client.channels.cache.get('972786161552601148').send({ embeds: [EmbedMessage] })
 }

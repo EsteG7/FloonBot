@@ -29,7 +29,8 @@ module.exports = {
             .setTimestamp()
             .setFooter({ text: "suggest" })
 
-        bot.channels.cache.get(config.suggestid).send({ embeds: [EmbedMessage] }).then(function (message) {
+        //Id du salon pour avoir les suggest
+        bot.channels.cache.get("1010208026294239434").send({ embeds: [EmbedMessage] }).then(function (message) {
             message.react("✅")
             message.react("❌")
 
