@@ -26,11 +26,11 @@ module.exports = {
             type: "string",
             name: "raison",
             description: "La raison du mute",
-            required: false,
+            required: true,
             autocomplete: false
         }
     ],
-    async run(bot, message, args) {
+    async run(bot, message, args, db) {
 
 
         let user = args.getUser("membre");
@@ -57,6 +57,10 @@ module.exports = {
         await message.reply(`${message.user} a mute ${user.tag} pendant ${time} pour la raison : \`${reason}\``)
 
         await member.timeout(ms(time), reason)
+
+        let ID = await bot.fonction.createId("MUTE")
+
+        db.query(`INSERT INTO mutes (guild, user, author, mute, time, reason, date) VALUES ('${message.guild.name}', '${user.tag}', '${message.user.tag}', '${time}', '${ID}', '${reason.replace(/'/g, "\\'")}', '${Date.now()}')`)
 
     }
 }

@@ -65,6 +65,6 @@ module.exports = {
 
         let ID = await bot.fonction.createId("WARN")
 
-        db.query(`INSERT INTO warns (guild, user, author, warn, reason, date) VALUES ('${message.guild.id}', '${user.id}', '${message.user.id}', '${ID}', '${reason.replace(/'/g, "\\'")}', '${Date.now()}')`)
+        db.query(`INSERT INTO warns (guild, user, author, warn, reason, date) VALUES ('${message.guild.name}', '${user.tag}', '${message.user.tag}', '${ID}', '${reason.replace(/'/g, "\\'")}', '${Date.now()}')`)
     }
 }

@@ -18,11 +18,11 @@ module.exports = {
       type: "string",
       name: "raison",
       description: "La raison du kick",
-      required: false,
+      required: true,
       autocomplete: false
     }
   ],
-  async run(bot, message, args) {
+  async run(bot, message, args, db) {
 
 
     let user = args.getUser("membre")
@@ -39,11 +39,18 @@ module.exports = {
     if (member && message.member.roles.highest.comparePositionTo(member.roles.highest) <= 0) return message.reply("Tu ne peux pas kick cette personne")
 
 
-    try { await user.send(`Tu as été kick du serveur ${message.guild.name} par ${message.user.tag} pour la raison : \`${reason}\``) } catch (err) { }
+    try {
+      await user.send(`Tu as été kick du serveur ${message.guild.name} par ${message.user.tag} pour la raison : \`${reason}\``)
+    } catch (err) { }
 
     await message.reply(`${message.user} a kick ${user.tag} pour la raison : \`${reason}\``)
 
     await member.kick(reason)
+
+    let ID = await bot.fonction.createId("KICK")
+
+    db.query(`INSERT INTO kicks (guild, user, author, kick, reason, date) VALUES ('${message.guild.name}', '${user.tag}', '${message.user.tag}', '${ID}', '${reason.replace(/'/g, "\\'")}', '${Date.now()}')`)
+
 
 
 
