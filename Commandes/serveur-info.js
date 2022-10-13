@@ -48,6 +48,8 @@ module.exports = {
                     `)
                 .setFooter({ text: `${interaction.user.username}`, iconURL: `${interaction.user.displayAvatarURL({ dynamic: true })}` })
                 .setTimestamp()
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+
 
             interaction.reply({ embeds: [serveurEmbed] })
 

@@ -19,7 +19,7 @@ module.exports = {
             type: "string",
             name: "raison",
             description: "La raison du unmute",
-            required: false,
+            required: true,
             autocomplete: false
         }
     ],
@@ -27,9 +27,9 @@ module.exports = {
 
 
         let user = args.getUser("membre");
-        if (!user) return message.reply("Pas de membre à unmute")
+        if (!user) return message.channel.send("Pas de membre à unmute"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
         let member = message.guild.members.cache.get(user.id)
-        if (!member) return message.reply("Pas de membre")
+        if (!member) return message.channel.send("Pas de membre"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
 
 
         let reason = args.getString("raison")
@@ -40,10 +40,29 @@ module.exports = {
         if (message.member.roles.highest.comparePositionTo(member.roles.highest) <= 0) return message.reply("Tu ne peux pas umute cette personne")
         if (!member.isCommunicationDisabled()) return message.reply("ce membre est pas mute")
 
-        try { await user.send(`Tu as été unmute du serveur ${message.guild.name} par ${message.user.tag}  pour la raison : \`${reason}\``) } catch (err) { }
+        try {
+            let Embed1 = new Discord.EmbedBuilder()
+                .setColor("Red")
+                .setTitle(`Unmute`)
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                .setDescription(`\`🛑 Unmute \n Tu as été unmute du serveur \`${message.guild.name}\`\n par le modérateur \`${message.user.tag} \`\n pour la raison : \`${reason}\``)
+                .setTimestamp()
+                .setFooter({ text: "Unmute" })
+            await user.send({ embeds: [Embed1] })
 
-        await message.reply(`${message.user} a unmute ${user.tag} pour la raison : \`${reason}\``)
+        } catch (err) { }
 
+        let Embed = new Discord.EmbedBuilder()
+            .setColor("Red")
+            .setTitle(`Unmute`)
+            .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+            .setDescription(`\`🛑 Unmute \n ${message.user.tag}\`a **Unmute** \n\` ${user.tag}\` **avec succès ! ✅**\n pour la raison : \`${reason}\`!`)
+            .setTimestamp()
+            .setFooter({ text: "Unmute" })
+
+
+        await message.channel.send({ embeds: [Embed] })
+        message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
         await member.timeout(null, reason)
 
     }

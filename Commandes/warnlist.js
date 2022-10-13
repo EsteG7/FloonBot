@@ -20,25 +20,25 @@ module.exports = {
     async run(bot, message, args, db) {
 
         let user = args.getUser("membre")
-        if (!user) return message.reply("Pas de membre")
+        if (!user) return message.channel.send("Pas de membre"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
         let member = message.guild.members.cache.get(user.id)
-        if (!member) return message.reply("pas de membre")
+        if (!member) return message.channel.send("pas de membre"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
 
-        db.query(`SELECT * FROM warns WHERE guild = '${message.guildId}' AND user = '${user.id}'`, async (err, req) => {
+        db.query(`SELECT * FROM warns WHERE guildId = '${message.guildId}' AND userId = '${user.id}'`, async (err, req) => {
 
-            if (req.length < 1) return message.reply("Ce membre n'a pas de warn")
+            if (req.length < 1) return message.channel.send("Ce membre n'a pas de warn"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
             await req.sort((a, b) => parseInt(a.date) - parseInt(b.date))
 
             let Embed = new Discord.EmbedBuilder()
                 .setColor("Red")
-                .setTitle(`Warns de ${user.tag}`)
+                .setTitle(`Liste des warns de ${user.tag}`)
                 .setThumbnail(user.displayAvatarURL({ dynamic: true }))
                 .setTimestamp()
-                .setFooter({ text: "Warns" })
+                .setFooter({ text: "Liste des warns" })
 
             for (let i = 0; i < req.length; i++) {
                 Embed.addFields([{
-                    name: `Warn n${i + 1}`, value: `> **Auteur** : ${(await bot.users.fetch(req[i].author)).tag}\n> **ID** : \`${req[i].warn}\`\n> **Raison** :  \`${req[i].reason}\`\n> **Date** : <t:${Math.floor(parseInt(req[i].date) / 1000)}:F> `
+                    name: `Warn n${i + 1}`, value: `> **Auteur** : ${(await bot.users.fetch(req[i].authorId)).tag}\n> **ID** : \`${req[i].warn}\`\n> **Raison** :  \`${req[i].reason}\`\n> **Date** : <t:${Math.floor(parseInt(req[i].date) / 1000)}:F> `
                 }])
             }
             await message.reply({ embeds: [Embed] })

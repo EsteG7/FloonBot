@@ -1,4 +1,4 @@
-const discord = require("discord.js");
+const Discord = require("discord.js");
 
 
 module.exports = {
@@ -23,17 +23,23 @@ module.exports = {
         }
     ],
 
-    async run(bot, interaction, args,) {
+    async run(bot, interaction, args, message) {
 
         let user = await interaction.options.getUser("membre");
-        if (!user) return interaction.reply("Pas de membre !")
 
         let reason = interaction.options.getString("texte")
-        if (!reason) return interaction.reply("Pas de raison fournise.")
 
-
-        try { await user.send(`${reason}`) } catch (err) { }
-        interaction.reply({ content: `J'ai bien envoyer \`${reason}\` à \_\_${user}\_\_ !`, ephemeral: true });
+        try {
+            let Embed1 = new Discord.EmbedBuilder()
+                .setColor("Green")
+                .setTitle(`Message de ${user.tag}`)
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                .setDescription(`${reason}`)
+                .setTimestamp()
+                .setFooter({ text: "Message en mp" })
+            await user.send({ embeds: [Embed1] })
+        } catch (err) { }
+        interaction.reply({ content: `J'ai bien envoyer le message à \_\_${user}\_\_ !`, ephemeral: true });
 
     }
 }

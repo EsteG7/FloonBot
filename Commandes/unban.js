@@ -19,7 +19,7 @@ module.exports = {
             type: "string",
             name: "raison",
             description: "La raison du unbannissement",
-            required: false,
+            required: true,
             autocomplete: false
 
         }
@@ -33,11 +33,30 @@ module.exports = {
             let reason = args.get("raison").value;
             if (!reason) reason = "pas de raison fournie";
 
-            if (!(await message.guild.bans.fetch()).get(user.id)) return message.reply("ce membre est pas ban")
+            if (!(await message.guild.bans.fetch()).get(user.id)) return message.reply("ce membre est pas ban"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
 
-            try { await user.send(`Tu as été unban du serveur ${message.guild.name} par ${message.user.tag} pour la raison : \`${reason}\``) } catch (err) { }
+            try {
+                let Embed1 = new Discord.EmbedBuilder()
+                    .setColor("Red")
+                    .setTitle(`UnBan`)
+                    .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                    .setDescription(`\`🛑 UnBan \n Tu as été unban du serveur \`${message.guild.name}\`\n par le modérateur \`${message.user.tag} \`\n pour la raison : \`${reason}\``)
+                    .setTimestamp()
+                    .setFooter({ text: "Unban" })
+                await user.send({ embeds: [Embed1] })
 
-            await message.reply(`${message.user} a unban ${user.tag} pour la raison : \`${reason}\``)
+            } catch (err) { }
+            let Embed = new Discord.EmbedBuilder()
+                .setColor("Red")
+                .setTitle(`UnBan`)
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                .setDescription(`\`🛑 UnBan \n ${message.user.tag}\`a **unban** \n\` ${user.tag}\` **avec succès ! ✅**\n pour la raison : \`${reason}\`!`)
+                .setTimestamp()
+                .setFooter({ text: "Unban" })
+
+
+            await message.channel.send({ embeds: [Embed] })
+            message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
             await message.guild.members.unban(user, reason)
 
 

@@ -23,7 +23,6 @@ module.exports = {
             .setTimestamp()
             .setFooter({ text: "dé" })
         await message.channel.send({ embeds: [dé] })
-
         message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
     }
 

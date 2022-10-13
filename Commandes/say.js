@@ -9,7 +9,7 @@ module.exports = {
     options: [
         {
             type: "string",
-            name: "tosend",
+            name: "message",
             description: "Le message a ecrire",
             required: true,
             autocomplete: false
@@ -18,7 +18,7 @@ module.exports = {
 
     async run(bot, message, args) {
 
-        const msg = args.getString("tosend");
+        const msg = args.getString("message");
         message.channel.send(msg);
         await message.reply({ content: ':white_check_mark: **message envoyer avec succes ! **:white_check_mark:', ephemeral: true })
 

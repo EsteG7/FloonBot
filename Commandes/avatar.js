@@ -22,7 +22,7 @@ module.exports = {
         if (!user) return message.reply("Utlisateur non valide")
         const exampleEmbed = new EmbedBuilder()
             .setColor("Green")
-            .setTitle(`${user.username}`)
+            .setTitle(`avatar`)
             .setDescription(`avatar de ${user.tag}`)
             .setTimestamp()
             .setFooter({ text: "avatar" })

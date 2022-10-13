@@ -49,7 +49,7 @@ module.exports = {
 
     let ID = await bot.fonction.createId("KICK")
 
-    db.query(`INSERT INTO kicks (guild, user, author, kick, reason, date) VALUES ('${message.guild.name}', '${user.tag}', '${message.user.tag}', '${ID}', '${reason.replace(/'/g, "\\'")}', '${Date.now()}')`)
+    db.query(`INSERT INTO kicks (guild, guildId, user, userId, author, authorId, kick, reason, date) VALUES ('${message.guild.name}', '${message.guild.id}','${user.tag}', '${user.id}','${message.user.tag}','${message.user.id}', '${ID}', '${reason.replace(/'/g, "\\'")}', '${Date.now()}')`)
 
 
 

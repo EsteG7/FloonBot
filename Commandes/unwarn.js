@@ -24,24 +24,43 @@ module.exports = {
 
     async run(bot, message, args, db) {
         let user = args.getUser("membre")
-        if (!user) return message.reply("Pas de membre !")
+        if (!user) return message.channel.send("Pas de membre !"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
         let member = message.guild.members.cache.get(user.id)
-        if (!member) return message.reply("Pas de membre !")
+        if (!member) return message.channel.send("Pas de membre !"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
 
-        db.query(`SELECT * FROM warns WHERE guild = '${message.guildId}' AND user = '${user.id}'`, async (err, req) => {
+        db.query(`SELECT * FROM warns WHERE guildId = '${message.guildId}' AND userId = '${user.id}'`, async (err, req) => {
             let warns = args.getString("unwarn") || req[0].warn
-            if (!warns) return message.reply("Pas de warn")
+            if (!warns) return message.channel.send("Pas de warn"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
 
             await req.sort((a, b) => parseInt(a.date) - parseInt(b.date))
-            if (req.length < 1) return message.reply("Ce membre n'a pas de warn !")
+            if (req.length < 1) return message.channel.send("Ce membre n'a pas de warn !"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
 
-            await message.reply(`Le warn \`${req[0].warn}\` de \`${user.tag}\` à été supprimer avec succès !`)
+            let Embed = new Discord.EmbedBuilder()
+                .setColor("Red")
+                .setTitle(`Unwarn`)
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                .setDescription(`\`🛑 UnWarn \n ${message.user.tag}\`a **Unwarn le**\`${req[0].warn}\` \n de\` ${user.tag}\` **avec succès ! ✅**!`)
+                .setTimestamp()
+                .setFooter({ text: "Unwarn" })
+
+
+            await message.channel.send({ embeds: [Embed] })
+            message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+
+
             try {
-                user.send(`Votre warn \`${req[0].warn}\`\n> Date: <t:${Math.floor(parseInt(req[0].date / 1000))}:F>`)
+                let Embed1 = new Discord.EmbedBuilder()
+                    .setColor("Red")
+                    .setTitle(`Unwarn`)
+                    .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                    .setDescription(`\`🛑 Unwarn \n Tu as été Unwarn du serveur \`${message.guild.name}\`\n par le modérateur \`${message.user.tag} \``)
+                    .setTimestamp()
+                    .setFooter({ text: "Unwarn" })
+                await user.send({ embeds: [Embed1] })
             } catch (err) {
 
             }
-            db.query(`DELETE FROM warns WHERE guild = '${message.guildId}' AND warn = '${warns}'`)
+            db.query(`DELETE FROM warns WHERE guildId = '${message.guildId}' AND warn = '${warns}'`)
         })
     }
 }
