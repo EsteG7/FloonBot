@@ -11,7 +11,7 @@ module.exports = {
         {
             type: "string",
             name: "category",
-            description: "category : pussy",
+            description: "category : pussy, aHarem",
             required: true,
             autocomplete: false
         }
@@ -84,6 +84,7 @@ module.exports = {
                 "https://cdn.discordapp.com/attachments/1028365406093721610/1029410809899651152/pussy_58.gif",
                 "https://cdn.discordapp.com/attachments/1028365406093721610/1029410810327486515/pussy_59.gif",
                 "https://cdn.discordapp.com/attachments/1028365406093721610/1029410810688180374/pussy_60.gif",
+
             ]
             let pussyradom = Math.floor(Math.random() * pussy.length);
             let pussymotRandom = pussy[pussyradom];
@@ -91,6 +92,37 @@ module.exports = {
             let pussy1 = new Discord.EmbedBuilder()
                 .setColor("Purple")
                 .setImage(url = pussymotRandom)
+
+            await message.channel.send({ embeds: [pussy1] })
+            message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+            console.log(pussymotRandom)
+        }
+
+        if (choix === "aHarem") {
+
+            let aHarem = [
+                "https://cdn.discordapp.com/attachments/1030483290571943946/1030483408993914931/aHarem_1.gif",
+                "https://cdn.discordapp.com/attachments/1030483290571943946/1030483409522413578/aHarem_2.gif",
+                "https://cdn.discordapp.com/attachments/1030483290571943946/1030483410071851160/aHarem_3.gif",
+                "https://cdn.discordapp.com/attachments/1030483290571943946/1030483410558386247/aHarem_4.gif",
+                "https://cdn.discordapp.com/attachments/1030483290571943946/1030483410914906182/aHarem_5.gif",
+                "https://cdn.discordapp.com/attachments/1030483290571943946/1030483411313364992/aHarem_6.gif",
+                "https://cdn.discordapp.com/attachments/1030483290571943946/1030483411883806810/aHarem_7.gif",
+                "https://cdn.discordapp.com/attachments/1030483290571943946/1030483412319997982/aHarem_8.gif",
+                "https://cdn.discordapp.com/attachments/1030483290571943946/1030483412743618611/aHarem_9.gif",
+                "https://cdn.discordapp.com/attachments/1030483290571943946/1030483413121106011/aHarem_10.gif",
+                "https://cdn.discordapp.com/attachments/1030483290571943946/1030483428036059257/aHarem_11.gif",
+                "https://cdn.discordapp.com/attachments/1030483290571943946/1030483428535185478/aHarem_12.gif",
+                "https://cdn.discordapp.com/attachments/1030483290571943946/1030483429143347280/aHarem_13.gif",
+                "https://cdn.discordapp.com/attachments/1030483290571943946/1030483429642469456/aHarem_14.gif",
+                "https://cdn.discordapp.com/attachments/1030483290571943946/1030483430091259945/aHarem_15.gif",
+            ]
+            let aHaremradom = Math.floor(Math.random() * aHarem.length);
+            let aHaremmotRandom = aHarem[aHaremradom];
+
+            let pussy1 = new Discord.EmbedBuilder()
+                .setColor("Purple")
+                .setImage(url = aHaremmotRandom)
 
             await message.channel.send({ embeds: [pussy1] })
             message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
