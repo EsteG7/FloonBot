@@ -160,7 +160,7 @@ module.exports = {
                                         .setFooter({ text: 'WARN', iconURL: user.displayAvatarURL({ dynamic: true }) })
 
                                     for (let i = 0; i < warns.length; i++) {
-                                        description += `**Avertissement n°${i + 1}__**\n\n> **Auteur** : ${bot.users.cache.get(warns[i].authorId)}\n> **Raison** : ${warns[i].reason}\n> **Date** : <t:${Math.floor(parseInt(warns[i].date) / 1000)}:F>\n\n`;
+                                        description += `**Avertissement n°${i + 1}__**\n\n> **Auteur** : ${bot.users.cache.get(warns[i].authorId)}\n> **Id** : \`${warns[i].warn}\`\n> **Raison** : ${warns[i].reason}\n> **Date** : <t:${Math.floor(parseInt(warns[i].date) / 1000)}:F>\n\n`;
                                     }
 
                                     newEmbed.setDescription(description)

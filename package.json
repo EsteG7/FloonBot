@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "anti-link-discord": "^1.0.4",
     "db": "^3.4.0",
     "discord-canvas-easy": "^3.2.0",
     "discord-giveaway-easy": "^2.1.1",

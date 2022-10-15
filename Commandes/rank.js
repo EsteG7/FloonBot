@@ -33,7 +33,7 @@ module.exports = {
 
 
 
-                if (req.length < 1) return message.reply("Ce membre n'a pas d'xp")
+                if (req.length < 1) return message.channel.send(`\`${message.user.tag}\` la personne que tu as regarder l'xp ,n'a pas encore envoyer de message sur le serveur`), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
 
                 await message.deferReply()
 
