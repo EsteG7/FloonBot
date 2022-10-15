@@ -25,7 +25,7 @@ module.exports = {
                 return xptotal
             }
 
-            let leaderboard = await req.sort((a, b) => calculXp(parseInt(b.exp), parseInt(b.level)) - calculXp(parseInt(a.xp), parseInt(a.level)))
+            let leaderboard = await req.sort((a, b) => calculXp(parseInt(b.xp), parseInt(b.level)) - calculXp(parseInt(a.xp), parseInt(a.level)))
 
             const Leaderboard = await new Canvas.Leaderboard()
                 .setBot(bot)
@@ -33,7 +33,7 @@ module.exports = {
                 .setBackground("./y006i80.png")
                 .setColorFont("#3dffcc")
 
-            for (let i = 0; i < (req.length > 11 ? 11 : req.length); i++) {
+            for (let i = 0; i < (req.length > 10 ? 10 : req.length); i++) {
 
                 await Leaderboard.addUser(await bot.users.fetch(leaderboard[i].user), parseInt(leaderboard[i].level), parseInt(leaderboard[i].xp), (parseInt(leaderboard[i].level) + 1) * 1000)
             }

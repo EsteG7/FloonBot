@@ -13,7 +13,7 @@ module.exports = {
             type: "user",
             name: "utilisateur",
             description: "L'xp du membre",
-            required: true,
+            required: false,
             autocomplete: false
         }
     ],
@@ -41,10 +41,10 @@ module.exports = {
                     let xptotal = 0;
                     for (let i = 0; i < level + 1; i++) xptotal += i * 1000
                     xptotal += xp;
-                    return xptotal;
+                    return xptotal
                 }
 
-                let leaderboard = await all.sort(async (a, b) => calculXp(parseInt(b.xp), parseInt(b.level)) - calculXp(parseInt(a.xp), parseInt(a.level)))
+                let leaderboard = await all.sort((a, b) => calculXp(parseInt(b.xp), parseInt(b.level)) - calculXp(parseInt(a.xp), parseInt(a.level)))
                 let xp = parseInt(req[0].xp)
                 let level = parseInt(req[0].level)
                 let rank = leaderboard.findIndex(r => r.user === user.id) + 1
