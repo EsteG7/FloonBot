@@ -1,6 +1,4 @@
 const Discord = require("discord.js")
-const antiLink = require("anti-link-discord")
-
 
 module.exports = async (bot, message) => {
 
