@@ -38,6 +38,8 @@ module.exports = async (bot, message) => {
 
                 db.query(`UPDATE xp SET xp = '${xp + xptogive}' WHERE guild = '${message.guildId}' AND user = '${message.author.id}'`)
 
+                console.log(`${message.author.tag} a gagner ${xptogive}`)
+
             }
         }
     })

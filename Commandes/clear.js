@@ -38,6 +38,8 @@ module.exports = {
 
             await message.reply({ content: `J'ai bien supprimé \`${messages.size}\` message(s) dans le salon ${channel} !`, ephemeral: true })
 
+            console.log(`${message.user.tag} a supprimer  ${messages.size}`)
+
         } catch (err) {
 
             let messages = [...(await channel.messages.fetch()).values()].filter(async m => (Date.now() - m.createdAt) <= 1209600000)
@@ -45,6 +47,8 @@ module.exports = {
             await channel.bulkDelete(messages)
 
             await message.reply({ content: `J'ai pu supprimé uniquement \`${messages.size}\` message(s) dans le salon ${channel} car les autres dataient de plus 14 jours  !`, ephemeral: true })
+
+
 
         }
     }

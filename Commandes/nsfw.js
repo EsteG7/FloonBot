@@ -126,6 +126,8 @@ module.exports = {
 
             await message.channel.send({ embeds: [pussy1] })
             message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+
+            console.log(`${message.user.tag} a regarde des animes de hentai dans la category aHarem : ${aHaremmotRandom}`)
         }
     }
 }
