@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const gif = require("./gif")
 
 module.exports = {
 
