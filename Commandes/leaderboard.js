@@ -12,7 +12,7 @@ module.exports = {
 
     async run(bot, message, args, db) {
 
-        db.query(`SELECT * FROM xp WHERE guild = '${message.guildId}'`, async (err, req) => {
+        db.query(`SELECT * FROM xp WHERE guildId = '${message.guildId}'`, async (err, req) => {
 
             if (req.length < 1) return message.reply("Personne n'a de l'exp")
 
@@ -35,7 +35,7 @@ module.exports = {
 
             for (let i = 0; i < (req.length > 10 ? 10 : req.length); i++) {
 
-                await Leaderboard.addUser(await bot.users.fetch(leaderboard[i].user), parseInt(leaderboard[i].level), parseInt(leaderboard[i].xp), (parseInt(leaderboard[i].level) + 1) * 1000)
+                await Leaderboard.addUser(await bot.users.fetch(leaderboard[i].userId), parseInt(leaderboard[i].level), parseInt(leaderboard[i].xp), (parseInt(leaderboard[i].level) + 1) * 1000)
             }
 
             const Image = await Leaderboard.toLeaderboard()

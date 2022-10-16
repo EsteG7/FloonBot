@@ -6,11 +6,11 @@ module.exports = async (bot, message) => {
 
     if (message.author.bot || message.channel.type === Discord.ChannelType.DM) return;
 
-    db.query(`SELECT * FROM xp WHERE guild = '${message.guildId}' AND user = '${message.author.id}'`, async (err, req) => {
+    db.query(`SELECT * FROM xp WHERE guildId = '${message.guildId}' AND userId = '${message.author.id}'`, async (err, req) => {
 
         if (req.length < 1) {
 
-            db.query(`INSERT INTO xp (guild, user, xp, level) VALUES (${message.guildId}, '${message.author.id}', '0', '0')`)
+            db.query(`INSERT INTO xp (guild, guildId, user, userId,  xp, level) VALUES ('${message.guild.name}','${message.guildId}', '${message.author.tag}','${message.author.id}', '0', '0')`)
         } else {
 
             let level = parseInt(req[0].level)
@@ -18,8 +18,8 @@ module.exports = async (bot, message) => {
 
             if ((level + 1) * 1000 <= xp) {
 
-                db.query(`UPDATE xp SET xp = '${xp - ((level + 1) * 1000)}' WHERE guild = '${message.guildId}' AND user = '${message.author.id}'`)
-                db.query(`UPDATE xp SET level = '${level + 1}' WHERE guild = '${message.guildId}' AND user = '${message.author.id}'`)
+                db.query(`UPDATE xp SET xp = '${xp - ((level + 1) * 1000)}' WHERE guildId = '${message.guildId}' AND userId = '${message.author.id}'`)
+                db.query(`UPDATE xp SET level = '${level + 1}' WHERE guildId = '${message.guildId}' AND userId = '${message.author.id}'`)
 
                 let Embed = new Discord.EmbedBuilder()
                     .setTitle(`Level`)
@@ -36,7 +36,7 @@ module.exports = async (bot, message) => {
 
                 let xptogive = Math.floor(Math.random() * 30) + 1;
 
-                db.query(`UPDATE xp SET xp = '${xp + xptogive}' WHERE guild = '${message.guildId}' AND user = '${message.author.id}'`)
+                db.query(`UPDATE xp SET xp = '${xp + xptogive}' WHERE guildId = '${message.guildId}' AND userId = '${message.author.id}'`)
 
                 console.log(`${message.author.tag} a gagner ${xptogive} sur le serveur ${message.guild.name}`)
             }

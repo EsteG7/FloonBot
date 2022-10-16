@@ -27,9 +27,9 @@ module.exports = {
             if (!user || !message.guild.members.cache.get(user?.id)) return message.reply("pas de membre")
         } else user = message.user;
 
-        db.query(`SELECT * FROM xp WHERE guild = '${message.guildId}' AND user = '${user.id}'`, async (err, req) => {
+        db.query(`SELECT * FROM xp WHERE guildId = '${message.guildId}' AND userId = '${user.id}'`, async (err, req) => {
 
-            db.query(`SELECT * FROM xp WHERE guild = '${message.guildId}'`, async (err, all) => {
+            db.query(`SELECT * FROM xp WHERE guildId = '${message.guildId}'`, async (err, all) => {
 
 
 
@@ -47,7 +47,7 @@ module.exports = {
                 let leaderboard = await all.sort((a, b) => calculXp(parseInt(b.xp), parseInt(b.level)) - calculXp(parseInt(a.xp), parseInt(a.level)))
                 let xp = parseInt(req[0].xp)
                 let level = parseInt(req[0].level)
-                let rank = leaderboard.findIndex(r => r.user === user.id) + 1
+                let rank = leaderboard.findIndex(r => r.userId === user.id) + 1
                 let need = (level + 1) * 1000;
 
                 let Card = await new Canvas.Card()
