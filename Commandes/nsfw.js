@@ -84,6 +84,16 @@ module.exports = {
                 "https://cdn.discordapp.com/attachments/1028365406093721610/1029410809899651152/pussy_58.gif",
                 "https://cdn.discordapp.com/attachments/1028365406093721610/1029410810327486515/pussy_59.gif",
                 "https://cdn.discordapp.com/attachments/1028365406093721610/1029410810688180374/pussy_60.gif",
+                "https://cdn.discordapp.com/attachments/1028365406093721610/1031293170941702285/pussy_61.gif",
+                "https://cdn.discordapp.com/attachments/1028365406093721610/1031293171306594365/pussy_62.gif",
+                "https://cdn.discordapp.com/attachments/1028365406093721610/1031293171717648384/pussy_63.gif",
+                "https://cdn.discordapp.com/attachments/1028365406093721610/1031293172116095098/pussy_64.gif",
+                "https://cdn.discordapp.com/attachments/1028365406093721610/1031293172539732108/pussy_65.gif",
+                "https://cdn.discordapp.com/attachments/1028365406093721610/1031293234506379284/pussy_66.gif",
+                "https://cdn.discordapp.com/attachments/1028365406093721610/1031293234921615360/pussy_67.gif",
+                "https://cdn.discordapp.com/attachments/1028365406093721610/1031293318983860294/pussy_69.gif",
+                "https://cdn.discordapp.com/attachments/1028365406093721610/1031293567475388416/pussy_70.gif",
+                "https://cdn.discordapp.com/attachments/1028365406093721610/1031293683070410802/pussy_68.gif",
 
             ]
             let pussyradom = Math.floor(Math.random() * pussy.length);
