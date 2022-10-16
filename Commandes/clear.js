@@ -3,7 +3,7 @@ const Discord = require("discord.js")
 module.exports = {
 
     name: "clear",
-    description: "Efface beaucoup de messages",
+    description: "✏️Efface beaucoup de messages✏️",
     permission: Discord.PermissionFlagsBits.ManageMessages,
     dm: false,
     category: "Modération",

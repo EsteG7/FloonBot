@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports = {
 
     name: "ban",
-    description: "Ban un membre",
+    description: "🔨Ban un membre🔨",
     permission: Discord.PermissionFlagsBits.BanMembers,
     dm: false,
     category: "Modération",

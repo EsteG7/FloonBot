@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 
 module.exports = {
     name: "dm",
-    description: "💻・DM un membre ",
+    description: "💻DM un membre💻 ",
     category: "Modération",
     dm: false,
     options: [

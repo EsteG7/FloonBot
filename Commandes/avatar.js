@@ -3,7 +3,7 @@ const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
     name: "avatar",
-    description: "Avoir l'avatar de quelqun",
+    description: "🪞Avoir l'avatar de quelqun🪞",
     permission: "Aucune",
     dm: false,
     category: "Fun",
