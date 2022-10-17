@@ -1,10 +1,15 @@
 const Discord = require("discord.js");
 const { EmbedBuilder } = require("discord.js");
-const messageCreate = require("./messageCreate");
+
 
 module.exports = (bot, member, interaction) => {
 
     let db = bot.db;
+
+
+    const addRole = member.guild.roles.cache.find(r => r.name === "Non verif")
+    member.roles.add(addRole)
+
     db.query(`SELECT * FROM server WHERE guild = '${member.guild.id}'`, async (err, req) => {
 
         if (req.length < 1 || Boolean(req[0].captcha) === false) return;
@@ -32,10 +37,12 @@ module.exports = (bot, member, interaction) => {
                 await response.delete()
                 try { await member.user.send("Vous avez réussi le captcha") } catch (err) { }
                 await channel.permissionOverwrites.delete(member.user.id)
+                const removeRole = member.guild.roles.cache.find(r => r.name === "Non verif")
+                member.roles.remove(removeRole)
             } else {
                 await msg.delete()
                 await response.delete()
-                try { await member.user.send("Vouas avez échoué le captcha!") } catch (err) { }
+                try { await member.user.send("Vous avez échoué le captcha!") } catch (err) { }
                 await channel.permissionOverwrites.delete(member.user.id)
                 await member.kick("A raté  le captcha")
             }
@@ -49,6 +56,9 @@ module.exports = (bot, member, interaction) => {
 
         }
     })
+
+
+
 
     const EmbedMessage = new EmbedBuilder()
         .setTitle(`Nom de ton Serveur`)

@@ -13,7 +13,7 @@ module.exports = {
             name: "category",
             description: "category : pussy, aHarem",
             required: true,
-            autocomplete: false
+            autocomplete: true,
         }
     ],
 

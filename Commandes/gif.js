@@ -14,7 +14,7 @@ module.exports = {
             name: "gif-a-choisir",
             description: "choix : kill, punch, kiss, badass",
             required: true,
-            autocomplete: false
+            autocomplete: true,
         },
         {
             type: "user",
