@@ -61,6 +61,7 @@ module.exports = (bot, member, interaction,) => {
 
 
 
+
     const EmbedMessage = new EmbedBuilder()
         .setTitle(`Nom de ton Serveur`)
         .setColor('#0C15CF')

@@ -7,56 +7,183 @@ module.exports = {
     permission: "Aucune",
     dm: false,
     category: "Fun",
+    options: [
+        {
+            type: "string",
+            name: "choix",
+            description: "Jeux pierre, feuille, ciseaux",
+            required: true,
+            autocomplete: true,
+        },
+
+    ],
 
 
     async run(bot, message, args) {
 
-        let joueurs1 = ["pierre", "feuille", "ciseaux"]
+        let joueursH = args.getString("choix")
 
-        let joueurs1radom = Math.floor(Math.random() * joueurs1.length);
-        let joueurs1Random = joueurs1[joueurs1radom];
+        let joueursB1 = ["pierre", "feuille", "ciseaux"]
 
-        let joueurs2 = ["pierre", "feuille", "ciseaux"]
+        let punchradom = Math.floor(Math.random() * joueursB1.length);
+        let joueursB = joueursB1[punchradom];
 
-        let joueurs2radom = Math.floor(Math.random() * joueurs2.length);
-        let joueurs2Random = joueurs2[joueurs2radom];
+        await message.deferReply()
 
-
-
-        if (joueurs2Random === joueurs1Random) {
+        if (joueursH === "pierre" && joueursB === "feuille") {
             let Embed = new Discord.EmbedBuilder()
-                .setTitle(`**Pierre, feuille, ciseaux**`)
-                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                .setAuthor({ name: `${message.user.tag}`, iconURL: (message.user.displayAvatarURL({ dynamic: true })), })
                 .setColor("Green")
-                .addFields({
-                    name: "**Personne a gagner car : **",
-                    value: `Le jouers 1 a obtenue \`${joueurs1Random}\` et je joueurs 2  \`${joueurs2Random}\` \n ce qui donne une egaliter`
-                }
+                .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
+                .addFields(
+                    { name: `\`${message.user.tag}\`\n`, value: `a obtenue ${joueursH}\ donc a \`perdu\``, inline: false },
+                    { name: `\`FLOONBOT#0089\`\n`, value: `a obtenue ${joueursB} donc a \`gagner\``, inline: false },
+                    { name: '\u200B', value: '\u200B' }
                 )
                 .setTimestamp()
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64, }))
+                .setFooter({ text: "Résulta", iconURL: (message.user.displayAvatarURL({ dynamic: true })) })
 
-            await message.reply({ embeds: [Embed] })
-        }
-        else {
+            return await message.followUp({ embeds: [Embed] })
+        } else if (joueursH === "pierre" && joueursB === "pierre") {
+
             let Embed = new Discord.EmbedBuilder()
-                .setTitle(`**Pierre, feuille, ciseaux**`)
-                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                .setAuthor({ name: `${message.user.tag}`, iconURL: (message.user.displayAvatarURL({ dynamic: true })), })
+
                 .setColor("Green")
-                .addFields({
-                    name: "**Le jouers 1**",
-                    value: `Le jouers 1 a obtenue \`${joueurs1Random}\``
-                },
-                    {
-                        name: "**Le jouers 2**",
-                        value: `Le jouers 2 a obtenue \`${joueurs2Random}\``
-                    }
+                .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
+                .addFields(
+                    { name: `\`${message.user.tag}\`\n`, value: `a obtenue ${joueursH}\ donc \`égalité\``, inline: false },
+                    { name: `\`FLOONBOT#0089\`\n`, value: `a obtenue ${joueursB} donc  \`égalité\``, inline: false },
+                    { name: '\u200B', value: '\u200B' }
                 )
                 .setTimestamp()
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64, }))
+                .setFooter({ text: "Résulta", iconURL: (message.user.displayAvatarURL({ dynamic: true })) })
 
+            return await message.followUp({ embeds: [Embed] })
+        } else if (joueursH === "pierre" && joueursB === "ciseaux") {
+            let Embed = new Discord.EmbedBuilder()
+                .setAuthor({ name: `${message.user.tag}`, iconURL: (message.user.displayAvatarURL({ dynamic: true })), })
 
+                .setColor("Green")
+                .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
+                .addFields(
+                    { name: `\`${message.user.tag}\`\n`, value: `a obtenue ${joueursH}\ donc a \`gagner\``, inline: false },
+                    { name: `\`FLOONBOT#0089\`\n`, value: `a obtenue ${joueursB} donc  \`perdu\``, inline: false },
+                    { name: '\u200B', value: '\u200B' }
+                )
+                .setTimestamp()
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64, }))
+                .setFooter({ text: "Résulta", iconURL: (message.user.displayAvatarURL({ dynamic: true })) })
 
-            await message.channel.send({ embeds: [Embed] })
-            message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+            return await message.followUp({ embeds: [Embed] })
         }
+
+
+        if (joueursH === "feuille" && joueursB === "pierre") {
+            let Embed = new Discord.EmbedBuilder()
+                .setAuthor({ name: `${message.user.tag}`, iconURL: (message.user.displayAvatarURL({ dynamic: true })), })
+                .setColor("Green")
+                .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
+                .addFields(
+                    { name: `\`${message.user.tag}\`\n`, value: `a obtenue ${joueursH}\ donc a \`gagner\``, inline: false },
+                    { name: `\`FLOONBOT#0089\`\n`, value: `a obtenue ${joueursB} donc a \`perdu\``, inline: false },
+                    { name: '\u200B', value: '\u200B' }
+                )
+                .setTimestamp()
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64, }))
+                .setFooter({ text: "Résulta", iconURL: (message.user.displayAvatarURL({ dynamic: true })) })
+
+            return await message.followUp({ embeds: [Embed] })
+
+        } else if (joueursH === "feuille" && joueursB === "feuille") {
+            let Embed = new Discord.EmbedBuilder()
+                .setAuthor({ name: `${message.user.tag}`, iconURL: (message.user.displayAvatarURL({ dynamic: true })), })
+
+                .setColor("Green")
+                .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
+                .addFields(
+                    { name: `\`${message.user.tag}\`\n`, value: `a obtenue ${joueursH}\ donc \`égalité\``, inline: false },
+                    { name: `\`FLOONBOT#0089\`\n`, value: `a obtenue ${joueursB} donc  \`égalité\``, inline: false },
+                    { name: '\u200B', value: '\u200B' }
+                )
+                .setTimestamp()
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64, }))
+                .setFooter({ text: "Résulta", iconURL: (message.user.displayAvatarURL({ dynamic: true })) })
+
+            return await message.followUp({ embeds: [Embed] })
+        } else if (joueursH === "feuille" && joueursB === "ciseaux") {
+            let Embed = new Discord.EmbedBuilder()
+                .setAuthor({ name: `${message.user.tag}`, iconURL: (message.user.displayAvatarURL({ dynamic: true })), })
+                .setColor("Green")
+                .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
+                .addFields(
+                    { name: `\`${message.user.tag}\`\n`, value: `a obtenue ${joueursH}\ donc a \`perdu\``, inline: false },
+                    { name: `\`FLOONBOT#0089\`\n`, value: `a obtenue ${joueursB} donc a \`gagner\``, inline: false },
+                    { name: '\u200B', value: '\u200B' }
+                )
+                .setTimestamp()
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64, }))
+                .setFooter({ text: "Résulta", iconURL: (message.user.displayAvatarURL({ dynamic: true })) })
+
+            return await message.followUp({ embeds: [Embed] })
+        }
+
+        if (joueursH === "ciseaux" && joueursB === "pierre") {
+            let Embed = new Discord.EmbedBuilder()
+                .setAuthor({ name: `${message.user.tag}`, iconURL: (message.user.displayAvatarURL({ dynamic: true })), })
+                .setColor("Green")
+                .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
+                .addFields(
+                    { name: `\`${message.user.tag}\`\n`, value: `a obtenue ${joueursH}\ donc a \`perdu\``, inline: false },
+                    { name: `\`FLOONBOT#0089\`\n`, value: `a obtenue ${joueursB} donc a \`gagner\``, inline: false },
+                    { name: '\u200B', value: '\u200B' }
+                )
+                .setTimestamp()
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64, }))
+                .setFooter({ text: "Résulta", iconURL: (message.user.displayAvatarURL({ dynamic: true })) })
+
+            return await message.followUp({ embeds: [Embed] })
+        } else if (joueursH === "ciseaux" && joueursB === "ciseaux") {
+            let Embed = new Discord.EmbedBuilder()
+                .setAuthor({ name: `${message.user.tag}`, iconURL: (message.user.displayAvatarURL({ dynamic: true })), })
+
+                .setColor("Green")
+                .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
+                .addFields(
+                    { name: `\`${message.user.tag}\`\n`, value: `a obtenue ${joueursH}\ donc \`égalité\``, inline: false },
+                    { name: `\`FLOONBOT#0089\`\n`, value: `a obtenue ${joueursB} donc  \`égalité\``, inline: false },
+                    { name: '\u200B', value: '\u200B' }
+                )
+                .setTimestamp()
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64, }))
+                .setFooter({ text: "Résulta", iconURL: (message.user.displayAvatarURL({ dynamic: true })) })
+
+            return await message.followUp({ embeds: [Embed] })
+        } else if (joueursH === "ciseaux" && joueursB === "feuille") {
+            let Embed = new Discord.EmbedBuilder()
+                .setAuthor({ name: `${message.user.tag}`, iconURL: (message.user.displayAvatarURL({ dynamic: true })), })
+                .setColor("Green")
+                .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
+                .addFields(
+                    { name: `\`${message.user.tag}\`\n`, value: `a obtenue ${joueursH}\ donc a \`gagner\``, inline: false },
+                    { name: `\`FLOONBOT#0089\`\n`, value: `a obtenue ${joueursB} donc a \`perdu\``, inline: false },
+                    { name: '\u200B', value: '\u200B' }
+                )
+                .setTimestamp()
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64, }))
+                .setFooter({ text: "Résulta", iconURL: (message.user.displayAvatarURL({ dynamic: true })) })
+            return await message.followUp({ embeds: [Embed] })
+        }
+
+
+
+
+
+
+
+
+
     }
 }

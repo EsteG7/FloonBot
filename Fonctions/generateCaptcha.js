@@ -13,10 +13,17 @@ module.exports = async () => {
 
     const canvas = Canvas.createCanvas(300, 150)
     const ctx = canvas.getContext("2d")
+    const background = await Canvas.loadImage("./y006i80.png")
+
+
+
 
     ctx.font = '35px "Arial"'
     ctx.fillStyle = "#ffffff"
-    ctx.fillText(text, (150 - (ctx.measureText(text).width) / 2), 85)
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+    ctx.strokeStyle = '#0099ff';
+    ctx.strokeRect(0, 0, canvas.width, canvas.height);
+    ctx.fillText(text, (85 - (ctx.measureText(text).width) / 2), 85)
 
     return { canvas: canvas, text: text }
 }

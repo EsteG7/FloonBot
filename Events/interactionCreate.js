@@ -32,6 +32,12 @@ module.exports = async (bot, interaction) => {
             let sortie = choices.filter(c => c.includes(entry))
             await interaction.respond(entry === "" ? sortie.map(c => ({ name: c, value: c })) : sortie.map(c => ({ name: c, value: c })))
         }
+        if (interaction.commandName === "pfc") {
+
+            let choices = ["pierre", "feuille", "ciseaux"]
+            let sortie = choices.filter(c => c.includes(entry))
+            await interaction.respond(entry === "" ? sortie.map(c => ({ name: c, value: c })) : sortie.map(c => ({ name: c, value: c })))
+        }
 
     }
 

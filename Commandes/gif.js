@@ -181,6 +181,7 @@ module.exports = {
 
         ];
 
+        await message.deferReply()
 
         if (!member && reason) {
             let Embed = new Discord.EmbedBuilder()
@@ -202,7 +203,8 @@ module.exports = {
                     .setImage(url = motRandom)
                     .setTimestamp()
 
-                return await message.channel.send({ embeds: [Embed] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                return await message.followUp({ embeds: [Embed] })
+
             }
             if (member && reason) {
                 let Embed = new Discord.EmbedBuilder()
@@ -211,7 +213,7 @@ module.exports = {
                     .setDescription(`${message.user.toString()} a punch ${member.user.toString()} pour la raison : \n\`${reason}\``)
                     .setTimestamp()
 
-                return await message.channel.send({ embeds: [Embed] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                return await message.followUp({ embeds: [Embed] })
             }
             if (member && !reason) {
                 let Embed = new Discord.EmbedBuilder()
@@ -220,7 +222,7 @@ module.exports = {
                     .setDescription(`${message.user.toString()} a punch ${member.user.toString()}`)
                     .setTimestamp()
 
-                return await message.channel.send({ embeds: [Embed] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                return await message.followUp({ embeds: [Embed] })
             }
         }
         if (choix === "kiss") {
@@ -233,7 +235,7 @@ module.exports = {
                     .setImage(url = kissmotRandom)
                     .setTimestamp()
 
-                return await message.channel.send({ embeds: [kiss1] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                return await message.followUp({ embeds: [Embed] })
 
             }
             if (member && reason) {
@@ -243,7 +245,7 @@ module.exports = {
                     .setDescription(`${message.user.toString()} a kiss ${member.user.toString()} pour la raison : \n\`${reason}\``)
                     .setTimestamp()
 
-                return await message.channel.send({ embeds: [kiss1] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                return await message.followUp({ embeds: [Embed] })
             }
             if (member && !reason) {
                 let kiss1 = new Discord.EmbedBuilder()
@@ -251,7 +253,7 @@ module.exports = {
                     .setImage(url = kissmotRandom)
                     .setDescription(`${message.user.toString()} a kiss ${member.user.toString()}`)
                     .setTimestamp()
-                return await message.channel.send({ embeds: [kiss1] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                return await message.followUp({ embeds: [Embed] })
 
             }
         }
@@ -265,7 +267,7 @@ module.exports = {
                     .setImage(url = badassmotRandom)
                     .setTimestamp()
 
-                return await message.channel.send({ embeds: [Embed] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                return await message.followUp({ embeds: [Embed] })
             }
             if (member && !reason) {
                 let Embed = new Discord.EmbedBuilder()
@@ -274,7 +276,7 @@ module.exports = {
                     .setDescription(`${message.user.toString()} met la pression à  ${member.user.toString()}`)
                     .setTimestamp()
 
-                return await message.channel.send({ embeds: [Embed] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                return await message.followUp({ embeds: [Embed] })
             }
             if (member && reason) {
                 let Embed = new Discord.EmbedBuilder()
@@ -283,7 +285,7 @@ module.exports = {
                     .setDescription(`${message.user.toString()} met la pression à ${member.user.toString()} pour la raison : \n\`${reason}\``)
                     .setTimestamp()
 
-                return await message.channel.send({ embeds: [Embed] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                return await message.followUp({ embeds: [Embed] })
             }
         }
         if (choix === "kill") {
@@ -296,7 +298,7 @@ module.exports = {
                     .setColor("Purple")
                     .setImage(url = killmotRandom)
                     .setTimestamp()
-                return await message.channel.send({ embeds: [Embed] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                return await message.followUp({ embeds: [Embed] })
             }
             if (member && !reason) {
                 let Embed = new Discord.EmbedBuilder()
@@ -304,7 +306,7 @@ module.exports = {
                     .setImage(url = killmotRandom)
                     .setDescription(`${message.user.toString()} a kill ${member.user.toString()}`)
                     .setTimestamp()
-                return await message.channel.send({ embeds: [Embed] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                return await message.followUp({ embeds: [Embed] })
             }
             if (member && reason) {
                 let Embed = new Discord.EmbedBuilder()
@@ -312,12 +314,21 @@ module.exports = {
                     .setImage(url = killmotRandom)
                     .setDescription(`${message.user.toString()} a kill ${member.user.toString()} pour la raison : \n\`${reason}\``)
                     .setTimestamp()
-                return await message.channel.send({ embeds: [Embed] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                return await message.followUp({ embeds: [Embed] })
             }
         }
-        await message.deferReply()
 
-        if (choix !== "kill" || choix !== "badass" || choix !== "kiss" || choix !== "punch")
-            return await message.followUp(`Gif :  \`kill\`, \`badass\`, \`kiss\`, \`punch\``)
+
+        if (choix !== "kill" || choix !== "badass" || choix !== "kiss" || choix !== "punch") {
+            let mauvais = new Discord.EmbedBuilder()
+                .setTitle("**__Les category des gif dispo__**")
+                .setColor("Purple")
+                .setDescription("Les choix de gif dispo sont : \n\n \`kiss\`\n \`kill\`\n \`badass\`\n \`punch\`")
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                .setTimestamp()
+                .setFooter({ text: "gif" })
+
+            return await message.followUp({ embeds: [mauvais] })
+        }
     }
 }
