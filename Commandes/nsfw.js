@@ -122,8 +122,7 @@ module.exports = {
                 .setColor("Purple")
                 .setImage(url = pussymotRandom)
 
-            await message.channel.send({ embeds: [pussy1] })
-            message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+            return await message.channel.send({ embeds: [pussy1] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
 
         }
 
@@ -136,10 +135,21 @@ module.exports = {
                 .setColor("Purple")
                 .setImage(url = aHaremmotRandom)
 
-            await message.channel.send({ embeds: [pussy1] })
-            message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+            return await message.channel.send({ embeds: [pussy1] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
 
-            console.log(`${message.user.tag} a regarde des animes de hentai dans la category aHarem : ${aHaremmotRandom}`)
+        }
+        await message.deferReply()
+
+        if (choix !== "aHarem" || choix !== "pussy") {
+            let mauvais = new Discord.EmbedBuilder()
+                .setTitle("**__Les category nsfw dispo__**")
+                .setColor("Purple")
+                .setDescription("Les choix nsfw dispo sont : \n\n \`pussy\`\n \`aHarem\`")
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                .setTimestamp()
+                .setFooter({ text: "NSFW" })
+
+            return await message.followUp({ embeds: [mauvais] })
         }
     }
 }
