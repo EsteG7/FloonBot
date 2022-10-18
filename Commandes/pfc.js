@@ -32,7 +32,6 @@ module.exports = {
 
         if (joueursH === "pierre" && joueursB === "feuille") {
             let Embed = new Discord.EmbedBuilder()
-                .setAuthor({ name: `${message.user.tag}`, iconURL: (message.user.displayAvatarURL({ dynamic: true })), })
                 .setColor("Green")
                 .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
                 .addFields(
@@ -64,8 +63,6 @@ module.exports = {
             return await message.followUp({ embeds: [Embed] })
         } else if (joueursH === "pierre" && joueursB === "ciseaux") {
             let Embed = new Discord.EmbedBuilder()
-                .setAuthor({ name: `${message.user.tag}`, iconURL: (message.user.displayAvatarURL({ dynamic: true })), })
-
                 .setColor("Green")
                 .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
                 .addFields(
@@ -83,7 +80,6 @@ module.exports = {
 
         if (joueursH === "feuille" && joueursB === "pierre") {
             let Embed = new Discord.EmbedBuilder()
-                .setAuthor({ name: `${message.user.tag}`, iconURL: (message.user.displayAvatarURL({ dynamic: true })), })
                 .setColor("Green")
                 .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
                 .addFields(
@@ -115,7 +111,6 @@ module.exports = {
             return await message.followUp({ embeds: [Embed] })
         } else if (joueursH === "feuille" && joueursB === "ciseaux") {
             let Embed = new Discord.EmbedBuilder()
-                .setAuthor({ name: `${message.user.tag}`, iconURL: (message.user.displayAvatarURL({ dynamic: true })), })
                 .setColor("Green")
                 .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
                 .addFields(
@@ -147,8 +142,6 @@ module.exports = {
             return await message.followUp({ embeds: [Embed] })
         } else if (joueursH === "ciseaux" && joueursB === "ciseaux") {
             let Embed = new Discord.EmbedBuilder()
-                .setAuthor({ name: `${message.user.tag}`, iconURL: (message.user.displayAvatarURL({ dynamic: true })), })
-
                 .setColor("Green")
                 .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
                 .addFields(
@@ -163,7 +156,6 @@ module.exports = {
             return await message.followUp({ embeds: [Embed] })
         } else if (joueursH === "ciseaux" && joueursB === "feuille") {
             let Embed = new Discord.EmbedBuilder()
-                .setAuthor({ name: `${message.user.tag}`, iconURL: (message.user.displayAvatarURL({ dynamic: true })), })
                 .setColor("Green")
                 .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
                 .addFields(
@@ -177,6 +169,16 @@ module.exports = {
             return await message.followUp({ embeds: [Embed] })
         }
 
+        if (joueursH !== "feuille" || joueursH !== "ciseaux" || joueursH !== "pierre") {
+            let Embed = new Discord.EmbedBuilder()
+                .setColor("Green")
+                .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
+                .setDescription("Les choix de pfc dispo sont : \n\n \`pierre\`\n   \`feuille\`\n  \`ciseaux\`\n")
+                .setTimestamp()
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64, }))
+                .setFooter({ text: "Résulta", iconURL: (message.user.displayAvatarURL({ dynamic: true })) })
+
+            return await message.followUp({ embeds: [Embed] })
 
 
 
@@ -185,5 +187,6 @@ module.exports = {
 
 
 
+        }
     }
 }
