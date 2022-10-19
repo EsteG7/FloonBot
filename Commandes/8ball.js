@@ -7,7 +7,7 @@ module.exports = {
     description: "🎱Pose une question et il te dira la vérité.🎱",
     permission: "Aucune",
     dm: false,
-    category: "Fun",
+    category: "🥳Fun",
 
     options: [
         {

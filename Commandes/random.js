@@ -3,10 +3,10 @@ const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
     name: "random",
-    description: "choisi un nombre entre 1 et 100  aléatoir",
+    description: "🎲choisi un nombre entre 1 et 100  aléatoir🎲",
     permission: "Aucune",
     dm: false,
-    category: "Fun",
+    category: "🥳Fun",
 
 
     async run(bot, message, args) {

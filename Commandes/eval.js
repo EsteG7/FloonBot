@@ -4,10 +4,10 @@ const Discord = require("discord.js");
 module.exports = {
 
     name: "eval",
-    description: "Calcule",
+    description: "🧮Calcule🧮",
     permission: "Aucune",
     dm: false,
-    category: "Information",
+    category: "🥳Fun",
     options: [
         {
             type: "number",

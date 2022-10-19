@@ -6,7 +6,7 @@ module.exports = {
     description: "🪞Avoir l'avatar de quelqun🪞",
     permission: "Aucune",
     dm: false,
-    category: "Fun",
+    category: "🥳Fun",
     options: [
         {
             type: "user",

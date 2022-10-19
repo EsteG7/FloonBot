@@ -5,7 +5,7 @@ module.exports = {
     name: "dé",
     description: "🎲choisi un nombre entre 1 et 6  aléatoir🎲",
     permission: "Aucune",
-    category: "Fun",
+    category: "🥳Fun",
     dm: false,
 
     async run(bot, message, args) {
