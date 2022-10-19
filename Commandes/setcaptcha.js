@@ -62,7 +62,6 @@ module.exports = {
             await message.channel.send({ embeds: [Embed] })
             message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
 
-
         }
     }
 }
