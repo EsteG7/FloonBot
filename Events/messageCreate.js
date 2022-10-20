@@ -14,6 +14,14 @@ module.exports = async (bot, message) => {
         }
     })
 
+    db.query(`SELECT * FROM welcomes WHERE guildId = '${message.guild.id}'`, async (err, req) => {
+
+        if (req.length < 1) {
+
+            db.query(`INSERT INTO welcomes (guildId, welcome) VALUES (${message.guild.id}, 'false')`)
+        }
+    })
+
     db.query(`SELECT * FROM xp WHERE guildId = '${message.guildId}' AND userId = '${message.author.id}'`, async (err, req) => {
 
         if (req.length < 1) {

@@ -1,23 +1,11 @@
 const Discord = require("discord.js");
 const { EmbedBuilder } = require("discord.js");
+const Canvas = require("canvas")
 
 
 module.exports = async (bot, member, interaction,) => {
 
     let db = bot.db;
-
-
-    const addRole = member.guild.roles.cache.find(r => r.name === "Non verif")
-    if (!addRole) {
-        const addRole = await member.guild.roles.create({
-            name: 'Non verif', color: "DarkGold"
-        });
-        await member.roles.add(addRole);
-    } else {
-        member.roles.add(addRole)
-    }
-
-
 
     db.query(`SELECT * FROM server WHERE guild = '${member.guild.id}'`, async (err, req) => {
 
@@ -35,6 +23,17 @@ module.exports = async (bot, member, interaction,) => {
         let captcha = await bot.fonction.generateCaptcha()
 
         let msg = await channel.send({ content: `${member}, Vous avez 2 minutes pour faire le captcha ! Si vous le réussissez pas vous serez exclue du serveur`, files: [new Discord.AttachmentBuilder((await captcha.canvas).toBuffer(), { name: "captcha.png" })] })
+
+
+        const addRole = member.guild.roles.cache.find(r => r.name === "Non verif")
+        if (!addRole) {
+            const addRole = await member.guild.roles.create({
+                name: 'Non verif', color: "DarkGold"
+            });
+            await member.roles.add(addRole);
+        } else {
+            member.roles.add(addRole)
+        }
 
         try {
             let filter = m => m.author.id === member.user.id;
@@ -67,16 +66,25 @@ module.exports = async (bot, member, interaction,) => {
         }
     })
 
+    db.query(`SELECT * FROM welcomes WHERE guildId = '${member.guild.id}'`, async (err, req) => {
+
+        if (req.length < 1 || Boolean(req[0].welcome) === false) return;
+
+        let channel = bot.channels.cache.get(req[0].welcome)
+        if (!channel) return;
+
+        const EmbedMessage = new EmbedBuilder()
+            .setTitle(`Nom de ton Serveur`)
+            .setColor('#0C15CF')
+            .setDescription(`Le membre : <@${member.user.id}>.\n \u200B \nViens de rejoindre la Team.`)
+            .setThumbnail(member.user.displayAvatarURL())
+            .setTimestamp()
+
+        channel.send({ embeds: [EmbedMessage] })
 
 
 
 
-    const EmbedMessage = new EmbedBuilder()
-        .setTitle(`Nom de ton Serveur`)
-        .setColor('#0C15CF')
-        .setDescription(`Le membre : <@${member.user.id}>.\n \u200B \nViens de rejoindre la Team.`)
-        .setThumbnail(member.user.displayAvatarURL())
-        .setTimestamp()
+    })
 
-    bot.channels.cache.get('972786095446167572').send({ embeds: [EmbedMessage] })
 }
