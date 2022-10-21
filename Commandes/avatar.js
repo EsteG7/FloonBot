@@ -18,19 +18,23 @@ module.exports = {
     ],
 
     async run(bot, message, args) {
-        let user = args.getUser(`utlisateur`)
-        if (!user) return message.reply("Utlisateur non valide")
-        const exampleEmbed = new EmbedBuilder()
-            .setColor("Green")
-            .setTitle(`avatar`)
-            .setDescription(`avatar de ${user.tag}`)
-            .setTimestamp()
-            .setFooter({ text: "avatar" })
-            .setImage(user.displayAvatarURL({ size: 512 }))
-            .setFooter({ text: `avatar de ${user.tag}`, iconURL: (user.displayAvatarURL({ dynamic: true })) });
-        message.channel.send({ embeds: [exampleEmbed] });
 
-        message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+        try {
+            let user = args.getUser(`utlisateur`)
+            if (!user) return message.reply("Utlisateur non valide")
+            const exampleEmbed = new EmbedBuilder()
+                .setAuthor({ name: `avatar ${user.tag}`, iconURL: (user.displayAvatarURL({ dynamic: true })) })
+                .setColor("Green")
+                .setTimestamp()
+                .setFooter({ text: "avatar" })
+                .setImage(user.displayAvatarURL({ dynamic: true, size: 128 }))
+            message.channel.send({ embeds: [exampleEmbed] });
+
+            message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+        } catch (err) {
+            return console.log(err)
+        }
+
     }
 
 }

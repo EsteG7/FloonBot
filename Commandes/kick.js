@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports = {
 
   name: "kick",
-  description: "kick un membre",
+  description: "🦵🏻kick un membre🦵🏻",
   permission: Discord.PermissionFlagsBits.BanMembers,
   category: "Modération",
   dm: false,
@@ -26,15 +26,15 @@ module.exports = {
 
 
     let user = args.getUser("membre")
-    if (!user) return message.reply("Pas de membre à kick")
+    if (!user) return message.reply({ content: "Pas de membre à kick", ephemeral: true })
     let member = message.guild.members.cache.get(user.id)
-    if (!member) return message.reply("Pas de membre à kick")
+    if (!member) return message.reply({ content: "Pas de membre à kick", ephemeral: true })
 
     let reason = args.get("raison").value;
     if (!reason) reason = "pas de raison fournie";
 
-    if (message.user.id === user.id) return message.reply("Essaie pas de te kick")
-    if ((await message.guild.fetchOwner()).id === user.id) return message.reply("Ne kick pas le propriétaire du serveur")
+    if (message.user.id === user.id) return message.reply({ content: "Essaie pas de te kick", ephemeral: true })
+    if ((await message.guild.fetchOwner()).id === user.id) return message.reply({ content: "Ne kick pas le propriétaire du serveur", ephemeral: true })
     if (member && !member.bannable) return message.reply("Je ne peux pas kick ce membre ")
     if (member && message.member.roles.highest.comparePositionTo(member.roles.highest) <= 0) return message.reply("Tu ne peux pas kick cette personne")
 
@@ -43,7 +43,17 @@ module.exports = {
       await user.send(`Tu as été kick du serveur ${message.guild.name} par ${message.user.tag} pour la raison : \`${reason}\``)
     } catch (err) { }
 
-    await message.reply(`${message.user} a kick ${user.tag} pour la raison : \`${reason}\``)
+    let Embed = new Discord.EmbedBuilder()
+      .setColor("Red")
+      .setTitle(`Ban`)
+      .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+      .setDescription(`\`🛑 kick \n ${message.user.tag}\`a **kick** \n\` ${user.tag}\` **avec succès ! ✅**\n pour la raison : \`${reason}\`!`)
+      .setTimestamp()
+      .setFooter({ text: "ban" })
+
+
+    await message.channel.send({ embeds: [Embed] })
+    message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
 
     await member.kick(reason)
 

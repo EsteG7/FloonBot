@@ -5,6 +5,7 @@ module.exports = {
     name: "dm",
     description: "💻DM un membre💻 ",
     category: "Modération",
+    permission: Discord.PermissionFlagsBits.ModerateMembers,
     dm: false,
     options: [
         {
@@ -33,7 +34,7 @@ module.exports = {
             let Embed1 = new Discord.EmbedBuilder()
                 .setColor("Green")
                 .setTitle(`Message de ${user.tag}`)
-                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                 .setDescription(`${reason}`)
                 .setTimestamp()
                 .setFooter({ text: "Message en mp" })

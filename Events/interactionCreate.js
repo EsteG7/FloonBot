@@ -20,6 +20,13 @@ module.exports = async (bot, interaction) => {
             let sortie = choices.filter(c => c.includes(entry))
             await interaction.respond(entry === "" ? sortie.map(c => ({ name: c, value: c })) : sortie.map(c => ({ name: c, value: c })))
         }
+
+        if (interaction.commandName === "eval") {
+
+            let choices = ["+", "-", "*", "/", "/"]
+            let sortie = choices.filter(c => c.includes(entry))
+            await interaction.respond(entry === "" ? sortie.map(c => ({ name: c, value: c })) : sortie.map(c => ({ name: c, value: c })))
+        }
         if (interaction.commandName === "setwelcome") {
 
             let choices = ["on", "off"]

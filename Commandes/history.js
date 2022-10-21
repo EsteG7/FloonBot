@@ -5,7 +5,7 @@ const ms = require("ms")
 module.exports = {
 
     name: "history",
-    description: "Permet de connaitre toutes les infractions d'un utilisateur",
+    description: "🖥️Permet de connaitre toutes les infractions d'un utilisateur🖥️",
     permission: Discord.PermissionFlagsBits.ManageMessages,
     dm: false,
     category: "Modération",
@@ -39,7 +39,7 @@ module.exports = {
                                 .setColor("Red")
                                 .setTitle(`Infraction de ${user.tag}`)
                                 .setDescription(`Bannissement(s) : \`${bans.length}\`\nExplusions : \`${kicks.length}\`\n Muets : \`${mutes.length}\`\n Avertissements : \`${warns.length}\` `)
-                                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                                 .setTimestamp()
                                 .setFooter({ text: 'INFRACTION', iconURL: user.displayAvatarURL({ dynamic: true }) })
 
@@ -111,7 +111,7 @@ module.exports = {
                                     let newEmbed = new Discord.EmbedBuilder()
                                         .setColor("Red")
                                         .setTitle(`Expulsion de ${user.tag}`)
-                                        .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                                        .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                                         .setTimestamp()
                                         .setFooter({ text: 'KICK', iconURL: user.displayAvatarURL({ dynamic: true }) })
 
@@ -133,7 +133,7 @@ module.exports = {
                                     let newEmbed = new Discord.EmbedBuilder()
                                         .setColor("Red")
                                         .setTitle(`Muet de ${user.tag}`)
-                                        .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                                        .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                                         .setTimestamp()
                                         .setFooter({ text: 'MUTE', iconURL: user.displayAvatarURL({ dynamic: true }) })
 
@@ -155,7 +155,7 @@ module.exports = {
                                     let newEmbed = new Discord.EmbedBuilder()
                                         .setColor("Red")
                                         .setTitle(`Avertissement de ${user.tag}`)
-                                        .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                                        .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                                         .setTimestamp()
                                         .setFooter({ text: 'WARN', iconURL: user.displayAvatarURL({ dynamic: true }) })
 

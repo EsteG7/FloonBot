@@ -179,153 +179,157 @@ module.exports = {
 
 		];
 
-		console.log(kiss)
-		await message.deferReply()
+		try {
+			await message.deferReply()
 
-		if (!member && reason) {
-			let Embed = new Discord.EmbedBuilder()
-				.setDescription("Le gif choisie ne peut être reçus car il peux pas avoir de raison fournie sans le membre définie ")
-				.setColor("DarkBlue")
-				.setImage(url = "https://cdn.discordapp.com/attachments/1011333005496815627/1031190809313280051/tenor.gif")
-			await message.channel.send({ embeds: [Embed] })
-			message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
-			return
-		}
-		if (choix === "punch") {
-
-			let punchradom = Math.floor(Math.random() * punch.length);
-			let motRandom = punch[punchradom];
-			if (!member) {
+			if (!member && reason) {
 				let Embed = new Discord.EmbedBuilder()
-					.setColor("Purple")
-					.setImage(url = motRandom)
-					.setTimestamp()
-
-				return await message.followUp({ embeds: [Embed] })
+					.setDescription("Le gif choisie ne peut être reçus car il peux pas avoir de raison fournie sans le membre définie ")
+					.setColor("DarkBlue")
+					.setImage(url = "https://cdn.discordapp.com/attachments/1011333005496815627/1031190809313280051/tenor.gif")
+				await message.channel.send({ embeds: [Embed] })
+				message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+				return
 			}
-			if (member && reason) {
-				let Embed = new Discord.EmbedBuilder()
-					.setColor("Purple")
-					.setImage(url = motRandom)
-					.setDescription(`${message.user.toString()} a punch ${member.user.toString()} pour la raison : \n\`${reason}\``)
-					.setTimestamp()
+			if (choix === "punch") {
 
-				return await message.followUp({ embeds: [Embed] })
+				let punchradom = Math.floor(Math.random() * punch.length);
+				let motRandom = punch[punchradom];
+				if (!member) {
+					let Embed = new Discord.EmbedBuilder()
+						.setColor("Purple")
+						.setImage(url = motRandom)
+						.setTimestamp()
+
+					return await message.followUp({ embeds: [Embed] })
+				}
+				if (member && reason) {
+					let Embed = new Discord.EmbedBuilder()
+						.setColor("Purple")
+						.setImage(url = motRandom)
+						.setDescription(`${message.user.toString()} a punch ${member.user.toString()} pour la raison : \n\`${reason}\``)
+						.setTimestamp()
+
+					return await message.followUp({ embeds: [Embed] })
+				}
+				if (member && !reason) {
+					let Embed = new Discord.EmbedBuilder()
+						.setColor("Purple")
+						.setImage(url = motRandom)
+						.setDescription(`${message.user.toString()} a punch ${member.user.toString()}`)
+						.setTimestamp()
+
+					return await message.followUp({ embeds: [Embed] })
+				}
 			}
-			if (member && !reason) {
-				let Embed = new Discord.EmbedBuilder()
-					.setColor("Purple")
-					.setImage(url = motRandom)
-					.setDescription(`${message.user.toString()} a punch ${member.user.toString()}`)
-					.setTimestamp()
+			if (choix === "kiss") {
+				let kissradom = Math.floor(Math.random() * kiss.length);
+				let kissmotRandom = kiss[kissradom];
 
-				return await message.followUp({ embeds: [Embed] })
+				if (!member) {
+					let Embed = new Discord.EmbedBuilder()
+						.setColor("Purple")
+						.setImage(url = kissmotRandom)
+						.setTimestamp()
+
+					return await message.followUp({ embeds: [Embed] })
+
+				}
+				if (member && reason) {
+					let Embed = new Discord.EmbedBuilder()
+						.setColor("Purple")
+						.setImage(url = kissmotRandom)
+						.setDescription(`${message.user.toString()} a kiss ${member.user.toString()} pour la raison : \n\`${reason}\``)
+						.setTimestamp()
+
+					return await message.followUp({ embeds: [Embed] })
+				}
+				if (member && !reason) {
+					let Embed = new Discord.EmbedBuilder()
+						.setColor("Purple")
+						.setImage(url = kissmotRandom)
+						.setDescription(`${message.user.toString()} a kiss ${member.user.toString()}`)
+						.setTimestamp()
+					return await message.followUp({ embeds: [Embed] })
+
+				}
 			}
-		}
-		if (choix === "kiss") {
-			let kissradom = Math.floor(Math.random() * kiss.length);
-			let kissmotRandom = kiss[kissradom];
+			if (choix === "badass") {
+				let badassradom = Math.floor(Math.random() * badass.length);
+				let badassmotRandom = badass[badassradom];
 
-			if (!member) {
-				let Embed = new Discord.EmbedBuilder()
-					.setColor("Purple")
-					.setImage(url = kissmotRandom)
-					.setTimestamp()
+				if (!member) {
+					let Embed = new Discord.EmbedBuilder()
+						.setColor("Purple")
+						.setImage(url = badassmotRandom)
+						.setTimestamp()
 
-				return await message.followUp({ embeds: [Embed] })
+					return await message.followUp({ embeds: [Embed] })
+				}
+				if (member && !reason) {
+					let Embed = new Discord.EmbedBuilder()
+						.setColor("Purple")
+						.setImage(url = badassmotRandom)
+						.setDescription(`${message.user.toString()} met la pression à  ${member.user.toString()}`)
+						.setTimestamp()
 
+					return await message.followUp({ embeds: [Embed] })
+				}
+				if (member && reason) {
+					let Embed = new Discord.EmbedBuilder()
+						.setColor("Purple")
+						.setImage(url = badassmotRandom)
+						.setDescription(`${message.user.toString()} met la pression à ${member.user.toString()} pour la raison : \n\`${reason}\``)
+						.setTimestamp()
+
+					return await message.followUp({ embeds: [Embed] })
+				}
 			}
-			if (member && reason) {
-				let Embed = new Discord.EmbedBuilder()
-					.setColor("Purple")
-					.setImage(url = kissmotRandom)
-					.setDescription(`${message.user.toString()} a kiss ${member.user.toString()} pour la raison : \n\`${reason}\``)
-					.setTimestamp()
+			if (choix === "kill") {
 
-				return await message.followUp({ embeds: [Embed] })
+				let killradom = Math.floor(Math.random() * kill.length);
+				let killmotRandom = kill[killradom];
+
+				if (!member) {
+					let Embed = new Discord.EmbedBuilder()
+						.setColor("Purple")
+						.setImage(url = killmotRandom)
+						.setTimestamp()
+					return await message.followUp({ embeds: [Embed] })
+				}
+				if (member && !reason) {
+					let Embed = new Discord.EmbedBuilder()
+						.setColor("Purple")
+						.setImage(url = killmotRandom)
+						.setDescription(`${message.user.toString()} a kill ${member.user.toString()}`)
+						.setTimestamp()
+					return await message.followUp({ embeds: [Embed] })
+				}
+				if (member && reason) {
+					let Embed = new Discord.EmbedBuilder()
+						.setColor("Purple")
+						.setImage(url = killmotRandom)
+						.setDescription(`${message.user.toString()} a kill ${member.user.toString()} pour la raison : \n\`${reason}\``)
+						.setTimestamp()
+					return await message.followUp({ embeds: [Embed] })
+				}
 			}
-			if (member && !reason) {
-				let Embed = new Discord.EmbedBuilder()
+
+
+			if (choix !== "kill" || choix !== "badass" || choix !== "kiss" || choix !== "punch") {
+				let mauvais = new Discord.EmbedBuilder()
+					.setTitle("**__Les category des gif dispo__**")
 					.setColor("Purple")
-					.setImage(url = kissmotRandom)
-					.setDescription(`${message.user.toString()} a kiss ${member.user.toString()}`)
+					.setDescription("Les choix de gif dispo sont : \n\n \`kiss\`\n \`kill\`\n \`badass\`\n \`punch\`")
+					.setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
 					.setTimestamp()
-				return await message.followUp({ embeds: [Embed] })
+					.setFooter({ text: "gif" })
 
+				return await message.followUp({ embeds: [mauvais] })
 			}
-		}
-		if (choix === "badass") {
-			let badassradom = Math.floor(Math.random() * badass.length);
-			let badassmotRandom = badass[badassradom];
+		} catch (err) {
+			return console.log(err)
 
-			if (!member) {
-				let Embed = new Discord.EmbedBuilder()
-					.setColor("Purple")
-					.setImage(url = badassmotRandom)
-					.setTimestamp()
-
-				return await message.followUp({ embeds: [Embed] })
-			}
-			if (member && !reason) {
-				let Embed = new Discord.EmbedBuilder()
-					.setColor("Purple")
-					.setImage(url = badassmotRandom)
-					.setDescription(`${message.user.toString()} met la pression à  ${member.user.toString()}`)
-					.setTimestamp()
-
-				return await message.followUp({ embeds: [Embed] })
-			}
-			if (member && reason) {
-				let Embed = new Discord.EmbedBuilder()
-					.setColor("Purple")
-					.setImage(url = badassmotRandom)
-					.setDescription(`${message.user.toString()} met la pression à ${member.user.toString()} pour la raison : \n\`${reason}\``)
-					.setTimestamp()
-
-				return await message.followUp({ embeds: [Embed] })
-			}
-		}
-		if (choix === "kill") {
-
-			let killradom = Math.floor(Math.random() * kill.length);
-			let killmotRandom = kill[killradom];
-
-			if (!member) {
-				let Embed = new Discord.EmbedBuilder()
-					.setColor("Purple")
-					.setImage(url = killmotRandom)
-					.setTimestamp()
-				return await message.followUp({ embeds: [Embed] })
-			}
-			if (member && !reason) {
-				let Embed = new Discord.EmbedBuilder()
-					.setColor("Purple")
-					.setImage(url = killmotRandom)
-					.setDescription(`${message.user.toString()} a kill ${member.user.toString()}`)
-					.setTimestamp()
-				return await message.followUp({ embeds: [Embed] })
-			}
-			if (member && reason) {
-				let Embed = new Discord.EmbedBuilder()
-					.setColor("Purple")
-					.setImage(url = killmotRandom)
-					.setDescription(`${message.user.toString()} a kill ${member.user.toString()} pour la raison : \n\`${reason}\``)
-					.setTimestamp()
-				return await message.followUp({ embeds: [Embed] })
-			}
-		}
-
-
-		if (choix !== "kill" || choix !== "badass" || choix !== "kiss" || choix !== "punch") {
-			let mauvais = new Discord.EmbedBuilder()
-				.setTitle("**__Les category des gif dispo__**")
-				.setColor("Purple")
-				.setDescription("Les choix de gif dispo sont : \n\n \`kiss\`\n \`kill\`\n \`badass\`\n \`punch\`")
-				.setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
-				.setTimestamp()
-				.setFooter({ text: "gif" })
-
-			return await message.followUp({ embeds: [mauvais] })
 		}
 	}
 }

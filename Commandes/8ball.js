@@ -21,23 +21,27 @@ module.exports = {
 
     async run(bot, interaction, args) {
 
-        let quest = args.getString("question")
-        let result = ["Oui", "Non", "Peut-être"][Math.floor(Math.random() * ["Oui", "Non", "Peut-être"].length)];
+        try {
+            let quest = args.getString("question")
+            let result = ["Oui", "Non", "Peut-être"][Math.floor(Math.random() * ["Oui", "Non", "Peut-être"].length)];
 
-        const ballEmbed = new EmbedBuilder()
-            .setTitle(`8ball`)
-            .setColor("Green")
-            .addFields(
-                { name: 'Question', value: `${quest}`, inline: false },
-                { name: 'Reponse', value: `${result}`, inline: false },
-            )
-            .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
-            .setTimestamp()
-            .setFooter({ text: "8ball" })
+            const ballEmbed = new EmbedBuilder()
+                .setTitle(`8ball`)
+                .setColor("Green")
+                .addFields(
+                    { name: 'Question', value: `${quest}`, inline: false },
+                    { name: 'Reponse', value: `${result}`, inline: false },
+                )
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+                .setTimestamp()
+                .setFooter({ text: "8ball" })
 
 
-        interaction.reply({ embeds: [ballEmbed] })
+            interaction.reply({ embeds: [ballEmbed] })
+
+        } catch (err) {
+            return console.log(err)
+        }
 
     }
-
 }

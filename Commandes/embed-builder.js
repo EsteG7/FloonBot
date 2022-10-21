@@ -4,7 +4,7 @@ const { EmbedBuilder, TextInputBuilder, ModalBuilder, ActionRowBuilder, TextInpu
 module.exports = {
 
   name: "embed-builder",
-  description: "Envoyer un embed personnalisé",
+  description: "🅱️Envoyer un embed personnalisé🅱️",
   permission: Discord.PermissionFlagsBits.ManageMessages,
   dm: false,
   category: "Modération",

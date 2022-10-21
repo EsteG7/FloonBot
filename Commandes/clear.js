@@ -27,10 +27,10 @@ module.exports = {
 
         let channel = args.getChannel("salon")
         if (!channel) channel = message.channel;
-        if (channel.id !== message.channel.id && !message.guild.channels.cache.get(channel.id)) return message.reply("Pas de salon !")
+        if (channel.id !== message.channel.id && !message.guild.channels.cache.get(channel.id)) return message.channel.send("Pas de salon !"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
 
         let number = args.getNumber("nombre")
-        if (parseInt(number) <= 0 || parseInt(number) > 100) return message.reply("Il nous faut un nombre entre `0` et `100` inclus !")
+        if (parseInt(number) <= 0 || parseInt(number) > 100) return message.reply({ content: "Il nous faut un nombre entre `0` et `100` inclus !", ephemeral: true })
 
         try {
 

@@ -10,20 +10,23 @@ module.exports = {
 
     async run(bot, message, args) {
 
+        try {
+            let min = 1;
+            let max = 6;
+            let random = Math.floor(Math.random() * (max - min)) + min;
 
-        let min = 1;
-        let max = 6;
-        let random = Math.floor(Math.random() * (max - min)) + min;
-
-        const dé = new EmbedBuilder()
-            .setTitle(`dé aléatoir`)
-            .setColor("Green")
-            .setDescription(`tu as obtenue le chiffre  \`${random}\``)
-            .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
-            .setTimestamp()
-            .setFooter({ text: "dé" })
-        await message.channel.send({ embeds: [dé] })
-        message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+            const dé = new EmbedBuilder()
+                .setTitle(`dé aléatoir`)
+                .setColor("Green")
+                .setDescription(`tu as obtenue le chiffre  \`${random}\``)
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+                .setTimestamp()
+                .setFooter({ text: "dé" })
+            await message.channel.send({ embeds: [dé] })
+            message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+        } catch (err) {
+            return console.log(err)
+        }
     }
 
 }

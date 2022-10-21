@@ -26,7 +26,7 @@ module.exports = {
 
         try {
             let user = await bot.users.fetch(args._hoistedOptions[0].value)
-            if (!user) return message.reply("Pas de membre à bannir")
+            if (!user) return message.channel.send("Pas de membre à bannir"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
             let member = message.guild.members.cache.get(user.id)
 
             let reason = args.get("raison").value;
@@ -42,7 +42,7 @@ module.exports = {
                 let Embed1 = new Discord.EmbedBuilder()
                     .setColor("Red")
                     .setTitle(`Ban`)
-                    .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                    .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                     .setDescription(`\`🛑 Ban \n Tu as été banni du serveur \`${message.guild.name}\`\n par le modérateur \`${message.user.tag} \`\n pour la raison : \`${reason}\``)
                     .setTimestamp()
                     .setFooter({ text: "ban" })
@@ -54,7 +54,7 @@ module.exports = {
             let Embed = new Discord.EmbedBuilder()
                 .setColor("Red")
                 .setTitle(`Ban`)
-                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                 .setDescription(`\`🛑 Ban \n ${message.user.tag}\`a **banni** \n\` ${user.tag}\` **avec succès ! ✅**\n pour la raison : \`${reason}\`!`)
                 .setTimestamp()
                 .setFooter({ text: "ban" })
