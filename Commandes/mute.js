@@ -4,7 +4,7 @@ const ms = require("ms")
 module.exports = {
 
     name: "mute",
-    description: "Mute un membre",
+    description: "🔇Mute un membre🔇",
     permission: Discord.PermissionFlagsBits.ModerateMembers,
     dm: false,
     category: "Modération",
@@ -56,7 +56,7 @@ module.exports = {
             let Embed1 = new Discord.EmbedBuilder()
                 .setColor("Red")
                 .setTitle(`Mute`)
-                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                 .setDescription(`\`🛑 Mute \n Tu as été Mute du serveur \`${message.guild.name}\`\n pendant \`${time}\`\n par le modérateur \`${message.user.tag} \`\n pour la raison : \`${reason}\``)
                 .setTimestamp()
                 .setFooter({ text: "Mute" })
@@ -68,7 +68,7 @@ module.exports = {
         let Embed = new Discord.EmbedBuilder()
             .setColor("Red")
             .setTitle(`Mute`)
-            .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+            .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
             .setDescription(`\`🛑 Mute \n ${message.user.tag}\`a **banni** \n\` ${user.tag}\` **avec succès ! ✅**\n pendant\`${time}\`\n pour la raison : \`${reason}\`!`)
             .setTimestamp()
             .setFooter({ text: "Mute" })

@@ -7,7 +7,7 @@ const { ButtonBuilder } = require("discord.js")
 module.exports = {
 
     name: "serveur-info",
-    description: "Permet de voir les information du serveur",
+    description: "🗒️Permet de voir les information du serveur🗒️",
     dm: false,
     category: "Information",
 

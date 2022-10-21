@@ -112,44 +112,49 @@ module.exports = {
             "https://cdn.discordapp.com/attachments/1030483290571943946/1030483430091259945/aHarem_15.gif",
         ]
 
-        if (choix === "pussy") {
+        try {
+            if (choix === "pussy") {
 
 
-            let pussyradom = Math.floor(Math.random() * pussy.length);
-            let pussymotRandom = pussy[pussyradom];
 
-            let pussy1 = new Discord.EmbedBuilder()
-                .setColor("Purple")
-                .setImage(url = pussymotRandom)
+                let pussyradom = Math.floor(Math.random() * pussy.length);
+                let pussymotRandom = pussy[pussyradom];
 
-            return await message.channel.send({ embeds: [pussy1] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                let pussy1 = new Discord.EmbedBuilder()
+                    .setColor("Purple")
+                    .setImage(url = pussymotRandom)
 
-        }
+                return await message.channel.send({ embeds: [pussy1] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
 
-        if (choix === "aHarem") {
+            }
 
-            let aHaremradom = Math.floor(Math.random() * aHarem.length);
-            let aHaremmotRandom = aHarem[aHaremradom];
+            if (choix === "aHarem") {
 
-            let pussy1 = new Discord.EmbedBuilder()
-                .setColor("Purple")
-                .setImage(url = aHaremmotRandom)
+                let aHaremradom = Math.floor(Math.random() * aHarem.length);
+                let aHaremmotRandom = aHarem[aHaremradom];
 
-            return await message.channel.send({ embeds: [pussy1] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                let pussy1 = new Discord.EmbedBuilder()
+                    .setColor("Purple")
+                    .setImage(url = aHaremmotRandom)
 
-        }
-        await message.deferReply()
+                return await message.channel.send({ embeds: [pussy1] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
 
-        if (choix !== "aHarem" || choix !== "pussy") {
-            let mauvais = new Discord.EmbedBuilder()
-                .setTitle("**__Les category nsfw dispo__**")
-                .setColor("Purple")
-                .setDescription("Les choix nsfw dispo sont : \n\n \`pussy\`\n \`aHarem\`")
-                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
-                .setTimestamp()
-                .setFooter({ text: "NSFW" })
+            }
+            await message.deferReply()
 
-            return await message.followUp({ embeds: [mauvais] })
+            if (choix !== "aHarem" || choix !== "pussy") {
+                let mauvais = new Discord.EmbedBuilder()
+                    .setTitle("**__Les category nsfw dispo__**")
+                    .setColor("Purple")
+                    .setDescription("Les choix nsfw dispo sont : \n\n \`pussy\`\n \`aHarem\`")
+                    .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                    .setTimestamp()
+                    .setFooter({ text: "NSFW" })
+
+                return await message.followUp({ embeds: [mauvais] })
+            }
+        } catch (err) {
+            return console.log(err)
         }
     }
 }

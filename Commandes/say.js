@@ -18,9 +18,13 @@ module.exports = {
 
     async run(bot, message, args) {
 
-        const msg = args.getString("message");
-        message.channel.send(msg);
-        await message.reply({ content: ':white_check_mark: **message envoyer avec succes ! **:white_check_mark:', ephemeral: true })
+        try {
+            const msg = args.getString("message");
+            message.channel.send(msg);
+            await message.reply({ content: ':white_check_mark: **message envoyer avec succes ! **:white_check_mark:', ephemeral: true })
 
+        } catch (err) {
+            return console.log(err)
+        }
     }
 }

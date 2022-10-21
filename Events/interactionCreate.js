@@ -33,6 +33,12 @@ module.exports = async (bot, interaction) => {
             let sortie = choices.filter(c => c.includes(entry))
             await interaction.respond(entry === "" ? sortie.map(c => ({ name: c, value: c })) : sortie.map(c => ({ name: c, value: c })))
         }
+        if (interaction.commandName === "setsuggest") {
+
+            let choices = ["on", "off"]
+            let sortie = choices.filter(c => c.includes(entry))
+            await interaction.respond(entry === "" ? sortie.map(c => ({ name: c, value: c })) : sortie.map(c => ({ name: c, value: c })))
+        }
         if (interaction.commandName === "setgoodbye") {
 
             let choices = ["on", "off"]
