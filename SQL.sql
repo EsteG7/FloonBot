@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 21 oct. 2022 à 18:58
+-- Généré le : ven. 21 oct. 2022 à 21:30
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 8.1.6
 
@@ -55,7 +55,8 @@ CREATE TABLE `goodbyes` (
 --
 
 INSERT INTO `goodbyes` (`guildId`, `goodbye`) VALUES
-('1010538184251289691', '1010538184729432167');
+('1010538184251289691', '1010538184729432167'),
+('972195723988852776', 'false');
 
 -- --------------------------------------------------------
 
@@ -121,6 +122,25 @@ INSERT INTO `server` (`guild`, `captcha`) VALUES
 ('1011333004767014963', 'false'),
 ('1019687284100050984', 'false'),
 ('972195723988852776', 'false');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `suggests`
+--
+
+CREATE TABLE `suggests` (
+  `guildId` varchar(255) NOT NULL,
+  `suggest` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `suggests`
+--
+
+INSERT INTO `suggests` (`guildId`, `suggest`) VALUES
+('1010538184251289691', '1012013607581646848'),
+('972195723988852776', '1010208026294239434');
 
 -- --------------------------------------------------------
 
@@ -194,12 +214,12 @@ CREATE TABLE `xp` (
 --
 
 INSERT INTO `xp` (`guild`, `guildId`, `user`, `userId`, `xp`, `level`) VALUES
-('Fortnite', '972195723988852776', 'Floon#4109', '426866286304428034', '1200', '7'),
+('Fortnite', '972195723988852776', 'Floon#4109', '426866286304428034', '1270', '7'),
 ('Fortnite', '972195723988852776', 'Hardpick#1800', '1005425086486040650', '637', '0'),
 ('Fortnite', '972195723988852776', 'LazerMat#3743', '432523387286585344', '78', '0'),
 ('Serveur de Hardpick', '1010538184251289691', 'Hardpick#1800', '1005425086486040650', '130', '0'),
 ('Serveur de Hardpick', '1011333004767014963', 'Floon#4109', '426866286304428034', '46', '0'),
-('Serveur de Hardpick', '1010538184251289691', 'Floon#4109', '426866286304428034', '746', '0'),
+('Serveur de Hardpick', '1010538184251289691', 'Floon#4109', '426866286304428034', '756', '0'),
 ('Ile de zikerlo', '1019687284100050984', 'Raddoth#5079', '843730013709664288', '28', '0'),
 ('Ile de zikerlo', '1019687284100050984', 'zik#0462', '1018829040687267850', '100', '0'),
 ('Ile de zikerlo', '1019687284100050984', 'Floon#4109', '426866286304428034', '71', '0'),
@@ -242,6 +262,12 @@ ALTER TABLE `mutes`
 --
 ALTER TABLE `server`
   ADD PRIMARY KEY (`guild`);
+
+--
+-- Index pour la table `suggests`
+--
+ALTER TABLE `suggests`
+  ADD PRIMARY KEY (`guildId`);
 
 --
 -- Index pour la table `unwarns`
