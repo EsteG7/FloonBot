@@ -6,7 +6,7 @@ module.exports = {
     description: "Paramètre le captcha",
     permission: Discord.PermissionFlagsBits.ManageGuild,
     dm: false,
-    category: "Admin",
+    category: "Set des commande",
     options: [
         {
             type: "string",
@@ -19,7 +19,7 @@ module.exports = {
             type: "channel",
             name: "salon",
             description: "salon du captcha",
-            required: false,
+            required: true,
             autocomplete: false
         }
     ],

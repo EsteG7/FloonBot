@@ -74,16 +74,24 @@ module.exports = async (bot, member, interaction,) => {
         if (!channel) return;
 
         const EmbedMessage = new EmbedBuilder()
-            .setTitle(`Nom de ton Serveur`)
+            .setTitle(`Welcome`)
             .setColor('#0C15CF')
-            .setDescription(`Le membre : <@${member.user.id}>.\n \u200B \nViens de rejoindre la Team.`)
+            .setDescription(
+                `± Nom d'utilisateur: ${member}
+    ± Créé le: <t:${parseInt(
+                    member.user.createdTimestamp / 1000
+                )}:f> (<t:${parseInt(member.user.createdTimestamp / 1000)}:R>)
+    ± Rejoint le: <t:${parseInt(
+                    member.joinedTimestamp / 1000
+                )}:f> (<t:${parseInt(member.joinedTimestamp / 1000)}:R>)
+    `
+            )
+            .setImage(url = "https://cdn.discordapp.com/attachments/1031327790047436850/1032756765525291179/123.gif")
             .setThumbnail(member.user.displayAvatarURL())
             .setTimestamp()
 
+
         channel.send({ embeds: [EmbedMessage] })
-
-
-
 
     })
 

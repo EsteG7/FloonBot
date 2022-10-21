@@ -2,8 +2,8 @@ const Discord = require("discord.js");
 
 module.exports = {
 
-    name: "setwelcome",
-    description: "Paramètre le welcome",
+    name: "setgoodbye",
+    description: "Paramètre le goodbye",
     permission: Discord.PermissionFlagsBits.ManageGuild,
     dm: false,
     category: "Set des commande",
@@ -11,14 +11,14 @@ module.exports = {
         {
             type: "string",
             name: "état",
-            description: "Etat du welcome",
+            description: "Etat du goodbye",
             required: true,
             autocomplete: true
         },
         {
             type: "channel",
             name: "salon",
-            description: "salon du welcome",
+            description: "salon du goodbye",
             required: true,
             autocomplete: false
         }
@@ -29,14 +29,14 @@ module.exports = {
         if (etat !== "on" && etat !== "off") return message.replye("Indique on ou off")
 
         if (etat === "off") {
-            db.query(`UPDATE welcomes SET welcome = 'false' WHERE guildId = '${message.guildId}'`)
+            db.query(`UPDATE goodbyes SET goodbye = 'false' WHERE guildId = '${message.guildId}'`)
             let Embed = new Discord.EmbedBuilder()
                 .setColor("Yellow")
-                .setTitle(`setwelcome`)
+                .setTitle(`setgoodbye`)
                 .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
-                .setDescription(`Le welcome est bien désactiver sur le channel`)
+                .setDescription(`Le goodbye est bien désactiver sur le channel`)
                 .setTimestamp()
-                .setFooter({ text: "welcome" })
+                .setFooter({ text: "goodbye" })
 
 
             await message.channel.send({ embeds: [Embed] })
@@ -49,14 +49,14 @@ module.exports = {
             channel = message.guild.channels.cache.get(channel.id)
             if (!channel) return message.reply("Pas de salon trouvée")
 
-            db.query(`UPDATE welcomes SET welcome = '${channel.id}' WHERE guildId = '${message.guildId}'`)
+            db.query(`UPDATE goodbyes SET goodbye = '${channel.id}' WHERE guildId = '${message.guildId}'`)
             let Embed = new Discord.EmbedBuilder()
                 .setColor("Yellow")
-                .setTitle(`setwelcome`)
+                .setTitle(`setgoodbye`)
                 .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
-                .setDescription(`Le welcome est bien active sur le salon ${channel}`)
+                .setDescription(`Le goodbye est bien active sur le salon ${channel}`)
                 .setTimestamp()
-                .setFooter({ text: "welcome" })
+                .setFooter({ text: "goodbye" })
 
 
             await message.channel.send({ embeds: [Embed] })

@@ -6,7 +6,7 @@ module.exports = {
     description: "🔞envoye une image nsfw🔞",
     permission: "Aucune",
     dm: false,
-    category: "nsfw",
+    category: "Nsfw",
     options: [
         {
             type: "string",
