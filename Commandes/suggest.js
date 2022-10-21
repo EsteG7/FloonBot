@@ -19,22 +19,29 @@ module.exports = {
         }
     ],
 
-    async run(bot, message, args) {
-        message.reply({ content: ':white_check_mark: **Suggestion envoyé avec succès ! **:white_check_mark:', ephemeral: true });
-        let msg = args.getString("texte");
-        const EmbedMessage = new EmbedBuilder()
-            .setTitle(`Nouvelle suggestion!`)
-            .setColor("Blue")
-            .setDescription(`Suggestion de ${message.user} : ${msg}`)
-            .setTimestamp()
-            .setFooter({ text: "suggest" })
+    async run(bot, message, args, db) {
 
-        //Id du salon pour avoir les suggest
-        bot.channels.cache.get("1010208026294239434").send({ embeds: [EmbedMessage] }).then(function (message) {
-            message.react("✅")
-            message.react("❌")
+        db.query(`SELECT * FROM suggests WHERE guildId = '${message.guild.id}'`, async (err, req) => {
 
-        });
+            if (req.length < 1 || Boolean(req[0].suggest) === false) return;
+
+            let channel = bot.channels.cache.get(req[0].suggest)
+            if (!channel) return;
+
+            message.reply({ content: ':white_check_mark: **Suggestion envoyé avec succès ! **:white_check_mark:', ephemeral: true });
+            let msg = args.getString("texte");
+            const EmbedMessage = new EmbedBuilder()
+                .setTitle(`Nouvelle suggestion!`)
+                .setColor("Blue")
+                .setDescription(`Suggestion de ${message.user} : ${msg}`)
+                .setTimestamp()
+                .setFooter({ text: "suggest" })
+
+            channel.send({ embeds: [EmbedMessage] }).then(function (message) {
+                message.react("✅")
+                message.react("❌")
+
+            });
+        })
     }
-
 }

@@ -13,6 +13,13 @@ module.exports = async (bot, message) => {
             db.query(`INSERT INTO server (guild, captcha) VALUES (${message.guild.id}, 'false')`)
         }
     })
+    db.query(`SELECT * FROM suggests WHERE guildId = '${message.guild.id}'`, async (err, req) => {
+
+        if (req.length < 1) {
+
+            db.query(`INSERT INTO suggests (guildId, suggest) VALUES (${message.guild.id}, 'false')`)
+        }
+    })
 
     db.query(`SELECT * FROM welcomes WHERE guildId = '${message.guild.id}'`, async (err, req) => {
 
