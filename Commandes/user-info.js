@@ -25,7 +25,7 @@ module.exports = {
 
             let userEmbed = new Discord.EmbedBuilder()
                 .setTitle(`UserInfo De ${member.user.tag}`)
-                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                 .setColor("Blue")
                 .setDescription(`
                 __**User Informations**__

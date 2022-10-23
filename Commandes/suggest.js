@@ -5,7 +5,7 @@ const config = require('../config')
 module.exports = {
 
     name: "suggest",
-    description: "Permet d'envoyer une suggestion",
+    description: "🧠Permet d'envoyer une suggestion🧠",
     permission: "Aucune",
     dm: false,
     category: "Autres",
@@ -33,6 +33,7 @@ module.exports = {
             const EmbedMessage = new EmbedBuilder()
                 .setTitle(`Nouvelle suggestion!`)
                 .setColor("Blue")
+                .setThumbnail(message.user.displayAvatarURL({ dynamic: true, size: 64 }))
                 .setDescription(`Suggestion de ${message.user} : ${msg}`)
                 .setTimestamp()
                 .setFooter({ text: "suggest" })
@@ -40,7 +41,6 @@ module.exports = {
             channel.send({ embeds: [EmbedMessage] }).then(function (message) {
                 message.react("✅")
                 message.react("❌")
-
             });
         })
     }

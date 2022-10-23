@@ -34,7 +34,7 @@ module.exports = {
                     .setColor("Green")
                     .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
                     .addFields(
-                        { name: `\`${message.user.tag}\`\n`, value: `a obtenue ${joueursH}\ donc a \`perdu\``, inline: false },
+                        { name: `\`${message.user.tag}\`\n`, value: `a  choisi ${joueursH}\ donc a \`perdu\``, inline: false },
                         { name: `\`FLOONBOT#0089\`\n`, value: `a obtenue ${joueursB} donc a \`gagner\``, inline: false },
                         { name: '\u200B', value: '\u200B' }
                     )
@@ -46,12 +46,11 @@ module.exports = {
             } else if (joueursH === "pierre" && joueursB === "pierre") {
 
                 let Embed = new Discord.EmbedBuilder()
-                    .setAuthor({ name: `${message.user.tag}`, iconURL: (message.user.displayAvatarURL({ dynamic: true })), })
 
                     .setColor("Green")
                     .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
                     .addFields(
-                        { name: `\`${message.user.tag}\`\n`, value: `a obtenue ${joueursH}\ donc \`égalité\``, inline: false },
+                        { name: `\`${message.user.tag}\`\n`, value: `a  choisi ${joueursH}\ donc \`égalité\``, inline: false },
                         { name: `\`FLOONBOT#0089\`\n`, value: `a obtenue ${joueursB} donc  \`égalité\``, inline: false },
                         { name: '\u200B', value: '\u200B' }
                     )
@@ -65,7 +64,7 @@ module.exports = {
                     .setColor("Green")
                     .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
                     .addFields(
-                        { name: `\`${message.user.tag}\`\n`, value: `a obtenue ${joueursH}\ donc a \`gagner\``, inline: false },
+                        { name: `\`${message.user.tag}\`\n`, value: `a  choisi ${joueursH}\ donc a \`gagner\``, inline: false },
                         { name: `\`FLOONBOT#0089\`\n`, value: `a obtenue ${joueursB} donc  \`perdu\``, inline: false },
                         { name: '\u200B', value: '\u200B' }
                     )
@@ -82,7 +81,7 @@ module.exports = {
                     .setColor("Green")
                     .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
                     .addFields(
-                        { name: `\`${message.user.tag}\`\n`, value: `a obtenue ${joueursH}\ donc a \`gagner\``, inline: false },
+                        { name: `\`${message.user.tag}\`\n`, value: `a  choisi ${joueursH}\ donc a \`gagner\``, inline: false },
                         { name: `\`FLOONBOT#0089\`\n`, value: `a obtenue ${joueursB} donc a \`perdu\``, inline: false },
                         { name: '\u200B', value: '\u200B' }
                     )
@@ -94,12 +93,10 @@ module.exports = {
 
             } else if (joueursH === "feuille" && joueursB === "feuille") {
                 let Embed = new Discord.EmbedBuilder()
-                    .setAuthor({ name: `${message.user.tag}`, iconURL: (message.user.displayAvatarURL({ dynamic: true })), })
-
                     .setColor("Green")
                     .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
                     .addFields(
-                        { name: `\`${message.user.tag}\`\n`, value: `a obtenue ${joueursH}\ donc \`égalité\``, inline: false },
+                        { name: `\`${message.user.tag}\`\n`, value: `a  choisi ${joueursH}\ donc \`égalité\``, inline: false },
                         { name: `\`FLOONBOT#0089\`\n`, value: `a obtenue ${joueursB} donc  \`égalité\``, inline: false },
                         { name: '\u200B', value: '\u200B' }
                     )
@@ -113,7 +110,7 @@ module.exports = {
                     .setColor("Green")
                     .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
                     .addFields(
-                        { name: `\`${message.user.tag}\`\n`, value: `a obtenue ${joueursH}\ donc a \`perdu\``, inline: false },
+                        { name: `\`${message.user.tag}\`\n`, value: `a  choisi ${joueursH}\ donc a \`perdu\``, inline: false },
                         { name: `\`FLOONBOT#0089\`\n`, value: `a obtenue ${joueursB} donc a \`gagner\``, inline: false },
                         { name: '\u200B', value: '\u200B' }
                     )
@@ -126,11 +123,10 @@ module.exports = {
 
             if (joueursH === "ciseaux" && joueursB === "pierre") {
                 let Embed = new Discord.EmbedBuilder()
-                    .setAuthor({ name: `${message.user.tag}`, iconURL: (message.user.displayAvatarURL({ dynamic: true })), })
                     .setColor("Green")
                     .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
                     .addFields(
-                        { name: `\`${message.user.tag}\`\n`, value: `a obtenue ${joueursH}\ donc a \`perdu\``, inline: false },
+                        { name: `\`${message.user.tag}\`\n`, value: `a  choisi ${joueursH}\ donc a \`perdu\``, inline: false },
                         { name: `\`FLOONBOT#0089\`\n`, value: `a obtenue ${joueursB} donc a \`gagner\``, inline: false },
                         { name: '\u200B', value: '\u200B' }
                     )
@@ -144,7 +140,7 @@ module.exports = {
                     .setColor("Green")
                     .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
                     .addFields(
-                        { name: `\`${message.user.tag}\`\n`, value: `a obtenue ${joueursH}\ donc \`égalité\``, inline: false },
+                        { name: `\`${message.user.tag}\`\n`, value: `a  choisi ${joueursH}\ donc \`égalité\``, inline: false },
                         { name: `\`FLOONBOT#0089\`\n`, value: `a obtenue ${joueursB} donc  \`égalité\``, inline: false },
                         { name: '\u200B', value: '\u200B' }
                     )
@@ -158,7 +154,7 @@ module.exports = {
                     .setColor("Green")
                     .setTitle("**La commande  pierre,  feuille,  ciseaux !!**")
                     .addFields(
-                        { name: `\`${message.user.tag}\`\n`, value: `a obtenue ${joueursH}\ donc a \`gagner\``, inline: false },
+                        { name: `\`${message.user.tag}\`\n`, value: `a  choisi ${joueursH}\ donc a \`gagner\``, inline: false },
                         { name: `\`FLOONBOT#0089\`\n`, value: `a obtenue ${joueursB} donc a \`perdu\``, inline: false },
                         { name: '\u200B', value: '\u200B' }
                     )

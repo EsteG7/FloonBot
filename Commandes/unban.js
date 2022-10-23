@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports = {
 
     name: "unban",
-    description: "unBan un membre",
+    description: "🔨❌unBan un membre❌🔨",
     permission: Discord.PermissionFlagsBits.BanMembers,
     dm: false,
     category: "Modération",
@@ -39,7 +39,7 @@ module.exports = {
                 let Embed1 = new Discord.EmbedBuilder()
                     .setColor("Red")
                     .setTitle(`UnBan`)
-                    .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                    .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                     .setDescription(`\`🛑 UnBan \n Tu as été unban du serveur \`${message.guild.name}\`\n par le modérateur \`${message.user.tag} \`\n pour la raison : \`${reason}\``)
                     .setTimestamp()
                     .setFooter({ text: "Unban" })
@@ -49,7 +49,7 @@ module.exports = {
             let Embed = new Discord.EmbedBuilder()
                 .setColor("Red")
                 .setTitle(`UnBan`)
-                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                 .setDescription(`\`🛑 UnBan \n ${message.user.tag}\`a **unban** \n\` ${user.tag}\` **avec succès ! ✅**\n pour la raison : \`${reason}\`!`)
                 .setTimestamp()
                 .setFooter({ text: "Unban" })

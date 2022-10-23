@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports = {
 
     name: "unwarn",
-    description: "Unwarn un membre",
+    description: "🛑Unwarn un membre🛑",
     permission: Discord.PermissionFlagsBits.ManageMessages,
     dm: false,
     category: `Modération`,
@@ -38,7 +38,7 @@ module.exports = {
             let Embed = new Discord.EmbedBuilder()
                 .setColor("Red")
                 .setTitle(`Unwarn`)
-                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                 .setDescription(`\`🛑 UnWarn \n ${message.user.tag}\`a **Unwarn le**\`${req[0].warn}\` \n de\` ${user.tag}\` **avec succès ! ✅**!`)
                 .setTimestamp()
                 .setFooter({ text: "Unwarn" })
@@ -52,7 +52,7 @@ module.exports = {
                 let Embed1 = new Discord.EmbedBuilder()
                     .setColor("Red")
                     .setTitle(`Unwarn`)
-                    .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                    .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                     .setDescription(`\`🛑 Unwarn \n Tu as été Unwarn du serveur \`${message.guild.name}\`\n par le modérateur \`${message.user.tag} \``)
                     .setTimestamp()
                     .setFooter({ text: "Unwarn" })

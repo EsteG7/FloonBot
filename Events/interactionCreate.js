@@ -80,6 +80,7 @@ module.exports = async (bot, interaction) => {
 
             })
 
+
         }
 
 
@@ -312,9 +313,9 @@ module.exports = async (bot, interaction) => {
             .setDescription(`✅ Votre salon a été créé avec succès ${channel} !`)
 
         await interaction.followUp({ embeds: [EmbedSuccessCreateChannel], ephemeral: true })
+
     }
 }
-
 
 
 

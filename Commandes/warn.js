@@ -3,7 +3,7 @@ const Discord = require("discord.js")
 module.exports = {
 
     name: "warn",
-    description: "warn un membre",
+    description: "🛑warn un membre🛑",
     permission: Discord.PermissionFlagsBits.ManageMessages,
     dm: false,
     category: "Modération",
@@ -44,7 +44,7 @@ module.exports = {
             let Embed1 = new Discord.EmbedBuilder()
                 .setColor("Red")
                 .setTitle(`warn`)
-                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                 .setDescription(`${message.user.tag} vous a warn sur le serveur ${message.guild.name} pour la raison suivante : \`${reason}\` !`)
                 .setTimestamp()
                 .setFooter({ text: "warn" })
@@ -54,7 +54,7 @@ module.exports = {
         let Embed = new Discord.EmbedBuilder()
             .setColor("Red")
             .setTitle(`warn`)
-            .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+            .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
             .setDescription(`\`🛑 Avertissement \n\` ${message.user} **a averti** \n\`${user.tag}\` **avec succès ! ✅**\n \` pour la raison\`: \`${reason}\` !`)
             .setTimestamp()
             .setFooter({ text: "warn" })

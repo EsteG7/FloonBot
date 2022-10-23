@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports = {
 
     name: "setcaptcha",
-    description: "Paramètre le captcha",
+    description: "🗃️Paramètre le captcha🗃️",
     permission: Discord.PermissionFlagsBits.ManageGuild,
     dm: false,
     category: "Set des commande",
@@ -33,7 +33,7 @@ module.exports = {
             let Embed = new Discord.EmbedBuilder()
                 .setColor("Yellow")
                 .setTitle(`setcaptcha`)
-                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                 .setDescription(`Le captcha est bien désactiver \n le rôle \`Non verif\` ne sera pus donner au personne qui rejoint le serveur`)
                 .setTimestamp()
                 .setFooter({ text: "captcha" })
@@ -53,7 +53,7 @@ module.exports = {
             let Embed = new Discord.EmbedBuilder()
                 .setColor("Yellow")
                 .setTitle(`setcaptcha`)
-                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                 .setDescription(`Le captcha est bien active sur le salon ${channel} \n\n 🔺IMPORTANT🔺\n\n \` D'avoir un rôle \` \n\n \`Non verif\` sur le serveur sans aucune permissions ( si pas le rôle sera automatiquemen crée )  !! \n Dans le salon ou se trouve le captcha rajouter comme permission sur le rôle \`Non verif\`\`voir salon et envoyer un message\``)
                 .setTimestamp()
                 .setFooter({ text: "captcha" })

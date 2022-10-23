@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports = {
 
     name: "setsuggest",
-    description: "Paramètre le suggest",
+    description: "🗃️Paramètre le suggest🗃️",
     permission: Discord.PermissionFlagsBits.ManageGuild,
     dm: false,
     category: "Set des commande",
@@ -33,7 +33,7 @@ module.exports = {
             let Embed = new Discord.EmbedBuilder()
                 .setColor("Yellow")
                 .setTitle(`setsuggest`)
-                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                 .setDescription(`Le suggest est bien désactiver sur le channel`)
                 .setTimestamp()
                 .setFooter({ text: "suggest" })

@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports = {
 
     name: "setwelcome",
-    description: "Paramètre le welcome",
+    description: "🗃️Paramètre le welcome🗃️",
     permission: Discord.PermissionFlagsBits.ManageGuild,
     dm: false,
     category: "Set des commande",

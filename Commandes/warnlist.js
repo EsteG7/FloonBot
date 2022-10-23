@@ -3,7 +3,7 @@ const Discord = require("discord.js")
 module.exports = {
 
     name: "warnlist",
-    description: "Affiche les warns d'un membre",
+    description: "🛑Affiche les warns d'un membre🛑",
     permission: Discord.PermissionFlagsBits.ManageMessages,
     dm: false,
     category: "Modération",
@@ -32,7 +32,7 @@ module.exports = {
             let Embed = new Discord.EmbedBuilder()
                 .setColor("Red")
                 .setTitle(`Liste des warns de ${user.tag}`)
-                .setThumbnail(user.displayAvatarURL({ dynamic: true }))
+                .setThumbnail(user.displayAvatarURL({ dynamic: true, size: 64 }))
                 .setTimestamp()
                 .setFooter({ text: "Liste des warns" })
 

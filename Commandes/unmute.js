@@ -4,7 +4,7 @@ const ms = require("ms")
 module.exports = {
 
     name: "unmute",
-    description: "unMute un membre",
+    description: "❌🔇unMute un membre🔇❌",
     permission: Discord.PermissionFlagsBits.ModerateMembers,
     dm: false,
     category: "Modération",
@@ -44,7 +44,7 @@ module.exports = {
             let Embed1 = new Discord.EmbedBuilder()
                 .setColor("Red")
                 .setTitle(`Unmute`)
-                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                 .setDescription(`\`🛑 Unmute \n Tu as été unmute du serveur \`${message.guild.name}\`\n par le modérateur \`${message.user.tag} \`\n pour la raison : \`${reason}\``)
                 .setTimestamp()
                 .setFooter({ text: "Unmute" })
@@ -55,7 +55,7 @@ module.exports = {
         let Embed = new Discord.EmbedBuilder()
             .setColor("Red")
             .setTitle(`Unmute`)
-            .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+            .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
             .setDescription(`\`🛑 Unmute \n ${message.user.tag}\`a **Unmute** \n\` ${user.tag}\` **avec succès ! ✅**\n pour la raison : \`${reason}\`!`)
             .setTimestamp()
             .setFooter({ text: "Unmute" })

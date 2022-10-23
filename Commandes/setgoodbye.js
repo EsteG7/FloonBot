@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports = {
 
     name: "setgoodbye",
-    description: "Paramètre le goodbye",
+    description: "🗃️Paramètre le goodbye🗃️",
     permission: Discord.PermissionFlagsBits.ManageGuild,
     dm: false,
     category: "Set des commande",
@@ -33,7 +33,7 @@ module.exports = {
             let Embed = new Discord.EmbedBuilder()
                 .setColor("Yellow")
                 .setTitle(`setgoodbye`)
-                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                 .setDescription(`Le goodbye est bien désactiver sur le channel`)
                 .setTimestamp()
                 .setFooter({ text: "goodbye" })
@@ -53,7 +53,7 @@ module.exports = {
             let Embed = new Discord.EmbedBuilder()
                 .setColor("Yellow")
                 .setTitle(`setgoodbye`)
-                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                 .setDescription(`Le goodbye est bien active sur le salon ${channel}`)
                 .setTimestamp()
                 .setFooter({ text: "goodbye" })
