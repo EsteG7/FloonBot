@@ -3,9 +3,9 @@ const Discord = require("discord.js");
 module.exports = {
 
   name: "kick",
-  description: "🦵🏻kick un membre🦵🏻",
-  permission: Discord.PermissionFlagsBits.BanMembers,
-  category: "Modération",
+  description: "kick un membre",
+  permission: Discord.PermissionFlagsBits.ModerateMembers,
+  category: "🧑🏻‍⚖️Modération",
   dm: false,
   options: [
     {

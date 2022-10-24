@@ -5,9 +5,9 @@ module.exports = {
 
     name: "ticket",
     description: "Envoyer l'embed des tickets",
-    permission: Discord.PermissionFlagsBits.Administrator,
+    permission: Discord.PermissionFlagsBits.ModerateMembers,
     dm: false,
-    category: "Modération",
+    category: "🧑🏻‍⚖️Modération",
 
     async run(bot, message, args) {
         const EmbedTicket = new EmbedBuilder()

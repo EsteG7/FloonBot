@@ -3,10 +3,10 @@ const Discord = require("discord.js")
 module.exports = {
 
     name: "warnlist",
-    description: "🛑Affiche les warns d'un membre🛑",
-    permission: Discord.PermissionFlagsBits.ManageMessages,
+    description: "Affiche les warns d'un membre",
+    permission: Discord.PermissionFlagsBits.ModerateMembers,
     dm: false,
-    category: "Modération",
+    category: "🧑🏻‍⚖️Modération",
     options: [
         {
             type: "user",

@@ -4,9 +4,9 @@ const { EmbedBuilder } = require("discord.js")
 module.exports = {
 
     name: "user-info",
-    description: "Permet de voir les information d'un utilisateur",
+    description: "Permet de voir les Information d'un utilisateur",
     dm: false,
-    category: "Information",
+    category: "👆🏻Information",
     options: [
         {
             type: "user",
@@ -35,7 +35,7 @@ module.exports = {
                 > **ID :** ${member.user.id}
                 > **Bot :** ${member.user.bot ? ':white_check_mark:' : '❌'}
 
-                __ ** Information Compte ** __
+                __ ** 👆🏻Information Compte ** __
 
                 > **Créer :** <t:${parseInt(member.user.createdTimestamp / 1000)}:R>
                 > **A rejoin :** <t:${parseInt(member.joinedAt / 1000)}:R>`)

@@ -4,7 +4,7 @@ const Discord = require("discord.js");
 module.exports = {
 
     name: "eval",
-    description: "🧮Calcule🧮",
+    description: "Calcule",
     permission: "Aucune",
     dm: false,
     category: "🥳Fun",

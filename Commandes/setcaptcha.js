@@ -3,10 +3,10 @@ const Discord = require("discord.js");
 module.exports = {
 
     name: "setcaptcha",
-    description: "🗃️Paramètre le captcha🗃️",
-    permission: Discord.PermissionFlagsBits.ManageGuild,
+    description: "Paramètre le captcha",
+    permission: Discord.PermissionFlagsBits.ModerateMembers,
     dm: false,
-    category: "Set des commande",
+    category: "🗃️Set des commande",
     options: [
         {
             type: "string",

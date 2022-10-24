@@ -3,8 +3,8 @@ const Discord = require("discord.js");
 
 module.exports = {
     name: "dm",
-    description: "💻DM un membre💻 ",
-    category: "Modération",
+    description: "DM un membre",
+    category: "🧑🏻‍⚖️Modération",
     permission: Discord.PermissionFlagsBits.ModerateMembers,
     dm: false,
     options: [

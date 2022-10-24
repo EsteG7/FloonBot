@@ -3,7 +3,7 @@ const Discord = require("discord.js")
 module.exports = {
 
     name: 'pfc',
-    description: '🪨Jeux pierre, feuille, ciseaux🪨',
+    description: 'Jeux pierre, feuille, ciseaux',
     permission: "Aucune",
     dm: false,
     category: "🥳Fun",

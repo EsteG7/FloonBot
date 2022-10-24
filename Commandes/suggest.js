@@ -5,10 +5,10 @@ const config = require('../config')
 module.exports = {
 
     name: "suggest",
-    description: "🧠Permet d'envoyer une suggestion🧠",
+    description: "Permet d'envoyer une suggestion",
     permission: "Aucune",
     dm: false,
-    category: "Autres",
+    category: "👆🏻Information",
     options: [
         {
             type: "string",

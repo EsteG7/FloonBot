@@ -5,7 +5,7 @@ module.exports = {
     name: "url",
     description: "Permet de voir l'url personnaliser du serveur",
     permission: "Aucune",
-    category: "Autres",
+    category: "👆🏻Information",
     dm: false,
     async run(bot, message, args) {
 

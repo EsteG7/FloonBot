@@ -4,10 +4,10 @@ const ms = require("ms")
 module.exports = {
 
     name: "mute",
-    description: "🔇Mute un membre🔇",
+    description: "Mute un membr",
     permission: Discord.PermissionFlagsBits.ModerateMembers,
     dm: false,
-    category: "Modération",
+    category: "🧑🏻‍⚖️Modération",
     options: [
         {
             type: "user",

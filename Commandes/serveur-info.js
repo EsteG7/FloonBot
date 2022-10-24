@@ -7,9 +7,9 @@ const { ButtonBuilder } = require("discord.js")
 module.exports = {
 
     name: "serveur-info",
-    description: "🗒️Permet de voir les information du serveur🗒️",
+    description: "Permet de voir les Information du serveur",
     dm: false,
-    category: "Information",
+    category: "👆🏻Information",
 
     async run(bot, interaction, args) {
 
@@ -17,7 +17,7 @@ module.exports = {
 
 
             let serveurEmbed = new Discord.EmbedBuilder()
-                .setTitle("Serveur Information")
+                .setTitle("Serveur 👆🏻Information")
                 .setColor("Blue")
                 .setDescription(`
                 **__Serveur Informations__**

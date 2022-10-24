@@ -4,7 +4,7 @@ const gif = require("./gif")
 module.exports = {
 
 	name: "gif",
-	description: "📺Permet de effectuer un gif📺",
+	description: "Permet de effectuer un gif",
 	permission: "Aucune",
 	dm: false,
 	category: "🥳Fun",

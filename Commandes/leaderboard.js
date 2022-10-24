@@ -7,7 +7,7 @@ module.exports = {
     description: "Envoie le top 10 d'exp du serveur",
     permission: "Aucune",
     dm: false,
-    category: "Experience",
+    category: "💹Experience",
 
 
     async run(bot, message, args, db) {

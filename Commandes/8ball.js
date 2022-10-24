@@ -4,7 +4,7 @@ const Discord = require("discord.js")
 module.exports = {
 
     name: "8ball",
-    description: "🎱Pose une question et il te dira la vérité.🎱",
+    description: "Pose une question et il te dira la vérité.",
     permission: "Aucune",
     dm: false,
     category: "🥳Fun",

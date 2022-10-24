@@ -2,10 +2,10 @@ const discord = require("discord.js")
 
 module.exports = {
     name: "say",
-    description: "🗒️Envoyer un message sous l'identiter du bot🗒️",
+    description: "Envoyer un message sous l'identiter du bot",
     permission: discord.PermissionFlagsBits.Administrator,
     dm: false,
-    category: "🥳Fun",
+    category: "🤴🏻Admin",
     options: [
         {
             type: "string",

@@ -5,10 +5,10 @@ const libquery = require('libquery')
 module.exports = {
 
     name: "ip",
-    description: "📡Permet d'avoir l'ip du serveur📡",
+    description: "Permet d'avoir l'ip du serveur",
     permission: "Aucune",
     dm: false,
-    category: "Information",
+    category: "👆🏻Information",
 
     async run(bot, message, args) {
         libquery.query(`sulfuritium.fr`, 19132, 1000).then((data) => {

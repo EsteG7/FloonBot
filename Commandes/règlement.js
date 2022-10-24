@@ -12,7 +12,7 @@ module.exports = {
     name: "règlement",
     description: "ou mettre le règlement",
     permission: PermissionFlagsBits.Administrator,
-    category: "Admin",
+    category: "🤴🏻Admin",
     dm: false,
     options: [
         {

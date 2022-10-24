@@ -4,10 +4,10 @@ const Discord = require("discord.js");
 module.exports = {
 
     name: "ping",
-    description: "🤖Donne le ping du bot🤖",
+    description: "Donne le ping du bot",
     permission: "Aucune",
     dm: false,
-    category: "Information",
+    category: "👆🏻Information",
 
     async run(bot, message) {
 

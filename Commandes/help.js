@@ -3,10 +3,11 @@ const Discord = require("discord.js");
 module.exports = {
 
     name: "help",
-    description: "🆘Donne les commands du bot🆘",
+    description: "Donne les commands du bot",
     permission: "Aucune",
     dm: false,
-    category: "Information",
+    category: "👆🏻Information",
+
 
     async run(bot, message, args) {
 

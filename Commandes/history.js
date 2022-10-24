@@ -5,10 +5,10 @@ const ms = require("ms")
 module.exports = {
 
     name: "history",
-    description: "🖥️Permet de connaitre toutes les infractions d'un utilisateur🖥️",
-    permission: Discord.PermissionFlagsBits.ManageMessages,
+    description: "Permet de connaitre toutes les infractions d'un utilisateur",
+    permission: Discord.PermissionFlagsBits.ModerateMembers,
     dm: false,
-    category: "Modération",
+    category: "🧑🏻‍⚖️Modération",
     options: [
         {
             type: "user",

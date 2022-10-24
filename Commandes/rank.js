@@ -4,10 +4,10 @@ const Canvas = require("discord-canvas-easy")
 module.exports = {
 
     name: 'rank',
-    description: "💹Donne l'xp d'un membre💹",
+    description: "Donne l'xp d'un membre",
     permission: "Aucune",
     dm: false,
-    category: "Experience",
+    category: "💹Experience",
     options: [
         {
             type: "user",

@@ -3,10 +3,10 @@ const Discord = require("discord.js");
 module.exports = {
 
     name: "nsfw",
-    description: "🔞envoye une image nsfw🔞",
+    description: "envoye une image nsfw",
     permission: "Aucune",
     dm: false,
-    category: "Nsfw",
+    category: "🔞Nsfw",
     options: [
         {
             type: "string",
