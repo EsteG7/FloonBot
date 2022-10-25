@@ -71,6 +71,7 @@ module.exports = async (bot, interaction) => {
         let command = require(`../Commandes/${interaction.commandName}`)
         command.run(bot, interaction, interaction.options, bot.db)
     }
+
     if (interaction.isButton()) {
 
         if (interaction.customId.startsWith("reglement")) {
@@ -80,244 +81,73 @@ module.exports = async (bot, interaction) => {
 
             })
 
-
         }
 
 
-        if (interaction.customId === "close") {
-            let EmbedPermissionClose = new EmbedBuilder()
-                .setColor("#3dffcc")
-                .setDescription(`❌ Vous n'avez pas la permission requise !`)
+        if (interaction.customId === "primary") {
+            let channel = await interaction.guild.channels.create({
+                name: `${interaction.user.username} ticket`,
+                type: Discord.ChannelType.GuildText,
+                permissionOverwrites: [
+                    {
+                        id: interaction.guild.roles.everyone,
+                        deny: [Discord.PermissionFlagsBits.ViewChannel],
+                    }, {
+                        id: interaction.user,
+                        allow: [Discord.PermissionFlagsBits.SendMessages, Discord.PermissionFlagsBits.ViewChannel],
+                    }
+                ],
+            })
+            await interaction.reply({ content: `**Ticket créer avec succes ${channel}**`, ephemeral: true })
 
-            if (!interaction.member.permissions.has(Discord.PermissionFlagsBits.ManageChannels)) return interaction.reply({ embeds: [EmbedPermissionClose], ephemeral: true })
+            const clearembed = new Discord.EmbedBuilder()
+                .setTitle(`${interaction.user.username}`)
+                .setDescription(`${interaction.user}\n merci de patienter que le staff vienent vous aider ecrivez votre probleme dans le ticket`)
+                .setColor("Aqua")
 
-            let EmbedCloseTicket = new EmbedBuilder()
-                .setColor("#3dffcc")
-                .setDescription(`Êtes-vous sûr de vouloir fermer le ticket ?`)
-            let Button = new ActionRowBuilder()
-                .addComponents(new ButtonBuilder()
-                    .setCustomId('oui')
-                    .setLabel("Oui")
-                    .setStyle(ButtonStyle.Success),
+
+            const deletebutton = new Discord.ActionRowBuilder()
+                .addComponents(
+                    new ButtonBuilder()
+                        .setCustomId('delete')
+                        .setEmoji("❌")
+                        .setLabel('Supprimer le ticket')
+                        .setStyle(ButtonStyle.Danger)
+                );
+
+
+            await channel.send({ embeds: [clearembed], components: [deletebutton] })
+        }
+
+        if (interaction.customId === "delete") {
+            const surbutton = new Discord.ActionRowBuilder()
+                .addComponents(
+                    new ButtonBuilder()
+                        .setCustomId('oui')
+                        .setLabel('oui')
+                        .setStyle(ButtonStyle.Primary)
+                )
+                .addComponents(
                     new ButtonBuilder()
                         .setCustomId('non')
-                        .setLabel("Non")
-                        .setStyle(ButtonStyle.Danger),
-                );
-            await interaction.reply({ embeds: [EmbedCloseTicket], components: [Button] });
+                        .setLabel('non')
+                        .setStyle(ButtonStyle.Danger)
+                )
+
+            await interaction.reply({ content: "**Etes vous sur de vouloir supprimer ce ticket ?**", components: [surbutton], ephemeral: true })
         }
-        else if (interaction.customId === "oui") {
-            let EmbedPermissionClose = new EmbedBuilder()
-                .setColor("#3dffcc")
-                .setDescription(`❌ Vous n'avez pas la permission requise !`)
 
-            if (!interaction.member.permissions.has(Discord.PermissionFlagsBits.ManageChannels)) return interaction.reply({ embeds: [EmbedPermissionClose], ephemeral: true })
-
-            interaction.channel.delete();
+        if (interaction.customId === "oui") {
+            await interaction.user.send("**Le ticket a été supprimer avec succes !**")
+            await interaction.guild.channels.delete(interaction.channel)
         }
-        else if (interaction.customId === "non") {
-            let EmbedPermissionClose = new EmbedBuilder()
-                .setColor("#3dffcc")
-                .setDescription(`❌ Vous n'avez pas la permission requise !`)
-
-            if (!interaction.member.permissions.has(Discord.PermissionFlagsBits.ManageChannels)) return interaction.reply({ embeds: [EmbedPermissionClose], ephemeral: true })
-
-            interaction.message.delete()
-        }
-        else if (interaction.customId === "transcript") {
-
-            let EmbedSendTranscript = new EmbedBuilder()
-                .setColor("#3dffcc")
-                .setDescription(`✅ Transcript envoyé avec succès !`)
-            let EmbedTranscript = new EmbedBuilder()
-                .setColor("#3dffcc")
-                .setDescription(`📑 Transcript de ${interaction.message.embeds[0].description.split(" ")[0]}`)
-            let EmbedPermissionTranscript = new EmbedBuilder()
-                .setColor("#3dffcc")
-                .setDescription(`❌ Vous n'avez pas la permission requise !`)
-
-            if (!interaction.member.permissions.has(Discord.PermissionFlagsBits.ManageChannels)) return interaction.reply({ embeds: [EmbedPermissionTranscript], ephemeral: true })
-
-            await interaction.deferReply({ ephemeral: true })
-            //Id du salon pour les logs
-            await bot.channels.cache.get("973908897024843806").send({ embeds: [EmbedTranscript], files: [await transcript.createTranscript(interaction.channel)] })
-            await interaction.editReply({ embeds: [EmbedSendTranscript], ephemeral: true })
+        if (interaction.customId === "non") {
+            await interaction.reply({ content: "**Suppresion de ticket annulé**", ephemeral: true })
         }
     }
 
-    if (interaction.isSelectMenu()) {
 
-        if (interaction.customId === 'menuticket') {
-            if (interaction.values == 'help' || `test` || `rôle`) {
-                const EmbedTicket1 = new EmbedBuilder()
-                    .setColor("#3dffcc")
-                    .setTitle(`Comment créer un ticket ?`)
-                    .setDescription(`Pour créer un ticket, il vous suffit juste de cliquer sur le menu déroulant ci-dessous et de sélectionner la catégorie qui convient le mieux à votre demande d'aide !\n- Pas de mentions sauf si vous n'avez pas reçu de réponse sous 24h.\n- Pas de spam.\n- Ne pas créer de ticket pour des trucs qui ne servent a rien.`)
-                    .setTimestamp()
-                    .setFooter({ text: `${bot.user.username}`, iconURL: bot.user.displayAvatarURL({ dynamic: true }) });
-
-                const RowTicket = new ActionRowBuilder()
-                    .addComponents(
-                        new SelectMenuBuilder()
-                            .setCustomId('menuticket')
-                            .setPlaceholder('Sélectionner le type de ticket que vous voulez !')
-                            .addOptions(
-                                {
-                                    label: `Besoin d'aide`,
-                                    description: `Ouvrir un ticket pour obtenir de l'aide`,
-                                    emoji: `🙋‍♂️`,
-                                    value: `help`,
-                                },
-                                {
-                                    label: `Recrutement modo`,
-                                    description: `Ouvrir un ticket pour obtenir de l'aide`,
-                                    emoji: `🙋‍♂️`,
-                                    value: `test`,
-                                },
-                                {
-                                    label: `Probleme de rôle`,
-                                    description: `Ouvrir un ticket pour obtenir de l'aide`,
-                                    emoji: `🙋‍♂️`,
-                                    value: `rôle`,
-                                },
-                            ),
-                    );
-                await interaction.deferUpdate();
-                await interaction.editReply({ embeds: [EmbedTicket1], components: [RowTicket] })
-
-                if (interaction.values == 'help') {
-                    let channel = await interaction.guild.channels.create({
-                        //Id de la category pour le ticket
-                        parent: "972211988564439110",
-                        name: `help-${interaction.user.username}`,
-                        type: ChannelType.GuildText,
-                        permissionOverwrites: [
-                            {
-                                id: interaction.guild.roles.everyone,
-                                deny: [Discord.PermissionFlagsBits.ViewChannel],
-                            },
-                            {
-                                id: interaction.user,
-                                allow: [Discord.PermissionFlagsBits.SendMessages, Discord.PermissionFlagsBits.ViewChannel],
-                            },
-                        ],
-                    })
-
-                    let EmbedCreateChannel = new EmbedBuilder()
-                        .setColor("#3dffcc")
-                        .setTitle('Ticket ouvert')
-                        .setDescription("<@" + interaction.user.id + "> Voici votre ticket.\nExpliquez-nous en détail votre problème !")
-                        .setTimestamp()
-                        .setFooter({ text: `${bot.user.username}`, iconURL: bot.user.displayAvatarURL({ dynamic: true }) });
-                    const Row = new ActionRowBuilder()
-                        .addComponents(new ButtonBuilder()
-                            .setCustomId('close')
-                            .setLabel('Fermer le ticket')
-                            .setEmoji('🗑️')
-                            .setStyle(ButtonStyle.Danger),
-                            new ButtonBuilder()
-                                .setCustomId('transcript')
-                                .setLabel('Demander le transcript')
-                                .setEmoji('📑')
-                                .setStyle(ButtonStyle.Primary),
-                        );
-
-
-                    await channel.send({ embeds: [EmbedCreateChannel], components: [Row] })
-
-                    const EmbedSuccessCreateChannel = new EmbedBuilder()
-                        .setColor("#3dffcc")
-                        .setDescription(`✅ Votre salon a été créé avec succès ${channel} !`)
-
-                    await interaction.followUp({ embeds: [EmbedSuccessCreateChannel], ephemeral: true })
-                }
-            }
-        }
-    } if (interaction.values == 'test') {
-        let channel = await interaction.guild.channels.create({
-            parent: "972211988564439110",
-            name: `Recrutement modo-${interaction.user.username}`,
-            type: ChannelType.GuildText,
-            permissionOverwrites: [
-                {
-                    id: interaction.guild.roles.everyone,
-                    deny: [Discord.PermissionFlagsBits.ViewChannel],
-                },
-                {
-                    id: interaction.user,
-                    allow: [Discord.PermissionFlagsBits.SendMessages, Discord.PermissionFlagsBits.ViewChannel],
-                },
-            ],
-        })
-
-        let EmbedCreateChannel = new EmbedBuilder()
-            .setColor("#3dffcc")
-            .setTitle('Ticket ouvert')
-            .setDescription("<@" + interaction.user.id + "> Voici votre ticket.\nExpliquez-nous en détail votre problème !")
-            .setTimestamp()
-            .setFooter({ text: `${bot.user.username}`, iconURL: bot.user.displayAvatarURL({ dynamic: true }) });
-        const Row = new ActionRowBuilder()
-            .addComponents(new ButtonBuilder()
-                .setCustomId('close')
-                .setLabel('Fermer le ticket')
-                .setEmoji('🗑️')
-                .setStyle(ButtonStyle.Danger),
-                new ButtonBuilder()
-                    .setCustomId('transcript')
-                    .setLabel('Demander le transcript')
-                    .setEmoji('📑')
-                    .setStyle(ButtonStyle.Primary),
-            );
-    } if (interaction.values == 'rôle') {
-        let channel = await interaction.guild.channels.create({
-            //Id de la category pour le ticket
-            parent: "972211988564439110",
-            name: `Recrutement modo-${interaction.user.username}`,
-            type: ChannelType.GuildText,
-            permissionOverwrites: [
-                {
-                    id: interaction.guild.roles.everyone,
-                    deny: [Discord.PermissionFlagsBits.ViewChannel],
-                },
-                {
-                    id: interaction.user,
-                    allow: [Discord.PermissionFlagsBits.SendMessages, Discord.PermissionFlagsBits.ViewChannel],
-                },
-            ],
-        })
-
-        let EmbedCreateChannel = new EmbedBuilder()
-            .setColor("#3dffcc")
-            .setTitle('Ticket ouvert')
-            .setDescription("<@" + interaction.user.id + "> Voici votre ticket.\nExpliquez-nous en détail votre problème !")
-            .setTimestamp()
-            .setFooter({ text: `${bot.user.username}`, iconURL: bot.user.displayAvatarURL({ dynamic: true }) });
-        const Row = new ActionRowBuilder()
-            .addComponents(new ButtonBuilder()
-                .setCustomId('close')
-                .setLabel('Fermer le ticket')
-                .setEmoji('🗑️')
-                .setStyle(ButtonStyle.Danger),
-                new ButtonBuilder()
-                    .setCustomId('transcript')
-                    .setLabel('Demander le transcript')
-                    .setEmoji('📑')
-                    .setStyle(ButtonStyle.Primary),
-            );
-
-
-        await channel.send({ embeds: [EmbedCreateChannel], components: [Row] })
-
-        const EmbedSuccessCreateChannel = new EmbedBuilder()
-            .setColor("#3dffcc")
-            .setDescription(`✅ Votre salon a été créé avec succès ${channel} !`)
-
-        await interaction.followUp({ embeds: [EmbedSuccessCreateChannel], ephemeral: true })
-
-    }
 }
-
-
 
 
 

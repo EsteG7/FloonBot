@@ -1,54 +1,30 @@
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const Discord = require("discord.js")
-const { EmbedBuilder, ActionRowBuilder, SelectMenuBuilder } = require("discord.js")
 
 module.exports = {
-
     name: "ticket",
-    description: "Envoyer l'embed des tickets",
-    permission: Discord.PermissionFlagsBits.ModerateMembers,
+    description: "envoi l'embed des ticket",
+    permission: Discord.PermissionFlagsBits.ManageChannels,
     dm: false,
-    category: "🧑🏻‍⚖️Modération",
+    category: "Modération",
 
     async run(bot, message, args) {
-        const EmbedTicket = new EmbedBuilder()
-            .setColor("#3dffcc")
-            .setDescription(`✅ L'embed des tickets à été envoyer avec succès !`)
+        const Ticketembed = new Discord.EmbedBuilder()
+            .setTitle(`Ticket de ${message.guild.name}`)
+            .setDescription(`Merci de respecter les regles concernant les tickets !\n1-Ne pas creer de ticket sans raison\n\n2-ne pas mentionner le staff sauf si vous n'avez pas eu de reponse pendant 24h\n\n3-Ne pas creer de ticket troll ou pour insulter le staff ou une autre personne\nCordialment l'equipe ${message.guild.name}`)
+            .setThumbnail(message.guild.iconURL())
+            .setFooter({ text: `Cordialment l'equipe ${message.guild.name}`, iconURL: message.guild.iconURL() })
 
-        const EmbedTicket1 = new EmbedBuilder()
-            .setColor("#3dffcc")
-            .setTitle(`Comment créer un ticket ?`)
-            .setDescription(`Pour créer un ticket, il vous suffit juste de cliquer sur le menu déroulant ci-dessous et de sélectionner la catégorie qui convient le mieux à votre demande d'aide !\n- Pas de mentions sauf si vous n'avez pas reçu de réponse sous 24h.\n- Pas de spam.\n- Ne pas créer de ticket pour des trucs qui ne servent a rien.`)
-            .setTimestamp()
-            .setFooter({ text: `${bot.user.username}`, iconURL: bot.user.displayAvatarURL({ dynamic: true }) });
-
-        const RowTicket = new ActionRowBuilder()
+        const tb = new Discord.ActionRowBuilder()
             .addComponents(
-                new SelectMenuBuilder()
-                    .setCustomId('menuticket')
-                    .setPlaceholder('Sélectionner le type de ticket que vous voulez !')
-                    .addOptions(
-                        {
-                            label: `Besoin d'aide`,
-                            description: `Ouvrir un ticket pour obtenir de l'aide`,
-                            emoji: `🙋‍♂️`,
-                            value: `help`,
-                        },
-                        {
-                            label: `Recrutement modo`,
-                            description: `Ouvrir un ticket pour obtenir de l'aide`,
-                            emoji: `🙋‍♂️`,
-                            value: `test`,
-                        },
-                        {
-                            label: `Probleme de rôle`,
-                            description: `Ouvrir un ticket pour obtenir de l'aide`,
-                            emoji: `🙋‍♂️`,
-                            value: `rôle`,
-                        },
-                    ),
+                new ButtonBuilder()
+                    .setCustomId('primary')
+                    .setLabel('Creer un ticket')
+                    .setStyle(ButtonStyle.Success)
             );
 
-        await message.reply({ embeds: [EmbedTicket], ephemeral: true })
-        await message.channel.send({ embeds: [EmbedTicket1], components: [RowTicket] })
+        message.reply({ content: `L'embed des tickets a été envoyer dans ${message.channel}`, ephemeral: true }),
+            message.channel.send({ embeds: [Ticketembed], components: [tb] })
+
     }
 }
