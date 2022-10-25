@@ -11,6 +11,4 @@ module.exports = async (bot, guild,) => {
             db.query(`INSERT INTO server (guild, captcha) VALUES (${guild.id},'false')`)
         }
     })
-
-
 }

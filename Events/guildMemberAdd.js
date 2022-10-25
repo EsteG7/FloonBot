@@ -2,7 +2,6 @@ const Discord = require("discord.js");
 const { EmbedBuilder } = require("discord.js");
 const Canvas = require("canvas")
 
-
 module.exports = async (bot, member, interaction,) => {
 
     let db = bot.db;
@@ -89,7 +88,6 @@ module.exports = async (bot, member, interaction,) => {
             .setImage(url = "https://cdn.discordapp.com/attachments/1031327790047436850/1032756765525291179/123.gif")
             .setThumbnail(member.user.displayAvatarURL())
             .setTimestamp()
-
 
         channel.send({ embeds: [EmbedMessage] })
 

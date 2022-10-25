@@ -90,8 +90,38 @@ module.exports = {
             "https://cdn.discordapp.com/attachments/1028365406093721610/1031293234506379284/pussy_66.gif",
             "https://cdn.discordapp.com/attachments/1028365406093721610/1031293234921615360/pussy_67.gif",
             "https://cdn.discordapp.com/attachments/1028365406093721610/1031293318983860294/pussy_69.gif",
-            "https://cdn.discordapp.com/attachments/1028365406093721610/1031293567475388416/pussy_70.gif",
             "https://cdn.discordapp.com/attachments/1028365406093721610/1031293683070410802/pussy_68.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1031293567475388416/pussy_70.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034162563522498690/pussy_71.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034162563967090728/pussy_72.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034162564390731946/pussy_73.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034162887687667832/pussy_74.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034162888182603946/pussy_75.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034163362369650698/pussy_76.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034163495203250306/pussy_77.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034163503931588740/pussy_78.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034163587289194588/pussy_79.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034164922994655272/pussy_80.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034164966225363124/pussy_81.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034164966611234959/pussy_82.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034164967009701948/pussy_83.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034164967483646063/pussy_84.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034164965877219508/pussy_85.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034165025176289381/pussy_86.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034165024572317848/pussy_87.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034165266399113267/pussy_88.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034165287307710524/pussy_89.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034165297487282236/pussy_90.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034165296971399198/pussy_91.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034165416844611716/pussy_92.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034170664413835396/pussy_93.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034171993341309029/pussy_94.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034171407451562035/pussy_100.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034171185619009616/pussy_96.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034171185245732914/pussy_97.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034171344608305262/pussy_98.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034171210218618910/pussy_99.gif",
+            "https://cdn.discordapp.com/attachments/1028365406093721610/1034171210218618910/pussy_99.gif",
 
         ]
         let aHarem = [
@@ -113,9 +143,8 @@ module.exports = {
         ]
 
         try {
+            await message.deferReply()
             if (choix === "pussy") {
-
-
 
                 let pussyradom = Math.floor(Math.random() * pussy.length);
                 let pussymotRandom = pussy[pussyradom];
@@ -124,7 +153,9 @@ module.exports = {
                     .setColor("Purple")
                     .setImage(url = pussymotRandom)
 
-                return await message.channel.send({ embeds: [pussy1] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                console.log(pussymotRandom)
+                return await message.followUp({ embeds: [pussy1] })
+
 
             }
 
@@ -137,7 +168,7 @@ module.exports = {
                     .setColor("Purple")
                     .setImage(url = aHaremmotRandom)
 
-                return await message.channel.send({ embeds: [pussy1] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                return await message.followUp({ embeds: [pussy1] })
 
             }
             await message.deferReply()
