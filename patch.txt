@@ -9,3 +9,6 @@ lock.js
 unlock.js
 add_emoji.js
 nuke.js
+serveur-info.js
+warn.js
+unwarn.js

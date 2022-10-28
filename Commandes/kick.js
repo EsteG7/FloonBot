@@ -43,14 +43,11 @@ module.exports = {
         .setColor("#FF0000")
         .setTitle(`Kick par ${message.user.tag}.`)
         .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
-        .setDescription(`\`🛑**__Kick__**
+        .setDescription(`🛑**__Kick__**
         
          > **Serveur :** ${message.guild.name},
          > **Modérateur :** \`${message.user.tag} ,\`
-         > **Raison :** \`${reason}\`
-         
-         !`)
-
+         > **Raison :** \`${reason}\`!`)
         .setTimestamp()
         .setFooter({ text: "Kick" })
       await user.send({ embeds: [kickEmbed] })
@@ -63,12 +60,10 @@ module.exports = {
         .setColor("#FF0000")
         .setTitle(`kick`)
         .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
-        .setDescription(`\`🛑**__kick__**
+        .setDescription(`🛑**__kick__**
         
         > **Modérateur :** \`${message.user.tag} a **kick avec succès ! ✅**\`,
-        > **Raison :** \`${reason}\`
-
-        !`)
+        > **Raison :** \`${reason}\`!`)
         .setTimestamp()
         .setFooter({ text: "kick" })
 

@@ -3,7 +3,7 @@ const Discord = require("discord.js")
 module.exports = {
 
     name: "warn",
-    description: "warn un membre",
+    description: "Pour warn un membre sur le serveur.",
     permission: Discord.PermissionFlagsBits.ModerateMembers,
     dm: false,
     category: "🧑🏻‍⚖️Modération",
@@ -11,14 +11,14 @@ module.exports = {
         {
             type: "user",
             name: "membre",
-            description: "Le membre a warn",
+            description: "Le membre a warn.",
             required: true,
             autocomplete: false
 
         }, {
             type: "string",
             name: "raison",
-            description: "La raison du warn",
+            description: "La raison du warn.",
             required: true,
             autocomplete: false
 
@@ -41,30 +41,42 @@ module.exports = {
         if ((await message.guild.members.fetchMe()).roles.highest.comparePositionTo(member.roles.highest) <= 0) return message.channel.send("Tu ne peux pas warn ce membre !"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
 
         try {
-            let Embed1 = new Discord.EmbedBuilder()
-                .setColor("Red")
-                .setTitle(`warn`)
+            try {
+                let warnEmbed = new Discord.EmbedBuilder()
+                    .setColor("#FF0000")
+                    .setTitle(`Warn par ${message.user.tag}.`)
+                    .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+                    .setDescription(`🛑 **__Avertissement__**
+                
+                > **Serveur :** \`${message.guild.name}$\`
+                > **Modérateur :** \`${message.user.tag}\` 
+                > **Raison ** : \`${reason}\`!`)
+                    .setTimestamp()
+                    .setFooter({ text: "Warn" })
+                await user.send({ embeds: [warnEmbed] })
+
+            } catch (err) { }
+
+            let warnEmbed = new Discord.EmbedBuilder()
+                .setColor("#FF0000")
+                .setTitle(`le membre ${user.tag} a étais warn.`)
                 .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
-                .setDescription(`${message.user.tag} vous a warn sur le serveur ${message.guild.name} pour la raison suivante : \`${reason}\` !`)
+                .setDescription(`🛑 **__Avertissement__** \
+            
+            > **Modérateur :** \`${message.user.tag}\` a **averti avec succès ! ✅**
+            > **Raison :** \`${reason}\!`)
                 .setTimestamp()
-                .setFooter({ text: "warn" })
-            await user.send({ embeds: [Embed1] })
-        } catch (err) { }
+                .setFooter({ text: "Warn" })
 
-        let Embed = new Discord.EmbedBuilder()
-            .setColor("Red")
-            .setTitle(`warn`)
-            .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
-            .setDescription(`\`🛑 Avertissement \n\` ${message.user} **a averti** \n\`${user.tag}\` **avec succès ! ✅**\n \` pour la raison\`: \`${reason}\` !`)
-            .setTimestamp()
-            .setFooter({ text: "warn" })
+            await message.reply({ embeds: [warnEmbed] })
 
+            let ID = await bot.fonction.createId("WARN")
+            db.query(`INSERT INTO warns (guild, guildId, user, userId, author, authorId, warn, reason, date) VALUES ('${message.guild.name}', '${message.guild.id}','${user.tag}', '${user.id}','${message.user.tag}','${message.user.id}', '${ID}', '${reason.replace(/'/g, "\\'")}', '${Date.now()}')`)
 
-        await message.reply({ embeds: [Embed] })
+        } catch (err) {
 
+            console.log(`Une erreur dans la commande warn.`, err)
 
-        let ID = await bot.fonction.createId("WARN")
-
-        db.query(`INSERT INTO warns (guild, guildId, user, userId, author, authorId, warn, reason, date) VALUES ('${message.guild.name}', '${message.guild.id}','${user.tag}', '${user.id}','${message.user.tag}','${message.user.id}', '${ID}', '${reason.replace(/'/g, "\\'")}', '${Date.now()}')`)
+        }
     }
-}
+} 

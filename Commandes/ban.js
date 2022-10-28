@@ -43,13 +43,11 @@ module.exports = {
                     .setColor("#FF0000")
                     .setTitle(`Ban par ${message.user.tag}.`)
                     .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
-                    .setDescription(`\`🛑 **__Ban__**
+                    .setDescription(`🛑 **__Ban__**
                     
                     > **Serveur :** \`${message.guild.name}\`,
                     > **Modérateur :** \`${message.user.tag} \`,
-                    > **Raison :** \`${reason}\`
-                    
-                    !`)
+                    > **Raison :** \`${reason}\`!`)
                     .setTimestamp()
                     .setFooter({ text: "Ban" })
                 await user.send({ embeds: [Embed] })
@@ -60,12 +58,10 @@ module.exports = {
                 .setColor("#FF0000")
                 .setTitle(`Le membre ${user.tag} a étais ban.`)
                 .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
-                .setDescription(`\`🛑 **__Ban__** 
+                .setDescription(`🛑 **__Ban__** 
                 
                 > **Modérateur :** ${message.user.tag}\`a **ban avec succès ! ✅**,
-                > **Raison :** \`${reason}\
-                
-                !`)
+                > **Raison :** \`${reason}\`!`)
                 .setTimestamp()
                 .setFooter({ text: "Ban" })
 

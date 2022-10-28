@@ -42,7 +42,7 @@ module.exports = {
                 __**Informations**__
 
                 > **Name/Tag :** \`${member.user.tag}\`,
-                > **ID :** ${member.user.id},
+                > **ID :** \`${member.user.id}\`,
                 > **Bot :** ${member.user.bot ? ':white_check_mark:' : '❌'}
 
                 __ ** 👆🏻Information Compte ** __
