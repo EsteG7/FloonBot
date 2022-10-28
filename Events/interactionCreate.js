@@ -1,5 +1,4 @@
 const Discord = require("discord.js")
-const transcript = require("discord-html-transcripts")
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType, SelectMenuBuilder } = require("discord.js")
 
 

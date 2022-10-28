@@ -61,10 +61,9 @@ module.exports = async (bot, message) => {
 
                 await message.channel.send({ embeds: [Embed] })
 
-
             } else {
 
-                let xptogive = Math.floor(Math.random() * 30) + 1;
+                let xptogive = Math.floor(Math.random() * 300) + 1;
 
                 db.query(`UPDATE xp SET xp = '${xp + xptogive}' WHERE guildId = '${message.guildId}' AND userId = '${message.author.id}'`)
 

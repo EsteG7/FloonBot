@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports = {
 
     name: "ban",
-    description: "Ban un membre",
+    description: "Pour Ban le membre qui à fait l'infractions.",
     permission: Discord.PermissionFlagsBits.ModerateMembers,
     dm: false,
     category: "🧑🏻‍⚖️Modération",
@@ -11,13 +11,13 @@ module.exports = {
         {
             type: "user",
             name: "membre",
-            description: "Le membre à bannir",
+            description: "Le membre à bannir.",
             required: true,
             autocomplete: false
         }, {
             type: "string",
             name: "raison",
-            description: "La raison du bannissement",
+            description: "La raison du bannissement.",
             required: true,
             autocomplete: false
         }
@@ -26,42 +26,50 @@ module.exports = {
 
         try {
             let user = await bot.users.fetch(args._hoistedOptions[0].value)
-            if (!user) return message.channel.send("Pas de membre à bannir"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
+            if (!user) return message.channel.send("Pas de membre à bannir."), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
             let member = message.guild.members.cache.get(user.id)
 
             let reason = args.get("raison").value;
-            if (!reason) reason = "pas de raison fournie";
+            if (!reason) reason = "Pas de raison fournie pour ban le membre.";
 
-            if (message.user.id === user.id) return message.channel.send("Essaie pas de te bannir"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
-            if ((await message.guild.fetchOwner()).id === user.id) return message.channel.send("Ne ban pas le propriétaire du serveur"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
-            if (member && !member.bannable) return message.reply("Je ne peux pas bannir ce membre ")
-            if (member && message.member.roles.highest.comparePositionTo(member.roles.highest) <= 0) return message.channel.send("Tu ne peux pas bannir cette personne"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
-            if ((await message.guild.bans.fetch()).get(user.id)) return message.channel.send("ce membre est déja ban"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
+            if (message.user.id === user.id) return message.channel.send("Essaie pas de te bannir."), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
+            if ((await message.guild.fetchOwner()).id === user.id) return message.channel.send("Ne ban pas le propriétaire du serveur."), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
+            if (member && !member.bannable) return message.reply("Je ne peux pas bannir ce membre.")
+            if (member && message.member.roles.highest.comparePositionTo(member.roles.highest) <= 0) return message.channel.send("Tu ne peux pas bannir cette personne."), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
+            if ((await message.guild.bans.fetch()).get(user.id)) return message.channel.send("Ce membre est déja ban."), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
 
             try {
-                let Embed1 = new Discord.EmbedBuilder()
-                    .setColor("Red")
-                    .setTitle(`Ban`)
+                let Embed = new Discord.EmbedBuilder()
+                    .setColor("#FF0000")
+                    .setTitle(`Ban par ${message.user.tag}.`)
                     .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
-                    .setDescription(`\`🛑 Ban \n Tu as été banni du serveur \`${message.guild.name}\`\n par le modérateur \`${message.user.tag} \`\n pour la raison : \`${reason}\``)
+                    .setDescription(`\`🛑 **__Ban__**
+                    
+                    > **Serveur :** \`${message.guild.name}\`,
+                    > **Modérateur :** \`${message.user.tag} \`,
+                    > **Raison :** \`${reason}\`
+                    
+                    !`)
                     .setTimestamp()
-                    .setFooter({ text: "ban" })
-                await user.send({ embeds: [Embed1] })
+                    .setFooter({ text: "Ban" })
+                await user.send({ embeds: [Embed] })
 
             } catch (err) { }
 
-
-            let Embed = new Discord.EmbedBuilder()
-                .setColor("Red")
-                .setTitle(`Ban`)
+            Embed = new Discord.EmbedBuilder()
+                .setColor("#FF0000")
+                .setTitle(`Le membre ${user.tag} a étais ban.`)
                 .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
-                .setDescription(`\`🛑 Ban \n ${message.user.tag}\`a **banni** \n\` ${user.tag}\` **avec succès ! ✅**\n pour la raison : \`${reason}\`!`)
+                .setDescription(`\`🛑 **__Ban__** 
+                
+                > **Modérateur :** ${message.user.tag}\`a **ban avec succès ! ✅**,
+                > **Raison :** \`${reason}\
+                
+                !`)
                 .setTimestamp()
-                .setFooter({ text: "ban" })
+                .setFooter({ text: "Ban" })
 
-
-            await message.channel.send({ embeds: [Embed] })
-            message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+            await message.reply({ embeds: [Embed] })
             await message.guild.bans.create(user.id, { reason: reason })
 
             let ID = await bot.fonction.createId("BAN")
@@ -70,7 +78,7 @@ module.exports = {
 
         } catch (err) {
 
-            return message.channel.send("Pas de membre à bannir ou de raison fournie"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
+            console.log(`Une erreur dans la commande ban.`, err)
 
         }
 

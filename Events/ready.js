@@ -12,7 +12,8 @@ module.exports = async bot => {
     });
 
     bot.db = await loadDatabase()
-    bot.db.connect(function () {
+    bot.db.connect(function (err) {
+        if (err) throw err;
 
         console.log("Connected to database")
     })
