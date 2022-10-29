@@ -180,46 +180,90 @@ module.exports = {
 		];
 
 		try {
+
 			await message.deferReply()
 
 			if (!member && reason) {
+
 				let Embed = new Discord.EmbedBuilder()
-					.setDescription("Le gif choisie ne peut être reçus car il peux pas avoir de raison fournie sans le membre définie ")
-					.setColor("DarkBlue")
+					.setColor("#FF5D00")
+					.setTitle(`Chargement de la commande gif.`)
+					.setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+					.setDescription(`Je cherche l'image a afficher veuillez patienter.`)
+					.setTimestamp()
+					.setFooter({ text: "Gif" })
+
+				await message.followUp({ embeds: [Embed] })
+
+				Embed = new Discord.EmbedBuilder()
+					.setDescription("Le gif choisie ne peut être reçus car il peux pas avoir de raison fournie sans le membre définie !!")
+					.setColor("#001540")
 					.setImage(url = "https://cdn.discordapp.com/attachments/1011333005496815627/1031190809313280051/tenor.gif")
-				await message.channel.send({ embeds: [Embed] })
-				message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
-				return
+				return await message.editReply({ embeds: [Embed] })
+
 			}
 			if (choix === "punch") {
 
 				let punchradom = Math.floor(Math.random() * punch.length);
 				let motRandom = punch[punchradom];
 				if (!member) {
+
 					let Embed = new Discord.EmbedBuilder()
+						.setColor("#FF5D00")
+						.setTitle(`Chargement de la commande gif.`)
+						.setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+						.setDescription(`Je cherche l'image a afficher veuillez patienter.`)
+						.setTimestamp()
+						.setFooter({ text: "Gif" })
+
+					await message.followUp({ embeds: [Embed] })
+
+					Embed = new Discord.EmbedBuilder()
 						.setColor("Purple")
 						.setImage(url = motRandom)
 						.setTimestamp()
 
-					return await message.followUp({ embeds: [Embed] })
+					return await message.editReply({ embeds: [Embed] })
 				}
 				if (member && reason) {
+
 					let Embed = new Discord.EmbedBuilder()
+						.setColor("#FF5D00")
+						.setTitle(`Chargement de la commande gif.`)
+						.setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+						.setDescription(`Je cherche l'image a afficher veuillez patienter.`)
+						.setTimestamp()
+						.setFooter({ text: "Gif" })
+
+					await message.followUp({ embeds: [Embed] })
+
+					Embed = new Discord.EmbedBuilder()
 						.setColor("Purple")
 						.setImage(url = motRandom)
 						.setDescription(`${message.user.toString()} a punch ${member.user.toString()} pour la raison : \n\`${reason}\``)
 						.setTimestamp()
 
-					return await message.followUp({ embeds: [Embed] })
+					return await message.editReply({ embeds: [Embed] })
 				}
 				if (member && !reason) {
+
 					let Embed = new Discord.EmbedBuilder()
+						.setColor("#FF5D00")
+						.setTitle(`Chargement de la commande gif.`)
+						.setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+						.setDescription(`Je cherche l'image a afficher veuillez patienter.`)
+						.setTimestamp()
+						.setFooter({ text: "Gif" })
+
+					await message.followUp({ embeds: [Embed] })
+
+					Embed = new Discord.EmbedBuilder()
 						.setColor("Purple")
 						.setImage(url = motRandom)
 						.setDescription(`${message.user.toString()} a punch ${member.user.toString()}`)
 						.setTimestamp()
 
-					return await message.followUp({ embeds: [Embed] })
+					return await message.editReply({ embeds: [Embed] })
 				}
 			}
 			if (choix === "kiss") {
@@ -227,30 +271,63 @@ module.exports = {
 				let kissmotRandom = kiss[kissradom];
 
 				if (!member) {
+
 					let Embed = new Discord.EmbedBuilder()
+						.setColor("#FF5D00")
+						.setTitle(`Chargement de la commande gif.`)
+						.setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+						.setDescription(`Je cherche l'image a afficher veuillez patienter.`)
+						.setTimestamp()
+						.setFooter({ text: "Gif" })
+
+					await message.followUp({ embeds: [Embed] })
+
+					Embed = new Discord.EmbedBuilder()
 						.setColor("Purple")
 						.setImage(url = kissmotRandom)
 						.setTimestamp()
 
-					return await message.followUp({ embeds: [Embed] })
+					return await message.editReply({ embeds: [Embed] })
 
 				}
 				if (member && reason) {
+
 					let Embed = new Discord.EmbedBuilder()
+						.setColor("#FF5D00")
+						.setTitle(`Chargement de la commande gif.`)
+						.setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+						.setDescription(`Je cherche l'image a afficher veuillez patienter.`)
+						.setTimestamp()
+						.setFooter({ text: "Gif" })
+
+					await message.followUp({ embeds: [Embed] })
+
+					Embed = new Discord.EmbedBuilder()
 						.setColor("Purple")
 						.setImage(url = kissmotRandom)
 						.setDescription(`${message.user.toString()} a kiss ${member.user.toString()} pour la raison : \n\`${reason}\``)
 						.setTimestamp()
 
-					return await message.followUp({ embeds: [Embed] })
+					return await message.editReply({ embeds: [Embed] })
 				}
 				if (member && !reason) {
+
 					let Embed = new Discord.EmbedBuilder()
+						.setColor("#FF5D00")
+						.setTitle(`Chargement de la commande gif.`)
+						.setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+						.setDescription(`Je cherche l'image a afficher veuillez patienter.`)
+						.setTimestamp()
+						.setFooter({ text: "Gif" })
+
+					await message.followUp({ embeds: [Embed] })
+
+					Embed = new Discord.EmbedBuilder()
 						.setColor("Purple")
 						.setImage(url = kissmotRandom)
 						.setDescription(`${message.user.toString()} a kiss ${member.user.toString()}`)
 						.setTimestamp()
-					return await message.followUp({ embeds: [Embed] })
+					return await message.editReply({ embeds: [Embed] })
 
 				}
 			}
@@ -259,30 +336,63 @@ module.exports = {
 				let badassmotRandom = badass[badassradom];
 
 				if (!member) {
+
 					let Embed = new Discord.EmbedBuilder()
+						.setColor("#FF5D00")
+						.setTitle(`Chargement de la commande gif.`)
+						.setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+						.setDescription(`Je cherche l'image a afficher veuillez patienter.`)
+						.setTimestamp()
+						.setFooter({ text: "Gif" })
+
+					await message.followUp({ embeds: [Embed] })
+
+					Embed = new Discord.EmbedBuilder()
 						.setColor("Purple")
 						.setImage(url = badassmotRandom)
 						.setTimestamp()
 
-					return await message.followUp({ embeds: [Embed] })
+					return await message.editReply({ embeds: [Embed] })
 				}
 				if (member && !reason) {
+
 					let Embed = new Discord.EmbedBuilder()
+						.setColor("#FF5D00")
+						.setTitle(`Chargement de la commande gif.`)
+						.setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+						.setDescription(`Je cherche l'image a afficher veuillez patienter.`)
+						.setTimestamp()
+						.setFooter({ text: "Gif" })
+
+					await message.followUp({ embeds: [Embed] })
+
+					Embed = new Discord.EmbedBuilder()
 						.setColor("Purple")
 						.setImage(url = badassmotRandom)
 						.setDescription(`${message.user.toString()} met la pression à  ${member.user.toString()}`)
 						.setTimestamp()
 
-					return await message.followUp({ embeds: [Embed] })
+					return await message.editReply({ embeds: [Embed] })
 				}
 				if (member && reason) {
+
 					let Embed = new Discord.EmbedBuilder()
+						.setColor("#FF5D00")
+						.setTitle(`Chargement de la commande gif.`)
+						.setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+						.setDescription(`Je cherche l'image a afficher veuillez patienter.`)
+						.setTimestamp()
+						.setFooter({ text: "Gif" })
+
+					await message.followUp({ embeds: [Embed] })
+
+					Embed = new Discord.EmbedBuilder()
 						.setColor("Purple")
 						.setImage(url = badassmotRandom)
 						.setDescription(`${message.user.toString()} met la pression à ${member.user.toString()} pour la raison : \n\`${reason}\``)
 						.setTimestamp()
 
-					return await message.followUp({ embeds: [Embed] })
+					return await message.editReply({ embeds: [Embed] })
 				}
 			}
 			if (choix === "kill") {
@@ -291,27 +401,60 @@ module.exports = {
 				let killmotRandom = kill[killradom];
 
 				if (!member) {
+
 					let Embed = new Discord.EmbedBuilder()
+						.setColor("#FF5D00")
+						.setTitle(`Chargement de la commande gif.`)
+						.setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+						.setDescription(`Je cherche l'image a afficher veuillez patienter.`)
+						.setTimestamp()
+						.setFooter({ text: "Gif" })
+
+					await message.followUp({ embeds: [Embed] })
+
+					Embed = new Discord.EmbedBuilder()
 						.setColor("Purple")
 						.setImage(url = killmotRandom)
 						.setTimestamp()
-					return await message.followUp({ embeds: [Embed] })
+					return await message.editReply({ embeds: [Embed] })
 				}
 				if (member && !reason) {
+
 					let Embed = new Discord.EmbedBuilder()
+						.setColor("#FF5D00")
+						.setTitle(`Chargement de la commande gif.`)
+						.setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+						.setDescription(`Je cherche l'image a afficher veuillez patienter.`)
+						.setTimestamp()
+						.setFooter({ text: "Gif" })
+
+					await message.followUp({ embeds: [Embed] })
+
+					Embed = new Discord.EmbedBuilder()
 						.setColor("Purple")
 						.setImage(url = killmotRandom)
 						.setDescription(`${message.user.toString()} a kill ${member.user.toString()}`)
 						.setTimestamp()
-					return await message.followUp({ embeds: [Embed] })
+					return await message.editReply({ embeds: [Embed] })
 				}
 				if (member && reason) {
+
 					let Embed = new Discord.EmbedBuilder()
+						.setColor("#FF5D00")
+						.setTitle(`Chargement de la commande gif.`)
+						.setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+						.setDescription(`Je cherche l'image a afficher veuillez patienter.`)
+						.setTimestamp()
+						.setFooter({ text: "Gif" })
+
+					await message.followUp({ embeds: [Embed] })
+
+					Embed = new Discord.EmbedBuilder()
 						.setColor("Purple")
 						.setImage(url = killmotRandom)
 						.setDescription(`${message.user.toString()} a kill ${member.user.toString()} pour la raison : \n\`${reason}\``)
 						.setTimestamp()
-					return await message.followUp({ embeds: [Embed] })
+					return await message.editReply({ embeds: [Embed] })
 				}
 			}
 
@@ -319,7 +462,7 @@ module.exports = {
 			if (choix !== "kill" || choix !== "badass" || choix !== "kiss" || choix !== "punch") {
 				let mauvais = new Discord.EmbedBuilder()
 					.setTitle("**__Les category des gif dispo__**")
-					.setColor("Purple")
+					.setColor("#000000")
 					.setDescription("Les choix de gif dispo sont : \n\n \`kiss\`\n \`kill\`\n \`badass\`\n \`punch\`")
 					.setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
 					.setTimestamp()
@@ -328,7 +471,8 @@ module.exports = {
 				return await message.followUp({ embeds: [mauvais] })
 			}
 		} catch (err) {
-			return console.log(err)
+
+			console.log(`Une erreur dans la commande gif`, err)
 
 		}
 	}

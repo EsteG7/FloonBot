@@ -4,7 +4,7 @@ const ms = require("ms")
 module.exports = {
 
     name: "unmute",
-    description: "unMute un membre",
+    description: "Permet d'enlever le mute d'un membre.",
     permission: Discord.PermissionFlagsBits.ModerateMembers,
     dm: false,
     category: "🧑🏻‍⚖️Modération",
@@ -12,58 +12,66 @@ module.exports = {
         {
             type: "user",
             name: "membre",
-            description: "Le membre à mute",
+            description: "Le membre à unmute.",
             required: true,
             autocomplete: false
         }, {
             type: "string",
             name: "raison",
-            description: "La raison du unmute",
+            description: "La raison du unmute.",
             required: true,
             autocomplete: false
         }
     ],
     async run(bot, message, args) {
 
-
         let user = args.getUser("membre");
-        if (!user) return message.channel.send("Pas de membre à unmute"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
+        if (!user) return message.channel.send("Pas de membre à unmute !"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
         let member = message.guild.members.cache.get(user.id)
-        if (!member) return message.channel.send("Pas de membre"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
-
+        if (!member) return message.channel.send("Pas de membre !"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
 
         let reason = args.getString("raison")
-        if (!reason) reason = "pas de raison fournie";
+        if (!reason) reason = "Pas de raison fournie !";
 
-
-        if (!member.moderatable) return message.reply("Je ne peux pas unmute ce membre ")
+        if (!member.moderatable) return message.reply("Je ne peux pas unmute ce membre !")
         if (message.member.roles.highest.comparePositionTo(member.roles.highest) <= 0) return message.reply("Tu ne peux pas umute cette personne")
-        if (!member.isCommunicationDisabled()) return message.reply("ce membre est pas mute")
+        if (!member.isCommunicationDisabled()) return message.reply("Ce membre est pas mute !")
 
         try {
-            let Embed1 = new Discord.EmbedBuilder()
-                .setColor("Red")
+            try {
+                let unMuteEmbed = new Discord.EmbedBuilder()
+                    .setColor("#FF0000")
+                    .setTitle(`Unmute par ${message.user.tag}`)
+                    .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+                    .setDescription(`🛑 **__Unmute__**
+                
+                > **Serveur :**\`${message.guild.name}\`
+                > **Modérateur :**\`${message.user.tag}\`\n 
+                > **Raison :** \`${reason}\`!`)
+                    .setTimestamp()
+                    .setFooter({ text: "Unmute" })
+                await user.send({ embeds: [unMuteEmbed] })
+
+            } catch (err) { }
+
+            let unMuteEmbed = new Discord.EmbedBuilder()
+                .setColor("#FF0000")
                 .setTitle(`Unmute`)
                 .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
-                .setDescription(`\`🛑 Unmute \n Tu as été unmute du serveur \`${message.guild.name}\`\n par le modérateur \`${message.user.tag} \`\n pour la raison : \`${reason}\``)
+                .setDescription(`🛑 **__Unmute__** 
+            > **Modérateur :**\`${message.user.tag}\` a unmute **avec succès ! ✅**
+            > **Membre :** \`${user.tag}\` 
+            > **Raison :** \`${reason}\`!`)
                 .setTimestamp()
                 .setFooter({ text: "Unmute" })
-            await user.send({ embeds: [Embed1] })
 
-        } catch (err) { }
+            await message.reply({ embeds: [unMuteEmbed] })
+            await member.timeout(null, reason)
 
-        let Embed = new Discord.EmbedBuilder()
-            .setColor("Red")
-            .setTitle(`Unmute`)
-            .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
-            .setDescription(`\`🛑 Unmute \n ${message.user.tag}\`a **Unmute** \n\` ${user.tag}\` **avec succès ! ✅**\n pour la raison : \`${reason}\`!`)
-            .setTimestamp()
-            .setFooter({ text: "Unmute" })
+        } catch (err) {
 
+            console.log(`Une erreur dans la commande unmute`, err)
 
-        await message.channel.send({ embeds: [Embed] })
-        message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
-        await member.timeout(null, reason)
-
+        }
     }
 }

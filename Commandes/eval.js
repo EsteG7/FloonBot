@@ -35,68 +35,125 @@ module.exports = {
     async run(bot, message, args) {
 
         try {
+            await message.deferReply()
+
             let number = args.getNumber("nombre1")
             let number1 = args.getNumber("nombre2")
             let Calcule = args.getString("symbole")
 
             if (Calcule === "+") {
-                const Calcule = new EmbedBuilder()
+
+                let calculeEmbed = new Discord.EmbedBuilder()
+                    .setColor("#FF5D00")
+                    .setTitle(`Chargement de la commande Eval.`)
+                    .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+                    .setDescription(`Je calcule le résulta veuillez patienter.`)
+                    .setTimestamp()
+                    .setFooter({ text: "Eval" })
+
+                await message.followUp({ embeds: [calculeEmbed] })
+
+                calculeEmbed = new EmbedBuilder()
                     .setTitle(`Calcule avec le symbole +`)
-                    .setColor("Green")
+                    .setColor("#00A705")
                     .setDescription(`${number} + ${number1} = ${number + number1}`)
                     .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                     .setTimestamp()
-                    .setFooter({ text: "calcule" })
-                return await message.channel.send({ embeds: [Calcule] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                    .setFooter({ text: "Eval" })
+                return await message.editReply({ embeds: [calculeEmbed] })
 
             }
             if (Calcule === "-") {
-                const Calcule = new EmbedBuilder()
+
+                let calculeEmbed = new Discord.EmbedBuilder()
+                    .setColor("#FF5D00")
+                    .setTitle(`Chargement de la commande Eval.`)
+                    .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+                    .setDescription(`Je calcule le résulta veuillez patienter.`)
+                    .setTimestamp()
+                    .setFooter({ text: "Eval" })
+
+                await message.followUp({ embeds: [calculeEmbed] })
+
+                calculeEmbed = new EmbedBuilder()
                     .setTitle(`Calcule avec le symbole -`)
-                    .setColor("Green")
+                    .setColor("#00A705")
                     .setDescription(`${number} - ${number1} = ${number - number1}`)
                     .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                     .setTimestamp()
-                    .setFooter({ text: "calcule" })
-                return await message.channel.send({ embeds: [Calcule] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                    .setFooter({ text: "Eval" })
+                return await message.editReply({ embeds: [calculeEmbed] })
             }
             if (Calcule === "*") {
-                const Calcule = new EmbedBuilder()
+
+                let calculeEmbed = new Discord.EmbedBuilder()
+                    .setColor("#FF5D00")
+                    .setTitle(`Chargement de la commande Eval.`)
+                    .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+                    .setDescription(`Je calcule le résulta veuillez patienter.`)
+                    .setTimestamp()
+                    .setFooter({ text: "Eval" })
+
+                await message.followUp({ embeds: [calculeEmbed] })
+
+                calculeEmbed = new EmbedBuilder()
                     .setTitle(`Calcule avec le symbole *`)
-                    .setColor("Green")
+                    .setColor("#00A705")
                     .setDescription(`${number} * ${number1} = ${number * number1}`)
                     .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                     .setTimestamp()
-                    .setFooter({ text: "calcule" })
-                return await message.channel.send({ embeds: [Calcule] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                    .setFooter({ text: "Eval" })
+                return await message.editReply({ embeds: [calculeEmbed] })
             }
             if (Calcule === "%") {
-                const Calcule = new EmbedBuilder()
+
+                let calculeEmbed = new Discord.EmbedBuilder()
+                    .setColor("#FF5D00")
+                    .setTitle(`Chargement de la commande Eval.`)
+                    .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+                    .setDescription(`Je calcule le résulta veuillez patienter.`)
+                    .setTimestamp()
+                    .setFooter({ text: "Eval" })
+
+                await message.followUp({ embeds: [calculeEmbed] })
+
+                calculeEmbed = new EmbedBuilder()
                     .setTitle(`Calcule avec le symbole %`)
-                    .setColor("Green")
+                    .setColor("#00A705")
                     .setDescription(`${number} % ${number1} = ${number % number1}`)
                     .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                     .setTimestamp()
-                    .setFooter({ text: "calcule" })
-                return await message.channel.send({ embeds: [Calcule] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                    .setFooter({ text: "Eval" })
+                return await message.editReply({ embeds: [calculeEmbed] })
             }
             if (Calcule === "/") {
-                const Calcule = new EmbedBuilder()
+
+                let calculeEmbed = new Discord.EmbedBuilder()
+                    .setColor("#FF5D00")
+                    .setTitle(`Chargement de la commande Eval.`)
+                    .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+                    .setDescription(`Je calcule le résulta veuillez patienter.`)
+                    .setTimestamp()
+                    .setFooter({ text: "Eval" })
+
+                await message.followUp({ embeds: [calculeEmbed] })
+
+                calculeEmbed = new EmbedBuilder()
                     .setTitle(`Calcule avec le symbole /`)
-                    .setColor("Green")
+                    .setColor("#00A705")
                     .setDescription(`${number} / ${number1} = ${number / number1}`)
                     .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                     .setTimestamp()
-                    .setFooter({ text: "calcule" })
-                return await message.channel.send({ embeds: [Calcule] }), message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                    .setFooter({ text: "Eval" })
+                return await message.editReply({ embeds: [calculeEmbed] })
 
             }
 
             if (Calcule === "+" || "-" || "*" || "/") {
-                await message.deferReply()
+
                 let mauvais = new Discord.EmbedBuilder()
                     .setTitle("**__Les category des Symbole dispo__**")
-                    .setColor("Green")
+                    .setColor("#000000")
                     .setDescription("Les choix de Symbole dispo sont : \n\n \`+\` \`-\` \`/\` \`*\` \`%\`")
                     .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                     .setTimestamp()
@@ -105,8 +162,10 @@ module.exports = {
                 return await message.followUp({ embeds: [mauvais] })
 
             }
+
         } catch (err) {
-            return console.log(err)
+
+            console.log(`Une erreur dans la commande eval`, err)
 
         }
     }

@@ -3,7 +3,7 @@ const Discord = require("discord.js")
 module.exports = {
 
     name: "clear",
-    description: "Efface beaucoup de messages",
+    description: "Efface beaucoup de messages.",
     permission: Discord.PermissionFlagsBits.ModerateMembers,
     dm: false,
     category: "🧑🏻‍⚖️Modération",
@@ -11,13 +11,13 @@ module.exports = {
         {
             type: "number",
             name: "nombre",
-            description: "Le nombre de messages à supprimer",
+            description: "Le nombre de messages à supprimer.",
             required: true,
             autocomplete: false
         }, {
             type: "channel",
             name: "salon",
-            description: "Le salon où effacer les messages",
+            description: "Le salon où effacer les messages.",
             required: false,
             autocomplete: false
         }
@@ -33,22 +33,23 @@ module.exports = {
         if (parseInt(number) <= 0 || parseInt(number) > 100) return message.reply({ content: "Il nous faut un nombre entre `0` et `100` inclus !", ephemeral: true })
 
         try {
+            try {
 
-            let messages = await channel.bulkDelete(parseInt(number))
+                let messages = await channel.bulkDelete(parseInt(number))
+                await message.reply({ content: `J'ai bien supprimé \`${messages.size}\` message(s) dans le salon ${channel} !`, ephemeral: true })
 
-            await message.reply({ content: `J'ai bien supprimé \`${messages.size}\` message(s) dans le salon ${channel} !`, ephemeral: true })
+            } catch (err) {
 
-            console.log(`${message.user.tag} a supprimer  ${messages.size}`)
+                let messages = [...(await channel.messages.fetch()).values()].filter(async m => (Date.now() - m.createdAt) <= 1209600000)
+                if (!messages.length <= 0) return message.reply({ content: "Aucun message à supprimer car ils datent tous de plus de 14 jours !", ephemeral: true })
+                await channel.bulkDelete(messages)
+                await message.reply({ content: `J'ai pu supprimé uniquement \`${messages.size}\` message(s) dans le salon ${channel} car les autres dataient de plus 14 jours !`, ephemeral: true })
+
+            }
 
         } catch (err) {
 
-            let messages = [...(await channel.messages.fetch()).values()].filter(async m => (Date.now() - m.createdAt) <= 1209600000)
-            if (!messages.length <= 0) return message.reply({ content: "Aucun message à supprimer car ils datent tous de plus de 14 jours !", ephemeral: true })
-            await channel.bulkDelete(messages)
-
-            await message.reply({ content: `J'ai pu supprimé uniquement \`${messages.size}\` message(s) dans le salon ${channel} car les autres dataient de plus 14 jours  !`, ephemeral: true })
-
-
+            console.log(`Une erreur dans la commande clear`, err)
 
         }
     }

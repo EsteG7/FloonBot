@@ -54,13 +54,13 @@ module.exports = {
 
             } catch (err) { }
 
-            Embed = new Discord.EmbedBuilder()
+            let Embed = new Discord.EmbedBuilder()
                 .setColor("#FF0000")
                 .setTitle(`Le membre ${user.tag} a étais ban.`)
                 .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                 .setDescription(`🛑 **__Ban__** 
                 
-                > **Modérateur :** ${message.user.tag}\`a **ban avec succès ! ✅**,
+                > **Modérateur :** \`${message.user.tag}\`a **ban avec succès ! ✅**,
                 > **Raison :** \`${reason}\`!`)
                 .setTimestamp()
                 .setFooter({ text: "Ban" })

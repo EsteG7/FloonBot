@@ -2,8 +2,9 @@ const Discord = require("discord.js");
 
 
 module.exports = {
+
     name: "dm",
-    description: "DM un membre",
+    description: "DM un membre.",
     category: "🧑🏻‍⚖️Modération",
     permission: Discord.PermissionFlagsBits.ModerateMembers,
     dm: false,
@@ -31,16 +32,24 @@ module.exports = {
         let reason = interaction.options.getString("texte")
 
         try {
-            let Embed1 = new Discord.EmbedBuilder()
-                .setColor("Green")
-                .setTitle(`Message de ${user.tag}`)
-                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
-                .setDescription(`${reason}`)
-                .setTimestamp()
-                .setFooter({ text: "Message en mp" })
-            await user.send({ embeds: [Embed1] })
-        } catch (err) { }
-        interaction.reply({ content: `J'ai bien envoyer le message à \_\_${user}\_\_ !`, ephemeral: true });
+            try {
+                let Embed1 = new Discord.EmbedBuilder()
+                    .setColor("#00A705")
+                    .setTitle(`Message de ${user.tag}.`)
+                    .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+                    .setDescription(`${reason}`)
+                    .setTimestamp()
+                    .setFooter({ text: "Message en mp." })
+                await user.send({ embeds: [Embed1] })
 
+            } catch (err) { }
+
+            interaction.reply({ content: `J'ai bien envoyer le message à \_\_${user}\_\_ !`, ephemeral: true });
+
+        } catch (err) {
+
+            console.log(`Une erreur dans la commande dm`, err)
+
+        }
     }
 }

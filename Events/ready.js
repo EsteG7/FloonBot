@@ -6,17 +6,29 @@ const { EmbedBuilder } = require("discord.js")
 
 module.exports = async bot => {
 
-    bot.user.setPresence({
-        activities: [{ name: "de Floon", type: ActivityType.Streaming, url: "https://www.twitch.tv/skfloon" }],
-        status: 'dnd',
-    });
+    try {
+        bot.user.setPresence({
+            activities: [{ name: "de Floon", type: ActivityType.Streaming, url: "https://www.twitch.tv/skfloon" }],
+            status: 'dnd',
+        });
+    } catch (err) {
 
-    bot.db = await loadDatabase()
-    bot.db.connect(function (err) {
-        if (err) throw err;
+        console.log("Une erreur dans l'event ready pour la presence du bot.", err)
 
-        console.log("Connected to database")
-    })
+    }
+
+    try {
+        bot.db = await loadDatabase()
+        bot.db.connect(function (err) {
+            if (err) throw err;
+
+            console.log("Connected to database")
+        })
+    } catch (err) {
+
+        console.log("Une erreur dans l'event ready pour la base de donnée.", err)
+
+    }
 
     await loadSlashCommands(bot)
 

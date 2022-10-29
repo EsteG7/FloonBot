@@ -4,7 +4,7 @@ const ms = require("ms")
 module.exports = {
 
     name: "mute",
-    description: "Mute un membr",
+    description: "Permet de mute un membre sur le serveur",
     permission: Discord.PermissionFlagsBits.ModerateMembers,
     dm: false,
     category: "🧑🏻‍⚖️Modération",
@@ -12,20 +12,20 @@ module.exports = {
         {
             type: "user",
             name: "membre",
-            description: "Le membre à mute",
+            description: "Quel est le membre à mute ?",
             required: true,
             autocomplete: false
 
         }, {
             type: "string",
             name: "temps",
-            description: "Le temps du mute",
+            description: "Quel est le temps du mute ?",
             required: true,
             autocomplete: false
         }, {
             type: "string",
             name: "raison",
-            description: "La raison du mute",
+            description: "Quel est la raison du mute ?",
             required: true,
             autocomplete: false
         }
@@ -34,54 +34,65 @@ module.exports = {
 
 
         let user = args.getUser("membre");
-        if (!user) return message.channel.send("Pas de membre à mute"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
+        if (!user) return message.channel.send("Pas de membre à mute !"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
         let member = message.guild.members.cache.get(user.id)
-        if (!member) return message.channel.send("Pas de membre"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
+        if (!member) return message.channel.send("Pas de membre !"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
 
         let time = args.getString("temps")
-        if (!time) return message.channel.send("Pas de temps"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
-        if (isNaN(ms(time))) return message.channel.send("pas le bon format"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
-        if (ms(time) > 2419200000) return message.channel.send("Le mute ne peux pas dures plus de 28 jours"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
+        if (!time) return message.channel.send("Pas de temps "), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
+        if (isNaN(ms(time))) return message.channel.send("Pas le bon format !"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
+        if (ms(time) > 2419200000) return message.channel.send("Le mute ne peux pas dures plus de 28 jours!"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
 
         let reason = args.getString("raison")
-        if (!reason) reason = "pas de raison fournie";
+        if (!reason) reason = "Pas de raison fournie !";
 
-        if (message.user.id === user.id) return message.channel.send("Essaie pas de te mute"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
-        if ((await message.guild.fetchOwner()).id === user.id) return message.channel.send("Ne mute pas le propriétaire du serveur"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
-        if (!member.moderatable) return message.reply("Je ne peux pas mute ce membre ")
-        if (message.member.roles.highest.comparePositionTo(member.roles.highest) <= 0) return message.channel.send("Tu ne peux pas mute cette personne"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
-        if (member.isCommunicationDisabled()) return message.channel.send("ce membre est déja mute"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
+        if (message.user.id === user.id) return message.channel.send("Essaie pas de te mute !"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
+        if ((await message.guild.fetchOwner()).id === user.id) return message.channel.send("Ne mute pas le propriétaire du serveur !"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
+        if (!member.moderatable) return message.reply("Je ne peux pas mute ce membre !")
+        if (message.member.roles.highest.comparePositionTo(member.roles.highest) <= 0) return message.channel.send("Tu ne peux pas mute cette personne !"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
+        if (member.isCommunicationDisabled()) return message.channel.send("Ce membre est déja mute !"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
 
         try {
-            let Embed1 = new Discord.EmbedBuilder()
-                .setColor("Red")
-                .setTitle(`Mute`)
+            try {
+                let muteEmbed = new Discord.EmbedBuilder()
+                    .setColor("#FF0000")
+                    .setTitle(`Mute par ${message.user.tag}`)
+                    .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+                    .setDescription(`🛑 **__Mute__** 
+                
+                > **Serveur :**\`${message.guild.name}\`
+                > **Time :**\`${time}\`
+                > **Modérateur :**\`${message.user.tag}\`
+                > **Raison :** \`${reason}\`!`)
+                    .setTimestamp()
+                    .setFooter({ text: "Mute" })
+                await user.send({ embeds: [muteEmbed] })
+
+            } catch (err) { }
+
+            let muteEmbed = new Discord.EmbedBuilder()
+                .setColor("#FF0000")
+                .setTitle(`Le membre ${user.tag} a étais mute.`)
                 .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
-                .setDescription(`\`🛑 Mute \n Tu as été Mute du serveur \`${message.guild.name}\`\n pendant \`${time}\`\n par le modérateur \`${message.user.tag} \`\n pour la raison : \`${reason}\``)
+                .setDescription(`🛑 **__Mute__** 
+            > **Modérateur :**\`${message.user.tag}\`a **banni avec succès ! ✅**
+            > **Membre :**\`${user.tag}\`
+            > **Time :**\`${time}\`
+            > **Raison :** \`${reason}\`!`)
                 .setTimestamp()
                 .setFooter({ text: "Mute" })
-            await user.send({ embeds: [Embed1] })
 
+            await message.reply({ embeds: [muteEmbed] })
+            await member.timeout(ms(time), reason)
 
-        } catch (err) { }
+            let ID = await bot.fonction.createId("MUTE")
 
-        let Embed = new Discord.EmbedBuilder()
-            .setColor("Red")
-            .setTitle(`Mute`)
-            .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
-            .setDescription(`\`🛑 Mute \n ${message.user.tag}\`a **banni** \n\` ${user.tag}\` **avec succès ! ✅**\n pendant\`${time}\`\n pour la raison : \`${reason}\`!`)
-            .setTimestamp()
-            .setFooter({ text: "Mute" })
+            db.query(`INSERT INTO mutes (guild, guildId, user, userId, author, authorId, mute, time, reason, date) VALUES ('${message.guild.name}', '${message.guild.id}','${user.tag}', '${user.id}','${message.user.tag}','${message.user.id}', '${ID}', '${time}', '${reason.replace(/'/g, "\\'")}', '${Date.now()}')`)
 
+        } catch (err) {
 
-        await message.channel.send({ embeds: [Embed] })
-        message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+            console.log(`Une erreur dans la commande mute`, err)
 
-        await member.timeout(ms(time), reason)
-
-        let ID = await bot.fonction.createId("MUTE")
-
-        db.query(`INSERT INTO mutes (guild, guildId, user, userId, author, authorId, mute, time, reason, date) VALUES ('${message.guild.name}', '${message.guild.id}','${user.tag}', '${user.id}','${message.user.tag}','${message.user.id}', '${ID}', '${time}', '${reason.replace(/'/g, "\\'")}', '${Date.now()}')`)
-
+        }
     }
 }

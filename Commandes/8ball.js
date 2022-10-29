@@ -13,13 +13,13 @@ module.exports = {
         {
             type: "string",
             name: "question",
-            description: "La question que tu souhaites poser au bot",
+            description: "La question que tu souhaites poser au bot.",
             required: true,
             autocomplete: false
         }
     ],
 
-    async run(bot, interaction, args) {
+    async run(bot, message, args) {
 
         try {
             let quest = args.getString("question")
@@ -27,7 +27,7 @@ module.exports = {
 
             const ballEmbed = new EmbedBuilder()
                 .setTitle(`8ball`)
-                .setColor("Green")
+                .setColor("#00A705")
                 .addFields(
                     { name: 'Question', value: `${quest}`, inline: false },
                     { name: 'Reponse', value: `${result}`, inline: false },
@@ -36,11 +36,11 @@ module.exports = {
                 .setTimestamp()
                 .setFooter({ text: "8ball" })
 
-
-            interaction.reply({ embeds: [ballEmbed] })
+            message.reply({ embeds: [ballEmbed] })
 
         } catch (err) {
-            return console.log(err)
+
+            console.log(`Une erreur dans la commande 8ball.`, err)
         }
 
     }

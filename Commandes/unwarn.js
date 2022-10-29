@@ -10,7 +10,7 @@ module.exports = {
     options: [{
         type: "user",
         name: "membre",
-        description: "Le membre à warn.",
+        description: "Le membre à unwarn.",
         required: true,
         autocomplete: false
     },
@@ -38,35 +38,41 @@ module.exports = {
             if (req.length < 1) return message.channel.send("Ce membre n'a pas de warn !"), message.reply({ content: '🔴 ** erreur envoyé avec succès ! **🔴', ephemeral: true })
 
             try {
+                try {
 
-                let unwarnEmbed = new Discord.EmbedBuilder()
-                    .setColor("#FF0000")
-                    .setTitle(`Unwarn par ${message.user.tag}.`)
-                    .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
-                    .setDescription(`🛑 **__UnWarn__**
+                    let unwarnEmbed = new Discord.EmbedBuilder()
+                        .setColor("#FF0000")
+                        .setTitle(`Unwarn par ${message.user.tag}.`)
+                        .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+                        .setDescription(`🛑 **__UnWarn__**
                 
                 > **Serveur :** \`${message.guild.name}\`
                 > **Modérateur :** \`${message.user.tag}\`!`)
-                    .setTimestamp()
-                    .setFooter({ text: "Unwarn" })
+                        .setTimestamp()
+                        .setFooter({ text: "Unwarn" })
 
-                await user.send({ embeds: [unwarnEmbed] })
+                    await user.send({ embeds: [unwarnEmbed] })
 
-            } catch (err) { }
+                } catch (err) { }
 
-            let unwarnEmbed = new Discord.EmbedBuilder()
-                .setColor("#FF0000")
-                .setTitle(`le membre ${user.tag} a étais unwarn.`)
-                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
-                .setDescription(`🛑 **__UnWarn__** \
+                let unwarnEmbed = new Discord.EmbedBuilder()
+                    .setColor("#FF0000")
+                    .setTitle(`le membre ${user.tag} a étais unwarn.`)
+                    .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+                    .setDescription(`🛑 **__UnWarn__** \
             
             > **Modérateur :** \`${message.user.tag}\` a unwarn le membre  **avec succès ! ✅**
             > **Membre :** \`${user.tag}\`!`)
-                .setTimestamp()
-                .setFooter({ text: "Unwarn" })
+                    .setTimestamp()
+                    .setFooter({ text: "Unwarn" })
 
-            await message.reply({ embeds: [unwarnEmbed] })
-            db.query(`DELETE FROM warns WHERE guildId = '${message.guildId}' AND warn = '${warns}'`)
+                await message.reply({ embeds: [unwarnEmbed] })
+                db.query(`DELETE FROM warns WHERE guildId = '${message.guildId}' AND warn = '${warns}'`)
+            } catch (err) {
+
+                console.log(`Une erreur dans la commande unwarn.`, err)
+
+            }
         })
     }
 }

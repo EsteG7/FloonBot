@@ -4,11 +4,17 @@ module.exports = async (bot, guild,) => {
 
     let db = bot.db;
 
-    db.query(`SELECT * FROM server WHERE guild = '${guild.id}'`, async (err, req) => {
+    try {
+        db.query(`SELECT * FROM server WHERE guild = '${guild.id}'`, async (err, req) => {
 
-        if (req.length < 1) {
+            if (req.length < 1) {
 
-            db.query(`INSERT INTO server (guild, captcha) VALUES (${guild.id},'false')`)
-        }
-    })
+                db.query(`INSERT INTO server (guild, captcha) VALUES (${guild.id},'false')`)
+            }
+        })
+    } catch (err) {
+
+        console.log("Une erreur dans l'event guildCreate pour la création du captcha.", err)
+
+    }
 }

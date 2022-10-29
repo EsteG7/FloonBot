@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType, SelectMenuBuilder } = require("discord.js")
 
 module.exports = {
+
     name: "avatar",
     description: "Avoir l'avatar de quelqun",
     permission: "Aucune",
@@ -53,7 +54,8 @@ module.exports = {
             await message.editReply({ embeds: [avatarEmbed], components: [row] });
 
         } catch (err) {
-            return console.log('Une erreur dans la commande avatar', err)
+
+            console.log('Une erreur dans la commande avatar', err)
         }
 
     }
