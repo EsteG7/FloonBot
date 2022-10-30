@@ -58,7 +58,7 @@ module.exports = {
 
       let kickEmbed = new Discord.EmbedBuilder()
         .setColor("#FF0000")
-        .setTitle(`kick`)
+        .setTitle(`Le membre ${user.tag} a étais kick.`)
         .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
         .setDescription(`🛑**__kick__**
         

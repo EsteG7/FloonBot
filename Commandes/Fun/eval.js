@@ -4,7 +4,7 @@ const Discord = require("discord.js");
 module.exports = {
 
     name: "eval",
-    description: "Calcule",
+    description: "Permet de calcule.",
     permission: "Aucune",
     dm: false,
     category: "🥳Fun",
@@ -12,21 +12,21 @@ module.exports = {
         {
             type: "number",
             name: "nombre1",
-            description: "mettre un nombre ou un chiffre nombre ou chiffre",
+            description: "Le nombre ou le chiffre.",
             required: true,
             autocomplete: false
         },
         {
             type: "string",
             name: "symbole",
-            description: "Symbole dispo : +,  -,  *,  /,  ",
+            description: "Permet de choisir le symbole pour le calcule.",
             required: true,
             autocomplete: true
         },
         {
             type: "number",
             name: "nombre2",
-            description: "mettre un nombre ou un chiffre nombre ou chiffre",
+            description: "Le nombre ou le chiffre.",
             required: true,
             autocomplete: false
         }

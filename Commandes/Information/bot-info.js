@@ -55,7 +55,9 @@ module.exports = {
             await message.editReply({ embeds: [botEmbed], components: [row] })
 
         } catch (err) {
+
             console.log(`Une erreur dans le commande bot-info`, err)
+
         }
     }
 }

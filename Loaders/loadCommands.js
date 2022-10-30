@@ -1,12 +1,22 @@
-const fs = require("fs")
+const { readdirSync, lstatSync } = require("fs")
 
 module.exports = async bot => {
 
-  fs.readdirSync("./Commandes").filter(f => f.endsWith(".js")).forEach(async file => {
+  try {
+    function scanDir(path) {
+      for (const thing of readdirSync(path)) {
+        if (lstatSync(path + thing).isDirectory()) scanDir(path + thing + '/');
+        else {
+          const command = require(path + thing);
+          console.log(`Commandes ${thing} chargée `);
+          bot.commands.set(command.name, command);
+        };
+      }
+    };
+    scanDir(process.cwd() + '/Commandes/');
+  } catch (err) {
 
-    let command = require(`../Commandes/${file}`)
-    if (!command.name || typeof command.name !== "string") throw new TypeError(`La commande ${file.slice(0, file.length - 3)} n'a pas de nom`)
-    bot.commands.set(command.name, command)
-    console.log(`Commands ${file} chargée avec succès `)
-  })
-}
+    console.log("Une erreur dans les loaders dans le fichier loadCommands", err)
+
+  }
+};

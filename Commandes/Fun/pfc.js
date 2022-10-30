@@ -15,7 +15,6 @@ module.exports = {
             required: true,
             autocomplete: true,
         },
-
     ],
     async run(bot, message, args) {
 

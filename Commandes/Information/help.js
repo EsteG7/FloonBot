@@ -12,10 +12,6 @@ module.exports = {
     async run(bot, message, args) {
 
         let command;
-        if (args.getString("commande")) {
-            command = bot.commands.get(args.getString("commande"));
-            if (!command) return message.reply("pas de commande")
-        }
 
         try {
             if (!command) {

@@ -12,7 +12,7 @@ module.exports = {
         {
             type: "channel",
             name: "channel",
-            description: "Quel est le salon",
+            description: "Quel est le salon ?",
             required: true,
             autocomplete: false
         }

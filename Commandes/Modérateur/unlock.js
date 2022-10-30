@@ -25,6 +25,7 @@ module.exports = {
             return message.reply({ content: `Je viens de déverouiller le salon.`, ephemeral: true })
 
         } catch (err) {
+
             console.log(`Une erreur dans la commande lock`, err);
         }
 

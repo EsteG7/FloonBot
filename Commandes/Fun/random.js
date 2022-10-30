@@ -26,7 +26,6 @@ module.exports = {
                 .setTimestamp()
                 .setFooter({ text: "Random" })
 
-
             await message.followUp({ embeds: [randomEmbed] })
 
             randomEmbed = new EmbedBuilder()
@@ -36,7 +35,6 @@ module.exports = {
                 .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                 .setTimestamp()
                 .setFooter({ text: "random" })
-
 
             await message.editReply({ embeds: [randomEmbed] })
 

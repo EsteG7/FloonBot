@@ -52,7 +52,9 @@ module.exports = {
             await message.editReply({ embeds: [userEmbed] })
 
         } catch (err) {
+
             console.log(`Une erreur dans le commande user-info`, err)
+
         }
     }
 }

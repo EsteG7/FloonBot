@@ -4,7 +4,7 @@ const { EmbedBuilder } = require('discord.js');
 module.exports = {
 
     name: "dé",
-    description: "choisi un nombre entre 1 et 6  aléatoir.",
+    description: "Permet de faire choisir le bot entre 1 et 6.",
     permission: "Aucune",
     category: "🥳Fun",
     dm: false,

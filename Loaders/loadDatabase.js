@@ -3,15 +3,21 @@ const { USER, DATABASE, MDP, HOST } = require("../db.json")
 
 module.exports = async () => {
 
-  let db = await mysql.createConnection({
+  try {
+    let db = await mysql.createConnection({
 
-    host: HOST,
-    user: USER,
-    password: MDP,
-    //Mettre le nom de ta database
-    database: DATABASE
+      host: HOST,
+      user: USER,
+      password: MDP,
+      //Mettre le nom de ta database
+      database: DATABASE
 
-  })
+    })
 
-  return db;
+    return db;
+  } catch (err) {
+
+    console.log("Une erreur dans les loaders dans le fichier loadDatabase", err)
+
+  }
 }

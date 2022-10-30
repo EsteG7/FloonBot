@@ -18,7 +18,7 @@ module.exports = {
         {
             type: "channel",
             name: "salon",
-            description: "salon du welcome",
+            description: "Quel est le salon pour le welcome?",
             required: true,
             autocomplete: false
         }
@@ -31,16 +31,15 @@ module.exports = {
         if (etat === "off") {
             db.query(`UPDATE welcomes SET welcome = 'false' WHERE guildId = '${message.guildId}'`)
             let Embed = new Discord.EmbedBuilder()
-                .setColor("Yellow")
+                .setColor("#FFE800")
                 .setTitle(`setwelcome`)
                 .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
-                .setDescription(`Le welcome est bien désactiver sur le channel`)
+                .setDescription(`Le welcome est bien désactiver sur le channel.`)
                 .setTimestamp()
                 .setFooter({ text: "welcome" })
 
 
-            await message.channel.send({ embeds: [Embed] })
-            message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+            await message.reply({ embeds: [Embed] })
 
         } else {
 
@@ -51,16 +50,14 @@ module.exports = {
 
             db.query(`UPDATE welcomes SET welcome = '${channel.id}' WHERE guildId = '${message.guildId}'`)
             let Embed = new Discord.EmbedBuilder()
-                .setColor("Yellow")
+                .setColor("#FFE800")
                 .setTitle(`setwelcome`)
                 .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
-                .setDescription(`Le welcome est bien active sur le salon ${channel}`)
+                .setDescription(`Le welcome est bien active sur le salon ${channel}.`)
                 .setTimestamp()
                 .setFooter({ text: "welcome" })
 
-
-            await message.channel.send({ embeds: [Embed] })
-            message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+            await message.reply({ embeds: [Embed] })
 
         }
     }

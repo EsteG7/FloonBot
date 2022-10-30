@@ -61,8 +61,8 @@ module.exports = async (bot, interaction) => {
     if (interaction.type === Discord.InteractionType.ApplicationCommand) {
 
         try {
-            let command = require(`../Commandes/${interaction.commandName}`)
-            command.run(bot, interaction, interaction.options, bot.db)
+            const command = interaction.client.commands.get(interaction.commandName);
+            command?.run?.(bot, interaction, interaction.options, bot.db)
 
         } catch (err) {
 
@@ -91,6 +91,7 @@ module.exports = async (bot, interaction) => {
 
 
         try {
+
             if (interaction.customId === "primary") {
 
                 let channel = await interaction.guild.channels.create({

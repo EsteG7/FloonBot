@@ -47,7 +47,7 @@ module.exports = {
                 
                 > **Serveur :**\`${message.guild.name}\`
                 > **Modérateur :**\`${message.user.tag}\`\n 
-                > **Raison :** \`${reason}\`!`)
+                > **Raison :** \`${reason}\``)
                     .setTimestamp()
                     .setFooter({ text: "Unmute" })
                 await user.send({ embeds: [unMuteEmbed] })
@@ -56,12 +56,12 @@ module.exports = {
 
             let unMuteEmbed = new Discord.EmbedBuilder()
                 .setColor("#FF0000")
-                .setTitle(`Unmute`)
+                .setTitle(`Le memmbre a étais Unmute par ${message.user.tag}`)
                 .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                 .setDescription(`🛑 **__Unmute__** 
             > **Modérateur :**\`${message.user.tag}\` a unmute **avec succès ! ✅**
             > **Membre :** \`${user.tag}\` 
-            > **Raison :** \`${reason}\`!`)
+            > **Raison :** \`${reason}\``)
                 .setTimestamp()
                 .setFooter({ text: "Unmute" })
 
