@@ -4,7 +4,7 @@ const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType,
 module.exports = {
 
     name: "avatar",
-    description: "Avoir l'avatar de quelqun",
+    description: "Permet de récupérer l'avatar d'un membre.",
     permission: "Aucune",
     dm: false,
     category: "🥳Fun",
