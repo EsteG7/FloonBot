@@ -1,6 +1,5 @@
 const Discord = require('discord.js')
 const { EmbedBuilder } = require("discord.js")
-const config = require('../config')
 
 module.exports = {
 
@@ -23,10 +22,10 @@ module.exports = {
 
         db.query(`SELECT * FROM suggests WHERE guildId = '${message.guild.id}'`, async (err, req) => {
 
-            if (req.length < 1 || Boolean(req[0].suggest) === false) return;
+            if (req.length < 1 || Boolean(req[0].suggest) === false) return
 
             let channel = bot.channels.cache.get(req[0].suggest)
-            if (!channel) return;
+            if (!channel) { return message.reply("Pas de salon pour la suggestion fait un /setsuggest.") };
 
             message.reply({ content: ':white_check_mark: **Suggestion envoyé avec succès ! **:white_check_mark:', ephemeral: true });
             let msg = args.getString("texte");
