@@ -35,5 +35,9 @@ generateCaptcha.js
 history.js
 ip.js
 leaderboard.js
+pfc.js
+random.js
+règlements.js
+select.js
 
-je me suis stoper a pfc
+je me suis arreter au setcaptcha

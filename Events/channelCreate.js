@@ -16,8 +16,8 @@ module.exports = async (bot, channels) => {
             const LatestChannel = fetchAuditLogs.entries.first()
 
             let Embed = new Discord.EmbedBuilder()
-                .setColor("Blue")
-                .setTitle("Création d'un salon")
+                .setColor("#0070FF")
+                .setTitle("Création d'un salon.")
                 .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
                 .setDescription(`Salon : ${channels.name}\nAuteur : ${LatestChannel.executor} (${LatestChannel.executor.tag})`)
                 .setFooter({ text: "HostYourProject | Bot", iconURL: bot.user.displayAvatarURL({ dynamic: true }) })

@@ -24,10 +24,12 @@ module.exports = {
     async run(bot, message, args) {
 
         try {
+
             const msg = args.getString("message");
             message.reply(msg);
 
         } catch (err) {
+
             return console.log(`Une erreur sur la commande say`, err)
         }
     }

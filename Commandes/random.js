@@ -3,7 +3,7 @@ const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
     name: "random",
-    description: "choisi un nombre entre 1 et 100  aléatoir",
+    description: "Le bot tire au hasard un chiffre entre 1 et 100.",
     permission: "Aucune",
     dm: false,
     category: "🥳Fun",
@@ -11,25 +11,39 @@ module.exports = {
 
     async run(bot, message, args) {
 
+        await message.deferReply()
 
         try {
             let min = 1;
             let max = 100;
             let random = Math.floor(Math.random() * (max - min)) + min;
 
-            const dé = new EmbedBuilder()
+            let randomEmbed = new Discord.EmbedBuilder()
+                .setColor("#FF5D00")
+                .setTitle(`Chargement de la commande random.`)
+                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+                .setDescription(`Je cherche un nombre entre 1 et 100 veuillez patienter.`)
+                .setTimestamp()
+                .setFooter({ text: "Random" })
+
+
+            await message.followUp({ embeds: [randomEmbed] })
+
+            randomEmbed = new EmbedBuilder()
                 .setTitle(`nombre aléatoir`)
                 .setColor("Green")
-                .setDescription(`tu as obtenue le nombre ou le chiffre  \`${random}\``)
+                .setDescription(`tu as obtenue le nombre ou le chiffre  \`${random}\`.`)
                 .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
                 .setTimestamp()
                 .setFooter({ text: "random" })
 
 
-            await message.channel.send({ embeds: [dé] })
-            message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+            await message.editReply({ embeds: [randomEmbed] })
+
         } catch (err) {
-            return console.log(err)
+
+            console.log("Une erreur dans la commmand random.", err)
+
         }
 
     }
