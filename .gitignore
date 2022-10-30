@@ -1,3 +1,5 @@
-node_modules/
-secret/
+node_modules
+config.js
+db.json
 package-lock.json
+patch
