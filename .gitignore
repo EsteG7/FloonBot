@@ -1,4 +1,4 @@
-patch
 node_modules
 Secret
-config.js
+config
+patch
