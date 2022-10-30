@@ -1,14 +1,15 @@
 const mysql = require("mysql")
+const { USER, DATABASE, MDP, HOST } = require("../Secret/db.json")
 
 module.exports = async () => {
 
   let db = await mysql.createConnection({
 
-    host: "localhost",
-    user: "root",
-    password: "",
+    host: HOST,
+    user: USER,
+    password: MDP,
     //Mettre le nom de ta database
-    database: "floon"
+    database: DATABASE
 
   })
 
