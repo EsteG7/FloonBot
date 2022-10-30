@@ -1,5 +1,5 @@
 const mysql = require("mysql")
-const { USER, DATABASE, MDP, HOST } = require("../db.json")
+const { USER, DATABASE, MDP, HOST } = require("../json/db.json")
 
 module.exports = async () => {
 

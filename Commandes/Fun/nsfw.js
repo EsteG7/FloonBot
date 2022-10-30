@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const { pussy, aHarem } = require("../../nsfw.json")
+const { pussy, aHarem } = require("../../json/saveImage/nsfw.json")
 
 module.exports = {
 

@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const { punch, kiss, badass, kill } = require("../../gif.json")
+const { punch, kiss, badass, kill } = require("../../json/saveImage/gif.json")
 
 module.exports = {
 
