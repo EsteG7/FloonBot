@@ -35,8 +35,7 @@ module.exports = {
                     Embed.addFields({ name: `${cat}`, value: `${commands.map(cmd => `\`${cmd.name}\` : ${cmd.description}`).join("\n")}` })
                 })
 
-                await message.channel.send({ embeds: [Embed] })
-                message.reply({ content: ':white_check_mark: **Embed envoyé avec succès ! **:white_check_mark:', ephemeral: true })
+                await message.reply({ embeds: [Embed] })
 
             }
 

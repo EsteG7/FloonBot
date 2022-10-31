@@ -17,25 +17,23 @@ module.exports = {
                 .setColor("#FF5D00")
                 .setTitle(`Chargement de la commande ping.`)
                 .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
-                .setDescription(`Je cherche le ping du bot veuillez patienter.`)
+                .setDescription(`Je cherche le ping du bot, veuillez patienter.`)
                 .setTimestamp()
                 .setFooter({ text: "Ping" })
 
 
-            await message.followUp({ embeds: [pingEmbed] })
+            await message.followUp({ embeds: [pingEmbed] }).then(() => {
 
+                pingEmbed = new Discord.EmbedBuilder()
+                    .setColor("#0070FF")
+                    .setTitle(`Commandes du bot`)
+                    .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+                    .setDescription(`Le ping du bot est de : \`${bot.ws.ping}\` ms.`)
+                    .setTimestamp()
+                    .setFooter({ text: "Ping" })
 
-            pingEmbed = new Discord.EmbedBuilder()
-                .setColor("#0070FF")
-                .setTitle(`Commandes du bot`)
-                .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
-                .setDescription(`Le ping du bot est de : \`${bot.ws.ping}\` ms.`)
-                .setTimestamp()
-                .setFooter({ text: "Ping" })
-
-
-            await message.editReply({ embeds: [pingEmbed] })
-
+                setTimeout(() => message.editReply({ embeds: [pingEmbed] }), 1500)
+            })
 
         } catch (err) {
             return console.log('Une erreur sur la commande ping', err)

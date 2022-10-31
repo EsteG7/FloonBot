@@ -31,6 +31,7 @@ module.exports = {
                 const Leaderboard = await new Canvas.Leaderboard()
                     .setBot(bot)
                     .setGuild(message.guild)
+                    //Mettre ton image 
                     .setBackground("./y006i80.png")
                     .setColorFont("#3dffcc")
 

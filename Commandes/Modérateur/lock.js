@@ -2,8 +2,8 @@ const Discord = require("discord.js");
 
 module.exports = {
 
-    name: "lock",
-    description: "Permet de vérouiller un salon.",
+    name: "unlock",
+    description: "Permet de verouiller un salon.",
     permission: Discord.PermissionFlagsBits.ModerateMembers,
     dm: false,
     category: "🧑🏻‍⚖️Modération",
@@ -22,10 +22,11 @@ module.exports = {
                 "SendMessagesInThreads": false,
             });
 
-            return message.reply({ content: `Je viens de fermer le salon`, ephemeral: true })
+            return message.reply({ content: `Je viens de verouiller le salon.`, ephemeral: false })
 
         } catch (err) {
-            console.log(`Une erreur dans la commande unlock`, err);
+
+            console.log(`Une erreur dans la commande lock.`, err);
         }
 
     }

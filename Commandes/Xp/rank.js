@@ -50,6 +50,7 @@ module.exports = {
                     let need = (level + 1) * 1000;
 
                     let Card = await new Canvas.Card()
+                        //mettre ton image
                         .setBackground("./y006i80.png")
                         .setBot(bot)
                         .setColorFont("#ffffff")

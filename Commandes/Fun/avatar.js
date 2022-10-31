@@ -38,21 +38,23 @@ module.exports = {
                 .setColor("#FF5D00")
                 .setTitle(`Chargement de la commande avatar.`)
                 .setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
-                .setDescription(`Je cherche l'avatar du membre ${user.tag} veuillez patienter.`)
+                .setDescription(`Je cherche l'avatar du membre ${user.tag}, veuillez patienter.`)
                 .setTimestamp()
                 .setFooter({ text: "Avatar" })
 
-            await message.followUp({ embeds: [avatarEmbed] })
+            await message.followUp({ embeds: [avatarEmbed] }).then(() => {
 
-            avatarEmbed = new EmbedBuilder()
-                .setAuthor({ name: `Avatar du membre ${user.tag}.`, iconURL: (user.displayAvatarURL({ dynamic: true })) })
-                .setColor("#00A705")
-                .setTimestamp()
-                .setFooter({ text: `Avatar du membre ${user.tag}.` })
-                .setImage(user.displayAvatarURL({ dynamic: true, size: 128 }))
 
-            await message.editReply({ embeds: [avatarEmbed], components: [row] });
+                avatarEmbed = new EmbedBuilder()
+                    .setAuthor({ name: `Avatar du membre ${user.tag}.`, iconURL: (user.displayAvatarURL({ dynamic: true })) })
+                    .setColor("#00A705")
+                    .setTimestamp()
+                    .setFooter({ text: `Avatar du membre ${user.tag}.` })
+                    .setImage(user.displayAvatarURL({ dynamic: true, size: 128 }))
 
+                setTimeout(() => message.editReply({ embeds: [avatarEmbed], components: [row] }), 2000);
+
+            })
         } catch (err) {
 
             console.log('Une erreur dans la commande avatar', err)
