@@ -40,7 +40,7 @@ module.exports = {
             }
 
         } catch (err) {
-            return console.log(err)
+            console.log("Une erreur dans la commande help", err)
         }
 
     }
