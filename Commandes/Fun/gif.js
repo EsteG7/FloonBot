@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
-const { punch, kiss, badass, kill } = require("../../json/saveImage/gif.json")
+const { EmbedBuilder, AttachmentBuilder } = require("discord.js");
+const { punch, kiss } = require("../.././json/saveImage/gif.json")
 
 module.exports = {
 
@@ -62,12 +63,35 @@ module.exports = {
 				return await message.editReply({ embeds: [Embed] })
 
 			}
+
 			if (choix === "punch") {
 
 				let punchradom = Math.floor(Math.random() * punch.length);
 				let motRandom = punch[punchradom];
+				const file = new AttachmentBuilder(`./assets/punch/${motRandom}`, { name: `Punch.gif` })
+
 				if (!member) {
 
+					const Embed1 = new Discord.EmbedBuilder()
+						.setColor("#FF5D00")
+						.setTitle(`Chargement de la commande gif.`)
+						.setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
+						.setDescription(`Je cherche l'image a afficher veuillez patienter.`)
+						.setTimestamp()
+						.setFooter({ text: "Gif" })
+
+					await message.followUp({ embeds: [Embed1] })
+
+					const Embed = new Discord.EmbedBuilder()
+
+						.setColor("DC00FF")
+						.setImage(`attachment://${file.name}`)
+						.setTimestamp()
+
+					return await message.editReply({ embeds: [Embed], files: [file] })
+
+				} else if (member && reason) {
+
 					let Embed = new Discord.EmbedBuilder()
 						.setColor("#FF5D00")
 						.setTitle(`Chargement de la commande gif.`)
@@ -79,34 +103,15 @@ module.exports = {
 					await message.followUp({ embeds: [Embed] })
 
 					Embed = new Discord.EmbedBuilder()
-						.setColor("DC00FF")
-						.setImage(url = motRandom)
-						.setTimestamp()
-
-					return await message.editReply({ embeds: [Embed] })
-				}
-				if (member && reason) {
-
-					let Embed = new Discord.EmbedBuilder()
-						.setColor("#FF5D00")
-						.setTitle(`Chargement de la commande gif.`)
-						.setThumbnail(bot.user.displayAvatarURL({ dynamic: true, size: 64 }))
-						.setDescription(`Je cherche l'image a afficher veuillez patienter.`)
-						.setTimestamp()
-						.setFooter({ text: "Gif" })
-
-					await message.followUp({ embeds: [Embed] })
-
-					Embed = new Discord.EmbedBuilder()
 
 						.setColor("DC00FF")
-						.setImage(url = motRandom)
+						.setImage(`attachment://${file.name}`)
 						.setDescription(`${message.user.toString()} a punch ${member.user.toString()} pour la raison : \n\`${reason}\``)
 						.setTimestamp()
 
-					return await message.editReply({ embeds: [Embed] })
-				}
-				if (member && !reason) {
+					return await message.editReply({ embeds: [Embed], files: [file] })
+
+				} else if (member && !reason) {
 
 					let Embed = new Discord.EmbedBuilder()
 						.setColor("#FF5D00")
@@ -120,16 +125,18 @@ module.exports = {
 
 					Embed = new Discord.EmbedBuilder()
 						.setColor("DC00FF")
-						.setImage(url = motRandom)
+						.setImage(`attachment://${file.name}`)
 						.setDescription(`${message.user.toString()} a punch ${member.user.toString()}`)
 						.setTimestamp()
 
-					return await message.editReply({ embeds: [Embed] })
+					return await message.editReply({ embeds: [Embed], files: [file] })
 				}
 			}
+
 			if (choix === "kiss") {
 				let kissradom = Math.floor(Math.random() * kiss.length);
 				let kissmotRandom = kiss[kissradom];
+				const file = new AttachmentBuilder(`./assets/kiss/${kissmotRandom}`, { name: `kiss.gif` })
 
 				if (!member) {
 
@@ -145,13 +152,12 @@ module.exports = {
 
 					Embed = new Discord.EmbedBuilder()
 						.setColor("DC00FF")
-						.setImage(url = kissmotRandom)
+						.setImage(`attachment://${file.name}`)
 						.setTimestamp()
 
-					return await message.editReply({ embeds: [Embed] })
+					return await message.editReply({ embeds: [Embed], files: [file] })
 
-				}
-				if (member && reason) {
+				} else if (member && reason) {
 
 					let Embed = new Discord.EmbedBuilder()
 						.setColor("#FF5D00")
@@ -165,13 +171,13 @@ module.exports = {
 
 					Embed = new Discord.EmbedBuilder()
 						.setColor("DC00FF")
-						.setImage(url = kissmotRandom)
+						.setImage(`attachment://${file.name}`)
 						.setDescription(`${message.user.toString()} a kiss ${member.user.toString()} pour la raison : \n\`${reason}\``)
 						.setTimestamp()
 
-					return await message.editReply({ embeds: [Embed] })
-				}
-				if (member && !reason) {
+					return await message.editReply({ embeds: [Embed], files: [file] })
+
+				} else if (member && !reason) {
 
 					let Embed = new Discord.EmbedBuilder()
 						.setColor("#FF5D00")
@@ -185,13 +191,14 @@ module.exports = {
 
 					Embed = new Discord.EmbedBuilder()
 						.setColor("DC00FF")
-						.setImage(url = kissmotRandom)
+						.setImage(`attachment://${file.name}`)
 						.setDescription(`${message.user.toString()} a kiss ${member.user.toString()}`)
 						.setTimestamp()
-					return await message.editReply({ embeds: [Embed] })
+					return await message.editReply({ embeds: [Embed], files: [file] })
 
 				}
 			}
+
 			if (choix === "badass") {
 				let badassradom = Math.floor(Math.random() * badass.length);
 				let badassmotRandom = badass[badassradom];
@@ -256,6 +263,7 @@ module.exports = {
 					return await message.editReply({ embeds: [Embed] })
 				}
 			}
+
 			if (choix === "kill") {
 
 				let killradom = Math.floor(Math.random() * kill.length);
@@ -330,6 +338,7 @@ module.exports = {
 
 				return await message.followUp({ embeds: [mauvais] })
 			}
+
 		} catch (err) {
 
 			console.log(`Une erreur dans la commande gif`, err)
